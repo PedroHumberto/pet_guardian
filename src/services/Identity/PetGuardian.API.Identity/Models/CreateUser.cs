@@ -1,9 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace PetGuardian.API.Identity.Models
 {
     public class CreateUser
     {
+
+        [Required(ErrorMessage = "The field {0} it's necessary")]
+        public string UserName { get; set; }
+
         [Required(ErrorMessage = "The field {0} it's necessary")]
         [EmailAddress(ErrorMessage = "The Field {0} is invalid")]
         public string Email { get; set; }
