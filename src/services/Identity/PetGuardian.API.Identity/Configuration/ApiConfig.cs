@@ -17,7 +17,6 @@ namespace PetGuardian.API.Identity.Configuration
             services.AddSwaggerConfiguration();
             services.AddEndpointsApiExplorer();
 
-
             return services;
         }
         public static IApplicationBuilder UseApiConfiguration(this IApplicationBuilder app, IWebHostEnvironment env)
@@ -30,6 +29,8 @@ namespace PetGuardian.API.Identity.Configuration
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
+
             app.UseRouting();
 
             app.UseCors("Total");
@@ -41,8 +42,10 @@ namespace PetGuardian.API.Identity.Configuration
                 endpoints.MapControllers();
             });
 
+
             return app;
         }
+
     }
     
 }

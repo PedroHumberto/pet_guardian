@@ -24,10 +24,13 @@ namespace PetGuardian.API.Identity.Services
             {
                 UserName = newUser.UserName,
                 Email = newUser.Email,
-                EmailConfirmed = true
+                EmailConfirmed = true,
             };
-
+                        
             var result = await _userManager.CreateAsync(user, newUser.Password);
+
+            await _userManager.AddToRoleAsync(user, "Member");
+
 
             return result;
         }
@@ -41,6 +44,11 @@ namespace PetGuardian.API.Identity.Services
             }
 
             var userToken = await _signInManager.UserManager.Users.FirstOrDefaultAsync(u => u.NormalizedUserName == user.UserName.ToUpper());
+
+            if (userToken == null)
+            {
+                userToken = new IdentityUser();
+            }
 
             var token = await _tokenService.GenerateToken(userToken);
 

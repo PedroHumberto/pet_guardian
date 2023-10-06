@@ -9,7 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{3A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Identity", "Identity", "{C7054DEF-882E-470D-A45D-E273C2E039A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetGuardian.API.Identity", "src\services\Identity\PetGuardian.API.Identity\PetGuardian.API.Identity.csproj", "{77328953-EE62-4BAC-BE3D-5DF3069B0478}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetGuardian.API.Identity", "src\services\Identity\PetGuardian.API.Identity\PetGuardian.API.Identity.csproj", "{77328953-EE62-4BAC-BE3D-5DF3069B0478}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "building blocks", "building blocks", "{65F716D5-4EEB-4D30-A656-7B1C6934EA37}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetGuardian.Domain", "src\building blocks\PetGuardian.Models\PetGuardian.Domain.csproj", "{002E9826-9FE7-40D3-B96D-005B7B3BE4F9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetGuardian.Core", "src\building blocks\PetGuardian.Core\PetGuardian.Core.csproj", "{08077B7C-C7D5-40F9-A2D5-0707A6D53339}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,14 @@ Global
 		{77328953-EE62-4BAC-BE3D-5DF3069B0478}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77328953-EE62-4BAC-BE3D-5DF3069B0478}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77328953-EE62-4BAC-BE3D-5DF3069B0478}.Release|Any CPU.Build.0 = Release|Any CPU
+		{002E9826-9FE7-40D3-B96D-005B7B3BE4F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{002E9826-9FE7-40D3-B96D-005B7B3BE4F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{002E9826-9FE7-40D3-B96D-005B7B3BE4F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{002E9826-9FE7-40D3-B96D-005B7B3BE4F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08077B7C-C7D5-40F9-A2D5-0707A6D53339}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08077B7C-C7D5-40F9-A2D5-0707A6D53339}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08077B7C-C7D5-40F9-A2D5-0707A6D53339}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08077B7C-C7D5-40F9-A2D5-0707A6D53339}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -29,6 +43,9 @@ Global
 		{3AD00678-0CF3-47DE-8B16-16FFCFD840BF} = {667FA38F-37D1-4800-BB95-2196BC04C35B}
 		{C7054DEF-882E-470D-A45D-E273C2E039A2} = {3AD00678-0CF3-47DE-8B16-16FFCFD840BF}
 		{77328953-EE62-4BAC-BE3D-5DF3069B0478} = {C7054DEF-882E-470D-A45D-E273C2E039A2}
+		{65F716D5-4EEB-4D30-A656-7B1C6934EA37} = {667FA38F-37D1-4800-BB95-2196BC04C35B}
+		{002E9826-9FE7-40D3-B96D-005B7B3BE4F9} = {65F716D5-4EEB-4D30-A656-7B1C6934EA37}
+		{08077B7C-C7D5-40F9-A2D5-0707A6D53339} = {65F716D5-4EEB-4D30-A656-7B1C6934EA37}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {54DBEE92-83D3-4516-99D9-6F5A12146007}

@@ -15,7 +15,8 @@ namespace PetGuardian.API.Identity.Services
             Claim[] claims = new Claim[]
             {
                 new Claim("id", user.Id),
-                new Claim("email", user.Email)
+                new Claim("email", user.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ASDAS5WE8T5Y6F4A5S8TT9QWE8REW8RQ4AS56D6"));
