@@ -1,4 +1,5 @@
 using PetGuardian.Domain.Core.DomainObjects;
+using PetGuardian.Domain.Core.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,25 +11,27 @@ namespace PetGuardian.Models.Models
     {
         public string PetName { get; private set; }
         public char Gender { get; private set; }
-        public string Specie { get; private set; }
-        public User PetGuadian { get; private set; }
-        public Guid PetGuadianId { get; private set; }
-        public IEnumerable<PetMedicalExam> PetExams { get; private set; }
+        public AnimalSpecies Specie { get; private set; }
+        public User User { get; private set; }
+        public Guid UserId { get; private set; }
+        public IEnumerable<PetExams>? PetExams { get; private set; }
         public Guid PetExamsId { get; private set; }
 
-        public Pet(Guid petId, string petName, char gender, string specie, User petGuadian, Guid petGuadianId, IEnumerable<PetMedicalExam> petExams, Guid petExamsId)
+        protected Pet() { }
+
+        public Pet(Guid petId, 
+            string petName, 
+            char gender, 
+            AnimalSpecies specie
+            )
         {
             Id = petId;
             PetName = petName;
             Gender = gender;
             Specie = specie;
-            PetGuadian = petGuadian;
-            PetGuadianId = petGuadianId;
-            PetExams = petExams;
-            PetExamsId = petExamsId;
         }
 
-        public void AddExams(PetMedicalExam exam)
+        public void AddExams(PetExams exam)
         {
             PetExams.Append(exam);
         }
