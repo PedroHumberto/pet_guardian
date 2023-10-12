@@ -9,8 +9,8 @@ namespace PetGuadian.Application.Interfaces
 {
     public interface IAddressService
     {
-        Task CreateAddress(AddressDto addressDto);
+        Task<AddressDto> CreateAddress(AddressDto addressDto);
         Task UpdateAddress(UserDto updatedAddressDto);
-        Task GetAddressById(Guid addressId);
+        Task<AddressDto> GetAddressById(Guid addressId);
     }
 }

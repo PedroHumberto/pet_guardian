@@ -12,7 +12,9 @@ namespace PetGuadian.API.Data
 {
     public class AppContextDb : DbContext, IUnityOfWork
     {
-        public AppContextDb(DbContextOptions<AppContextDb> options) : base(options) { 
+
+        public AppContextDb(DbContextOptions<AppContextDb> options) : base(options) 
+        { 
         }
 
         public DbSet<User> Users { get; set; }
@@ -24,12 +26,10 @@ namespace PetGuadian.API.Data
         {
             //estas entidades não são para ser persistidas, devem ser ignoradas para não tentar realizar parse.
             modelBuilder.Ignore<ValidationResult>();
-            
 
             //onde ouver relacionamento, desliga o cascade behaviour.
             foreach (var relationship in modelBuilder.Model.GetEntityTypes()
                 .SelectMany(e => e.GetForeignKeys())) relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
-
 
             //Mapeia a entidade de mapeamento
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppContextDb).Assembly);

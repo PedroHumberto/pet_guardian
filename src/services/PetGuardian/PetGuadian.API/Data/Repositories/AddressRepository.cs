@@ -1,4 +1,6 @@
-﻿using PetGuardian.Domain.Core.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using PetGuadian.Application.Dto;
+using PetGuardian.Domain.Core.Data;
 using PetGuardian.Domain.Models.Interfaces;
 using PetGuardian.Models.Models;
 
@@ -20,9 +22,11 @@ namespace PetGuadian.API.Data.Repositories
             await _context.Addresses.AddAsync(address);
         }
 
-        public Task GetAddressById(Guid addressId)
+        public async Task<Address> GetAddressById(Guid addressId)
         {
-            throw new NotImplementedException();
+            var address = await _context.Addresses.FirstOrDefaultAsync(a => a.Id == addressId);
+
+            return address;
         }
 
         public Task UpdateAddress(Address updatedAddress)

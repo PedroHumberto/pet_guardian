@@ -12,10 +12,10 @@ namespace PetGuardian.Models.Models
         public string PetName { get; private set; }
         public char Gender { get; private set; }
         public AnimalSpecies Specie { get; private set; }
+        public DateTime BirthDate { get; private set; }
         public User User { get; private set; }
         public Guid UserId { get; private set; }
         public IEnumerable<PetExams>? PetExams { get; private set; }
-        public Guid PetExamsId { get; private set; }
 
         protected Pet() { }
 
@@ -34,6 +34,11 @@ namespace PetGuardian.Models.Models
         public void AddExams(PetExams exam)
         {
             PetExams.Append(exam);
+        }
+
+        public void AddUser(Guid Id)
+        { 
+            UserId = Id; 
         }
 
     }

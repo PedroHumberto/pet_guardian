@@ -23,6 +23,10 @@ builder.Services.AddDbContext<AppContextDb>(opts => opts.UseSqlServer(conn));
 builder.Services.AddScoped<AppContextDb>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAddressService, AddressService>();
+builder.Services.AddScoped<IAddressRepository, AddressRepository>();
+builder.Services.AddScoped<IPetService, PetService>();
+builder.Services.AddScoped<IPetRepository, PetRepository>();
 
 
 var app = builder.Build();

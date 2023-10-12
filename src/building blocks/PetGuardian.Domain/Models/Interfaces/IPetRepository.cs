@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace PetGuardian.Domain.Models.Interfaces
 {
-    public interface IAddressRepository
+    public interface IPetRepository
     {
-        Task CreateAddress(Address address);
-        Task UpdateAddress(Address updatedAddress);
-        Task<Address> GetAddressById(Guid addressId);
+        Task CreatePet(Pet pet, Guid userId);
+        Task<IEnumerable<Pet>> GetAllPetsByUserId(Guid userId);
+        Task<Pet> GetPetById(Guid Id);
+        Task Delete(Guid Id);
     }
 }

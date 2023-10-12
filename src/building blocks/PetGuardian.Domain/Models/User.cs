@@ -4,7 +4,6 @@ namespace PetGuardian.Models.Models
 {
     public class User : Entity
     {
-        
         public User(Guid UserId, string name, string email, string cpf)
         {
             Id = UserId;
@@ -26,7 +25,7 @@ namespace PetGuardian.Models.Models
         public bool Deleted { get; private set; }
 
 
-        public void ChangeAddress(Address address)
+        public void SetAddress(Address address)
         {
             Address = address;
         }

@@ -13,9 +13,17 @@ namespace PetGuadian.API.Controllers
         [HttpPost("createAddress")]
         public async Task<IActionResult> CreateAddress(AddressDto addressDto)
         {
-            await _addressService.CreateAddress(addressDto);
+            var createdAddress = await _addressService.CreateAddress(addressDto);
 
-            return Ok(addressDto);
+            return CreatedAtAction(nameof(GetAddressById), new { Id = addressDto.Id}, createdAddress);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAddressById(Guid addressId)
+        {
+            var address = await _addressService.GetAddressById(addressId);
+
+            return Ok(address);
         }
     }
 }

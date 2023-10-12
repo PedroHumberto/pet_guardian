@@ -14,7 +14,7 @@ namespace PetGuadian.Application.Services
     {
         private readonly IAddressRepository _addressRepository;
 
-        public async Task CreateAddress(AddressDto addressDto)
+        public async Task<AddressDto> CreateAddress(AddressDto addressDto)
         {
             var address = new Address(addressDto.Id, 
                 addressDto.Street,
@@ -26,6 +26,8 @@ namespace PetGuadian.Application.Services
                 addressDto.PostalCode);
 
             await _addressRepository.CreateAddress(address);
+
+            return addressDto;
         }
 
         public Task UpdateAddress(UserDto updatedAddressDto)
@@ -33,9 +35,24 @@ namespace PetGuadian.Application.Services
             throw new NotImplementedException();
         }
 
-        public Task GetAddressById(Guid addressId)
+        public async Task<AddressDto> GetAddressById(Guid addressId)
         {
-            throw new NotImplementedException();
+
+            var address = await _addressRepository.GetAddressById(addressId);
+
+            var addressDto = new AddressDto
+            {
+                Street = address.Street,
+                Number = address.Number,
+                Complement = address.Complement,
+                Neighborhood = address.Neighborhood,
+                City = address.City,
+                State = address.State,
+                PostalCode = address.PostalCode,
+                UserId = address.UserId
+            };
+
+            return addressDto;
         }
 
     }

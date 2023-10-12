@@ -39,13 +39,10 @@ namespace PetGuadian.API.Data.Mappings
 
 
             builder.HasOne(u => u.Address)
-                .WithOne(a => a.User);
-            
+                .WithOne(a => a.User)
+                .HasForeignKey<Address>(a => a.UserId);
 
             builder.ToTable("Users");
-
-
-
         }
     }
 }

@@ -21,7 +21,7 @@ namespace PetGuadian.Application.Services
         {
             var user = new User(userDto.Id, userDto.Name, userDto.Email, userDto.Cpf);
 
-            _repository.CreateUser(user);
+            await _repository.CreateUser(user);
 
             throw new NotImplementedException();
         }
