@@ -15,7 +15,7 @@ namespace PetGuadian.API.Data.Repositories
             _context = context;
         }
 
-        public IUnityOfWork IUnitOfWork => _context;
+        public IUnitOfWork IUnitOfWork => _context;
 
         public async Task CreateAddress(Address address)
         {

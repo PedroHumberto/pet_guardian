@@ -10,7 +10,7 @@ namespace PetGuadian.Application.Interfaces
 {
     public interface IPetService
     {
-        Task CreatePet(PetDto pet);
+        void CreatePet(PetDto pet);
         Task<IEnumerable<PetDto>> GetAllPetsByUserId(Guid userId);
         Task<PetDto> GetPetById(Guid Id);
         Task Delete(Guid Id);

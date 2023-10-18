@@ -17,9 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetGuardian.Domain", "src\b
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PetGuadian.API", "PetGuadian.API", "{49EF5E31-9F15-4F1E-B6C4-AEC1EAAC0119}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetGuadian.API", "src\services\PetGuardian\PetGuadian.API\PetGuadian.API.csproj", "{A671C246-0D21-4B86-A56E-6F64FC8AE9B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetGuadian.API", "src\services\PetGuardian\PetGuadian.API\PetGuadian.API.csproj", "{A671C246-0D21-4B86-A56E-6F64FC8AE9B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetGuadian.Application", "src\building blocks\PetGuadian.Application\PetGuadian.Application.csproj", "{BD9AC085-F1D7-4A6D-B4AD-EFA6818EB669}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetGuadian.Application", "src\building blocks\PetGuadian.Application\PetGuadian.Application.csproj", "{BD9AC085-F1D7-4A6D-B4AD-EFA6818EB669}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "frontend", "frontend", "{AB21D0AE-5F95-4893-9B55-A9E27C0464F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PetGuardian.WEB", "PetGuardian.WEB", "{313AA40E-91B7-4BD0-B358-0D0C39BF456E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +60,8 @@ Global
 		{49EF5E31-9F15-4F1E-B6C4-AEC1EAAC0119} = {3AD00678-0CF3-47DE-8B16-16FFCFD840BF}
 		{A671C246-0D21-4B86-A56E-6F64FC8AE9B6} = {49EF5E31-9F15-4F1E-B6C4-AEC1EAAC0119}
 		{BD9AC085-F1D7-4A6D-B4AD-EFA6818EB669} = {65F716D5-4EEB-4D30-A656-7B1C6934EA37}
+		{AB21D0AE-5F95-4893-9B55-A9E27C0464F2} = {667FA38F-37D1-4800-BB95-2196BC04C35B}
+		{313AA40E-91B7-4BD0-B358-0D0C39BF456E} = {AB21D0AE-5F95-4893-9B55-A9E27C0464F2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {54DBEE92-83D3-4516-99D9-6F5A12146007}

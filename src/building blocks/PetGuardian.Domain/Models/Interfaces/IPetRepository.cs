@@ -1,4 +1,5 @@
-﻿using PetGuardian.Models.Models;
+﻿using PetGuardian.Domain.Core.Data;
+using PetGuardian.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PetGuardian.Domain.Models.Interfaces
 {
-    public interface IPetRepository
+    public interface IPetRepository : IRepository<Pet>
     {
         Task CreatePet(Pet pet, Guid userId);
         Task<IEnumerable<Pet>> GetAllPetsByUserId(Guid userId);

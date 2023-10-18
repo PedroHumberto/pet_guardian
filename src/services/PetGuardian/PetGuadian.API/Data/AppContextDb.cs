@@ -10,11 +10,13 @@ using System.Threading.Tasks;
 
 namespace PetGuadian.API.Data
 {
-    public class AppContextDb : DbContext, IUnityOfWork
+    public class AppContextDb : DbContext, IUnitOfWork
     {
 
         public AppContextDb(DbContextOptions<AppContextDb> options) : base(options) 
-        { 
+        {
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            ChangeTracker.AutoDetectChangesEnabled = false;
         }
 
         public DbSet<User> Users { get; set; }

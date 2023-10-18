@@ -18,11 +18,11 @@ namespace PetGuadian.API.Controllers
         }
 
         [HttpPost("createPet")]
-        public async Task<IActionResult> CreatePet(PetDto petDto)
+        public IActionResult CreatePet(PetDto petDto)
         {
-            await _petService.CreatePet(petDto);
+            _petService.CreatePet(petDto);
 
-            return Created("Success", petDto);
+            return Ok(petDto);
         }
 
         [HttpGet("getPetByUserId")]

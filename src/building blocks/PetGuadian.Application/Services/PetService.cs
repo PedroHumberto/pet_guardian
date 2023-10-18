@@ -19,10 +19,10 @@ namespace PetGuadian.Application.Services
             _petRepository = petRepository;
         }
 
-        public async Task CreatePet(PetDto petDto)
+        public void CreatePet(PetDto petDto)
         {
-            var pet = new Pet(petDto.Id, petDto.PetName, petDto.Gender, petDto.Specie);
-            await _petRepository.CreatePet(pet, petDto.UserId);
+            var pet = new Pet(petDto.Id, petDto.PetName, petDto.Gender, petDto.Specie, petDto.BirthDate, petDto.Weight);
+            _petRepository.CreatePet(pet, petDto.UserId);
         }
 
         public Task Delete(Guid Id)
@@ -37,7 +37,10 @@ namespace PetGuadian.Application.Services
 
             foreach (var pet in pets)
             {
-                var petDto = new PetDto(pet.Id, pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, pet.UserId);
+                pet.BrFormattedBirthDate(pet.BirthDate);
+                var petAge = pet.GetPetAge(pet.BirthDate);
+
+                var petDto = new PetDto(pet.Id, pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, petAge, pet.Weight, pet.UserId);
                 petDtoList.Add(petDto);
             }
             return petDtoList;
@@ -47,7 +50,8 @@ namespace PetGuadian.Application.Services
         {
             var pet = await _petRepository.GetPetById(Id);
 
-            var petDto = new PetDto(pet.Id, pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, pet.UserId);
+            var petAge = pet.GetPetAge(pet.BirthDate);
+            var petDto = new PetDto(pet.Id, pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, petAge, pet.Weight, pet.UserId);
 
             return petDto;
         }

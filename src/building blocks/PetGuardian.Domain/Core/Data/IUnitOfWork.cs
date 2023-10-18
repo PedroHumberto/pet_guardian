@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PetGuardian.Domain.Core.Data
 {
-    public interface IUnityOfWork
+    public interface IUnitOfWork
     {
         Task<bool> Commit();
     }
