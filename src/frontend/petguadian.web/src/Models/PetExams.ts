@@ -1,4 +1,4 @@
-class PetExams
+export class PetExams
 {
 
 }
