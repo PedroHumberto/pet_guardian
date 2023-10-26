@@ -35,7 +35,6 @@ namespace PetGuardian.API.Identity.Controllers
         {
             var result = await _userService.LogIn(user);
 
-            
             return Ok(result);
         }
     }

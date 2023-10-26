@@ -7,11 +7,6 @@ export interface AnimalSpeciesMapping {
   [key: string]: AnimalSpecies;
 }
 
-export interface ModalFormProps {
-  onClose: () => void;
-  onSubmit: (petData: Pet) => void;
-}
-
 export const animalSpeciesMap: AnimalSpeciesMapping = {
   Cachorro: AnimalSpecies.Dog,
   Gato: AnimalSpecies.Cat,

@@ -11,9 +11,6 @@ namespace PetGuardian.API.Identity.Models
     {
 
         [Required(ErrorMessage = "The field {0} it's necessary")]
-        public string UserName { get; set; }
-
-        [Required(ErrorMessage = "The field {0} it's necessary")]
         [EmailAddress(ErrorMessage = "The Field {0} is invalid")]
         public string Email { get; set; }
 
