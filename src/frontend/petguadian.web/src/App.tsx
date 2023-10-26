@@ -1,18 +1,10 @@
-import React from 'react';
-import { SideBar } from './Components/SideBar'
-import { PetForm } from './Components/PetForm';
 import './Components/css/app.css'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './routes';
 
 function App() {
   return (
-    <div className='container'>
-      <div className='menu'>
-        <SideBar/>
-      </div>
-      <div className='form'>
-        <PetForm/>
-      </div>
-    </div>
+    <RouterProvider router={router}/>
   );
 }
 

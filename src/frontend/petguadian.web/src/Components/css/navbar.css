@@ -1,0 +1,64 @@
+.logo{
+    display: flex;
+    justify-content: center;
+}
+.navbar ul{
+    list-style-type: none;    
+    background-color: #fd4a36e8;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin: 0px auto;
+    height: 55px;
+    align-items: center;
+}
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+.menubtn {
+    background-color: #fd4a3600;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 213px;
+    margin: 0px 14px 0px 13px;
+    height: 55px;
+}
+
+  /* Change the background color of the menubtncontainer button when the menubtncontainer content is shown */
+.menubtncontainer:hover .menubtn {
+    background-color: #fa3620;
+}
+
+@media (min-width: 497px) and (max-width:960px){
+    .navbar ul{
+        list-style-type: none;    
+        background-color: #333;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: auto;
+        margin-top: 70px;
+    }
+}
+
+
+@media (max-width:496px){
+    .navbar ul{
+        list-style-type: none;    
+        background-color: #333;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: auto;
+        margin-top: 70px;
+    }
+}
