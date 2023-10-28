@@ -74,8 +74,7 @@ export function PetForm() {
                   <select
                     name="gender"
                     value={petData.gender}
-                    onChange={handleInputChange}
-                  >
+                    onChange={handleInputChange}>
                     <option value="M">M</option>
                     <option value="F">F</option>
                   </select>

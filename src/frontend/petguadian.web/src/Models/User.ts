@@ -5,16 +5,16 @@ export class User
 {
     public name: string;
     public email: string;
-    public cpf: string;
+    public password: string;
     public pets: Pet[] | null;
     public address: Address | null;
     public deleted: boolean;
 
-    constructor(name: string, email: string, cpf: string)
+    constructor(name: string, email: string, password: string)
     {
         this.name = name;
         this.email = email;
-        this.cpf = cpf;
+        this.password = password;
         this.pets = null;
         this.address = null;
         this.deleted = false;

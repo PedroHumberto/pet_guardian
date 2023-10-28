@@ -17,6 +17,16 @@ namespace PetGuardian.API.Identity.Configuration
             services.AddSwaggerConfiguration();
             services.AddEndpointsApiExplorer();
 
+            services.AddCors(opts =>
+            {
+                opts.AddPolicy("AllowAnyOrigin", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+                });
+            });
+
             return services;
         }
         public static IApplicationBuilder UseApiConfiguration(this IApplicationBuilder app, IWebHostEnvironment env)
@@ -33,7 +43,7 @@ namespace PetGuardian.API.Identity.Configuration
 
             app.UseRouting();
 
-            app.UseCors("Total");
+            app.UseCors("AllowAnyOrigin");
 
             app.UseAuthorization();
 
