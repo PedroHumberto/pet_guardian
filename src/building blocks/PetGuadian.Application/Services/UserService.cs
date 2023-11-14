@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PetGuadian.Application.Interfaces;
-using PetGuardian.Domain.Models.Interfaces;
+using PetGuardian.Domain.Repositories;
 using PetGuardian.Models.Models;
 
 namespace PetGuadian.Application.Services

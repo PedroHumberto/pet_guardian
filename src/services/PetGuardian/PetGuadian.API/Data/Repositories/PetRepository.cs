@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PetGuardian.Domain.Core.Data;
-using PetGuardian.Domain.Models.Interfaces;
+using PetGuardian.Domain.Repositories;
 using PetGuardian.Models.Models;
 using System.Runtime.CompilerServices;
 

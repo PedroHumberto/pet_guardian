@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetGuardian.Domain.Models.Interfaces
+namespace PetGuardian.Domain.Repositories
 {
     public interface IAddressRepository
     {

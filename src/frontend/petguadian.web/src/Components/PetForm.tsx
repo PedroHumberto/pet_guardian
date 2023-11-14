@@ -41,7 +41,7 @@ export function PetForm() {
     const pet = new Pet(
       petData.petName,
       petData.gender,
-      petData.animalSpecies,
+      Number(petData.animalSpecies),
       new Date(petData.birthDate),
       Number(petData.weight),
       petData.user

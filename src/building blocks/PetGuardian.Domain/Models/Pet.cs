@@ -1,6 +1,5 @@
+using PetGuardian.Core.PetGuardianCore.Enums;
 using PetGuardian.Domain.Core.Data;
-using PetGuardian.Domain.Core.DomainObjects;
-using PetGuardian.Domain.Core.Enums;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -52,7 +51,7 @@ namespace PetGuardian.Models.Models
         {
             DateTime currentDate = DateTime.Now;
             int age = currentDate.Year - birthDate.Year;
-            // Verifique se o aniversário deste ano já ocorreu.
+            // Verifique se o aniversï¿½rio deste ano jï¿½ ocorreu.
             if (currentDate.Month < birthDate.Month || (currentDate.Month == birthDate.Month && currentDate.Day < birthDate.Day))
             {
                 age--;

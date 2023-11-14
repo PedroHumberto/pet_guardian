@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PetGuardian.Domain.Core.DomainObjects;
 using PetGuardian.Models.Models;
 
 namespace PetGuadian.Application

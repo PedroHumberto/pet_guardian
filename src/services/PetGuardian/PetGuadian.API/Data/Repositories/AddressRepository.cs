@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PetGuadian.Application.Dto;
 using PetGuardian.Domain.Core.Data;
-using PetGuardian.Domain.Models.Interfaces;
+using PetGuardian.Domain.Repositories;
 using PetGuardian.Models.Models;
 
 namespace PetGuadian.API.Data.Repositories

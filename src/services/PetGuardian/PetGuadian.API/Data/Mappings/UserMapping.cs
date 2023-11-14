@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PetGuardian.Domain.Core.DomainObjects;
+using PetGuardian.Core.PetGuardianCore.Enums;
 using PetGuardian.Models.Models;
 
 namespace PetGuadian.API.Data.Mappings

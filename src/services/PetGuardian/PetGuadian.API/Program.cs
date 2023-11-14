@@ -3,7 +3,7 @@ using PetGuadian.API.Data;
 using PetGuadian.API.Data.Repositories;
 using PetGuadian.Application.Interfaces;
 using PetGuadian.Application.Services;
-using PetGuardian.Domain.Models.Interfaces;
+using PetGuardian.Domain.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

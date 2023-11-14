@@ -1,4 +1,5 @@
-﻿using PetGuardian.Domain.Core.DomainObjects;
+﻿
+using PetGuardian.Core.PetGuardianCore.Enums;
 
 namespace PetGuardian.Models.Models
 {

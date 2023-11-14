@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetGuardian.Domain.Core.Enums
+namespace PetGuardian.Core.PetGuardianCore.Enums
 {
     public enum AnimalSpecies
     {

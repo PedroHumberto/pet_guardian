@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using PetGuardian.Models.Models;
 
-namespace PetGuardian.Domain.Models.Interfaces
+namespace PetGuardian.Domain.Repositories
 {
     public interface IUserRepository
     {

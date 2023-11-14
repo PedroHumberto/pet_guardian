@@ -1,12 +1,7 @@
 ﻿using PetGuadian.Application.Dto;
 using PetGuadian.Application.Interfaces;
-using PetGuardian.Domain.Models.Interfaces;
 using PetGuardian.Models.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using PetGuardian.Domain.Repositories;
 
 namespace PetGuadian.Application.Services
 {
