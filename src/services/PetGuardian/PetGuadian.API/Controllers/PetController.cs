@@ -1,7 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using PetGuadian.Application.Dto;
-using PetGuadian.Application.Interfaces;
+using PetGuadian.Application.Commands.Contracts;
+using PetGuadian.Application.Commands.PetsCommand;
+using PetGuadian.Application.Commands.Results;
+using PetGuadian.Application.Dto.PetDto;
+using PetGuadian.Application.Handlers;
+using PetGuadian.Application.Handlers.Contracts;
+using PetGuadian.Application.Services.Interfaces;
 
 
 namespace PetGuadian.API.Controllers
@@ -17,15 +22,14 @@ namespace PetGuadian.API.Controllers
             _petService = petService;
         }
 
-        [HttpPost("createPet")]
-        public IActionResult CreatePet(PetDto petDto)
+        [HttpPost("create_pet")]
+        public async Task<ICommandResult> CreatePet([FromBody]CreatePetCommand command, [FromServices] PetHandler _handler)
         {
-            _petService.CreatePet(petDto);
-
-            return Ok(petDto);
+            var result = (GenericCommandResult)await _handler.Handle(command);
+            return result;
         }
 
-        [HttpGet("getPetByUserId")]
+        [HttpGet("get_pet_by_userId")]
         public async Task<IActionResult> GetPetByUserId(Guid userId)
         {
             var pets = await _petService.GetAllPetsByUserId(userId);

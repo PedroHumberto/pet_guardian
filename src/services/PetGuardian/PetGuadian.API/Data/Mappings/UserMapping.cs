@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PetGuardian.Core.PetGuardianCore.Enums;
+using PetGuardian.Core.PetGuardianCore.DomainObjects;
 using PetGuardian.Models.Models;
 
 namespace PetGuadian.API.Data.Mappings
@@ -24,15 +24,6 @@ namespace PetGuadian.API.Data.Mappings
                 .HasColumnType($"varchar({Email.EmailMaxLen})");
             });
 
-            builder.OwnsOne(u => u.Cpf, tf =>
-            {
-                tf.Property(u => u.Number)
-                .IsRequired()
-                .HasMaxLength(Cpf.CpfMaxLen)
-                .HasColumnName("Cpf")
-                .HasColumnType($"varchar(){Cpf.CpfMaxLen}");
-
-            });
 
             builder.HasMany(u => u.Pets)
                 .WithOne(p => p.User);

@@ -12,7 +12,7 @@ using PetGuadian.API.Data;
 namespace PetGuadian.API.Migrations
 {
     [DbContext(typeof(AppContextDb))]
-    [Migration("20231012192701_FirstMigration")]
+    [Migration("20231115205822_First Migration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -76,6 +76,9 @@ namespace PetGuadian.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("BirthDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<short>("Gender")
                         .HasColumnType("smallint");
 
@@ -88,6 +91,9 @@ namespace PetGuadian.API.Migrations
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<long?>("Weight")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -173,26 +179,7 @@ namespace PetGuadian.API.Migrations
 
             modelBuilder.Entity("PetGuardian.Models.Models.User", b =>
                 {
-                    b.OwnsOne("PetGuardian.Domain.Core.DomainObjects.Cpf", "Cpf", b1 =>
-                        {
-                            b1.Property<Guid>("UserId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<string>("Number")
-                                .IsRequired()
-                                .HasMaxLength(11)
-                                .HasColumnType("varchar()11")
-                                .HasColumnName("Cpf");
-
-                            b1.HasKey("UserId");
-
-                            b1.ToTable("Users");
-
-                            b1.WithOwner()
-                                .HasForeignKey("UserId");
-                        });
-
-                    b.OwnsOne("PetGuardian.Domain.Core.DomainObjects.Email", "Email", b1 =>
+                    b.OwnsOne("PetGuardian.Core.PetGuardianCore.DomainObjects.Email", "Email", b1 =>
                         {
                             b1.Property<Guid>("UserId")
                                 .HasColumnType("uniqueidentifier");
@@ -210,9 +197,6 @@ namespace PetGuadian.API.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("UserId");
                         });
-
-                    b.Navigation("Cpf")
-                        .IsRequired();
 
                     b.Navigation("Email")
                         .IsRequired();

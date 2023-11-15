@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using PetGuadian.Application;
-using PetGuadian.Application.Interfaces;
+using PetGuadian.Application.Commands.Results;
+using PetGuadian.Application.Commands.UserCommands;
+using PetGuadian.Application.Dto.UserDto;
+using PetGuadian.Application.Handlers;
+using PetGuadian.Application.Services.Interfaces;
 
 namespace PetGuadian.API.Controllers
 {
@@ -10,17 +13,19 @@ namespace PetGuadian.API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly UserHandler _handler;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, UserHandler handler)
         {
             _userService = userService;
+            _handler = handler;
         }
 
-        [HttpPost("createUser")]
-        public async Task<IActionResult> CreateUser(UserDto userDto)
+        [HttpPost("create_user")]
+        public async Task<GenericCommandResult> CreateUser([FromBody]CreateUserCommand command)
         {
-            await _userService.CreateUser(userDto);
-            return Ok(userDto);
+            var result = (GenericCommandResult)await _handler.Handle(command);
+            return result;
         }
     }
 }

@@ -19,6 +19,7 @@ namespace PetGuadian.API.Data
             ChangeTracker.AutoDetectChangesEnabled = false;
         }
 
+
         public DbSet<User> Users { get; set; }
         public DbSet<Pet> Pets { get; set; }
         public DbSet<Address> Addresses { get; set; }
@@ -26,7 +27,7 @@ namespace PetGuadian.API.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //estas entidades não são para ser persistidas, devem ser ignoradas para não tentar realizar parse.
+            //estas entidades nï¿½o sï¿½o para ser persistidas, devem ser ignoradas para nï¿½o tentar realizar parse.
             modelBuilder.Ignore<ValidationResult>();
 
             //onde ouver relacionamento, desliga o cascade behaviour.

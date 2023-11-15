@@ -18,7 +18,6 @@ namespace PetGuadian.API.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "varchar(40)", nullable: false),
                     Email = table.Column<string>(type: "varchar(254)", maxLength: 254, nullable: false),
-                    Cpf = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: false),
                     AddressId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Deleted = table.Column<bool>(type: "bit", nullable: false)
                 },
@@ -59,6 +58,8 @@ namespace PetGuadian.API.Migrations
                     PetName = table.Column<string>(type: "varchar(40)", nullable: false),
                     Gender = table.Column<short>(type: "smallint", nullable: false),
                     Specie = table.Column<int>(type: "int", nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Weight = table.Column<long>(type: "bigint", nullable: true),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>

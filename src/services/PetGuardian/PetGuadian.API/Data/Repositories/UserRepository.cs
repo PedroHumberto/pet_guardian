@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using PetGuadian.Application.Interfaces;
 using PetGuardian.Domain.Core.Data;
 using PetGuardian.Domain.Repositories;
 using PetGuardian.Models.Models;
@@ -25,6 +20,7 @@ namespace PetGuadian.API.Data.Repositories
         public async Task CreateUser(User user)
         {
             await _context.Users.AddAsync(user);
+            await _context.Commit();
         }
 
         public async Task InativateUser(Guid userId)
@@ -34,8 +30,6 @@ namespace PetGuadian.API.Data.Repositories
             user.Inativate();
 
             await _context.SaveChangesAsync();
-
-            throw new NotImplementedException();
         }
 
         public void GetUser(Guid userId)

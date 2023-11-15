@@ -27,7 +27,7 @@ namespace PetGuadian.API.Data.Repositories
 
             pet.AddUser(userId);
 
-            _context.Pets.Add(pet);
+            await _context.Pets.AddAsync(pet);
 
             await _context.Commit();
 
