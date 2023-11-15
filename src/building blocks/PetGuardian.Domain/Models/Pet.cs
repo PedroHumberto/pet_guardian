@@ -21,7 +21,7 @@ namespace PetGuardian.Models.Models
 
         protected Pet() { }
 
-        public Pet(Guid petId, 
+        public Pet(
             string petName, 
             char gender, 
             AnimalSpecies specie,
@@ -29,7 +29,6 @@ namespace PetGuardian.Models.Models
             long? weight
             )
         {
-            Id = petId;
             PetName = petName;
             Gender = gender;
             Specie = specie;

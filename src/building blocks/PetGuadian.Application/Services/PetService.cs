@@ -1,4 +1,4 @@
-﻿using PetGuadian.Application.Dto;
+﻿using PetGuadian.Application.Dto.PetDto;
 using PetGuadian.Application.Interfaces;
 using PetGuardian.Models.Models;
 using PetGuardian.Domain.Repositories;
@@ -15,9 +15,9 @@ namespace PetGuadian.Application.Services
             _petRepository = petRepository;
         }
 
-        public void CreatePet(PetDto petDto)
+        public void CreatePet(CreatePetDto petDto)
         {
-            var pet = new Pet(petDto.Id, petDto.PetName, petDto.Gender, petDto.Specie, petDto.BirthDate, petDto.Weight);
+            var pet = new Pet( petDto.PetName, petDto.Gender, petDto.Specie, petDto.BirthDate, petDto.Weight);
             _petRepository.CreatePet(pet, petDto.UserId);
         }
 
@@ -26,28 +26,28 @@ namespace PetGuadian.Application.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<PetDto>> GetAllPetsByUserId(Guid userId)
+        public async Task<IEnumerable<GetPetDto>> GetAllPetsByUserId(Guid userId)
         {
             var pets = await _petRepository.GetAllPetsByUserId(userId);
-            var petDtoList = new List<PetDto>();
+            var petDtoList = new List<GetPetDto>();
 
             foreach (var pet in pets)
             {
                 pet.BrFormattedBirthDate(pet.BirthDate);
                 var petAge = pet.GetPetAge(pet.BirthDate);
 
-                var petDto = new PetDto(pet.Id, pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, petAge, pet.Weight, pet.UserId);
+                var petDto = new GetPetDto(pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, petAge, pet.Weight, pet.UserId);
                 petDtoList.Add(petDto);
             }
             return petDtoList;
         }
 
-        public async Task<PetDto> GetPetById(Guid Id)
+        public async Task<GetPetDto> GetPetById(Guid Id)
         {
             var pet = await _petRepository.GetPetById(Id);
 
             var petAge = pet.GetPetAge(pet.BirthDate);
-            var petDto = new PetDto(pet.Id, pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, petAge, pet.Weight, pet.UserId);
+            var petDto = new GetPetDto(pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, petAge, pet.Weight, pet.UserId);
 
             return petDto;
         }

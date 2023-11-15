@@ -5,15 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using PetGuardian.Core.PetGuardianCore.Enums;
 
-namespace PetGuadian.Application.Dto
+namespace PetGuadian.Application.Dto.PetDto
 {
-    public record PetDto(
-        Guid Id,
+    public record CreatePetDto(
         string PetName, 
         char Gender, 
         AnimalSpecies Specie,
         DateTime BirthDate,
-        int? Age,
         long? Weight,
         Guid UserId);
 }

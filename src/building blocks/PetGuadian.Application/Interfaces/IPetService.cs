@@ -1,4 +1,4 @@
-﻿using PetGuadian.Application.Dto;
+﻿using PetGuadian.Application.Dto.PetDto;
 using PetGuardian.Models.Models;
 using System;
 using System.Collections.Generic;
@@ -10,9 +10,9 @@ namespace PetGuadian.Application.Interfaces
 {
     public interface IPetService
     {
-        void CreatePet(PetDto pet);
-        Task<IEnumerable<PetDto>> GetAllPetsByUserId(Guid userId);
-        Task<PetDto> GetPetById(Guid Id);
+        void CreatePet(CreatePetDto pet);
+        Task<IEnumerable<GetPetDto>> GetAllPetsByUserId(Guid userId);
+        Task<GetPetDto> GetPetById(Guid Id);
         Task Delete(Guid Id);
     }
 }
