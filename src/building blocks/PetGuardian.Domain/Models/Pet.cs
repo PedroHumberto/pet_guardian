@@ -1,14 +1,11 @@
+using PetGuardian.Core.PetGuardianCore.DomainObjects;
 using PetGuardian.Core.PetGuardianCore.Enums;
-using PetGuardian.Domain.Core.Data;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace PetGuardian.Models.Models
 {
-    public class Pet : Entity, IAggregateRoot
+    public class Pet : Entity
     {
         public string PetName { get; private set; }
         public char Gender { get; private set; }

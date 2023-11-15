@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace PetGuardian.Core.PetGuardianCore.Enums
+namespace PetGuardian.Core.PetGuardianCore.DomainObjects
 {
     public class Email
     {

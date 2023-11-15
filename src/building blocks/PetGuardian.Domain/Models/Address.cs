@@ -1,8 +1,6 @@
-using PetGuardian.Core.PetGuardianCore.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+
+using PetGuardian.Core.PetGuardianCore.DomainObjects;
 
 namespace PetGuardian.Models.Models
 {
@@ -21,16 +19,15 @@ namespace PetGuardian.Models.Models
         protected Address() { }
 
         public Address(
-            Guid addressId, 
             string street, 
             string number, 
             string complement, 
             string neighborhood, 
             string city, 
             string state, 
-            string postalCode)
+            string postalCode,
+            Guid userId)
         {
-            Id = addressId;
             Street = street;
             Number = number;
             Complement = complement;
@@ -38,6 +35,7 @@ namespace PetGuardian.Models.Models
             City = city;
             State = state;
             PostalCode = postalCode;
+            UserId = userId;
         }
     }
 }

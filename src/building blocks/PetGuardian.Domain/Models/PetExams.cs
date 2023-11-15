@@ -1,13 +1,11 @@
-﻿
-using PetGuardian.Core.PetGuardianCore.Enums;
+﻿using PetGuardian.Core.PetGuardianCore.DomainObjects;
 
 namespace PetGuardian.Models.Models
 {
     public class PetExams : Entity
     {
-        public PetExams(Guid examId, string examLink, string examName)
+        public PetExams(string examLink, string examName)
         {
-            Id = examId;
             ExamLink = examLink;
             ExamName = examName;
         }

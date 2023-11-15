@@ -11,7 +11,7 @@ namespace PetGuadian.Application.Commands.Contracts
 {
     public class CustomContract<T> : Contract<T>
     {
-        public CustomContract<T> PetRequires()
+        public CustomContract<T> CustomRequires()
         {
             return this;
         }
@@ -20,6 +20,16 @@ namespace PetGuadian.Application.Commands.Contracts
             if (gender != 'M' && gender != 'F')
             {
                 AddNotification(gender.ToString(), message);
+            }
+
+            return this;
+        }
+
+        public CustomContract<T> IsStringEmptyOrNull(string data, string message)
+        {
+            if (string.IsNullOrWhiteSpace(data))
+            {
+                AddNotification(data, message);
             }
 
             return this;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PetGuardian.Domain.Core.Data
 {
-    public interface IRepository<T> : IDisposable where T : IAggregateRoot//apenas entidades podem ser relacionadas.
+    public interface IRepository<T> : IDisposable 
     {
         IUnitOfWork UnitOfWork { get; }
 

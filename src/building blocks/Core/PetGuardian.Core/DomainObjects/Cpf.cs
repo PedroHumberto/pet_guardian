@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PetGuardian.Core.PetGuardianCore.Enums
+namespace PetGuardian.Core.DomainObjects
 {
     public class Cpf
     {

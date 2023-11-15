@@ -1,16 +1,14 @@
 
-using PetGuardian.Core.PetGuardianCore.Enums;
+using PetGuardian.Core.PetGuardianCore.DomainObjects;
 
 namespace PetGuardian.Models.Models
 {
     public class User : Entity
     {
-        public User(Guid UserId, string name, string email, string cpf)
+        public User(Guid? identityId, string name, string email) : base(identityId)
         {
-            Id = UserId;
             Name = name;
             Email = new Email(email);
-            Cpf = new Cpf(cpf);
             Deleted = false;
         }
 
@@ -19,7 +17,6 @@ namespace PetGuardian.Models.Models
 
         public string Name { get; private set; }
         public Email Email { get; private set; }
-        public Cpf Cpf { get; set; }
         public IEnumerable<Pet>? Pets { get; private set; }
         public Address Address { get; private set; }
         public Guid AddressId { get; private set; }
@@ -30,7 +27,7 @@ namespace PetGuardian.Models.Models
         {
             Address = address;
         }
-        public void ChangeEmail(Email email)
+        public void SetEmail(Email email)
         {
             Email = email;
         }

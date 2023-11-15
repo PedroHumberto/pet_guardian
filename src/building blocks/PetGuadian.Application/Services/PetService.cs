@@ -1,7 +1,7 @@
 ﻿using PetGuadian.Application.Dto.PetDto;
-using PetGuadian.Application.Interfaces;
 using PetGuardian.Models.Models;
 using PetGuardian.Domain.Repositories;
+using PetGuadian.Application.Services.Interfaces;
 
 
 namespace PetGuadian.Application.Services
@@ -15,10 +15,16 @@ namespace PetGuadian.Application.Services
             _petRepository = petRepository;
         }
 
-        public void CreatePet(CreatePetDto petDto)
+        public async Task CreatePet(CreatePetDto petDto)
         {
-            var pet = new Pet( petDto.PetName, petDto.Gender, petDto.Specie, petDto.BirthDate, petDto.Weight);
-            _petRepository.CreatePet(pet, petDto.UserId);
+            var pet = new Pet( 
+                petDto.PetName,
+                petDto.Gender, 
+                petDto.Specie,
+                petDto.BirthDate,
+                petDto.Weight);
+
+            await _petRepository.CreatePet(pet, petDto.UserId);
         }
 
         public Task Delete(Guid Id)

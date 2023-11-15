@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PetGuadian.Application.Interfaces
+namespace PetGuadian.Application.Services.Interfaces
 {
     public interface IPetService
     {
-        void CreatePet(CreatePetDto pet);
+        Task CreatePet(CreatePetDto pet);
         Task<IEnumerable<GetPetDto>> GetAllPetsByUserId(Guid userId);
         Task<GetPetDto> GetPetById(Guid Id);
         Task Delete(Guid Id);

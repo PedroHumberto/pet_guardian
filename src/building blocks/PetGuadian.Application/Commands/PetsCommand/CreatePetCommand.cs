@@ -34,9 +34,9 @@ namespace PetGuadian.Application.Commands.PetsCommand
         public void Execute()
         {
             AddNotifications(new CustomContract<CreatePetCommand>()
-                .PetRequires()
+                .CustomRequires()
                 .IsGenderValid(Gender, "Gender is not correct try M or F")
-                .IsGreaterOrEqualsThan(PetName, 3, "The needs to be greather than 3 char")
+                .IsGreaterOrEqualsThan(PetName, 3, "The name needs to be greather than 3 char")
             );
         }
     }
