@@ -14,7 +14,7 @@ namespace PetGuadian.Application.Commands.AddressCommand
         {
         }
 
-        public CreateAddressCommand(string street, string number, string complement, string neighborhood, string city, string state, string postalCode, Guid userId)
+        public CreateAddressCommand(string street, string number, string complement, string neighborhood, string city, string state, string postalCode)
         {
             Street = street;
             Number = number;
@@ -23,7 +23,6 @@ namespace PetGuadian.Application.Commands.AddressCommand
             City = city;
             State = state;
             PostalCode = postalCode;
-            UserId = userId;
         }
 
         public string Street {get; set; } // Rua
@@ -33,7 +32,6 @@ namespace PetGuadian.Application.Commands.AddressCommand
         public string City {get; set; } // Cidade
         public string State {get; set; } // Estado
         public string PostalCode {get; set; } // CEP
-        public Guid UserId {get; set;}
         public void Execute()
         {
             AddNotifications(new CustomContract<CreateAddressCommand>()

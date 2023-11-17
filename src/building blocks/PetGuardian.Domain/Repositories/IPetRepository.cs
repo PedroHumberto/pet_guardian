@@ -1,4 +1,5 @@
 ﻿using PetGuardian.Domain.Core.Data;
+using PetGuardian.Domain.Models;
 using PetGuardian.Models.Models;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace PetGuardian.Domain.Repositories
     {
         Task CreatePet(Pet pet, Guid userId);
         Task<IEnumerable<Pet>> GetAllPetsByUserId(Guid userId);
+        Task<Pet> GetPetMedicines(Guid petId);
         Task<Pet> GetPetById(Guid Id);
         Task Delete(Guid Id);
     }

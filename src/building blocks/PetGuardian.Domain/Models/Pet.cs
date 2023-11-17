@@ -1,5 +1,6 @@
 using PetGuardian.Core.PetGuardianCore.DomainObjects;
 using PetGuardian.Core.PetGuardianCore.Enums;
+using PetGuardian.Domain.Models;
 using System.Globalization;
 
 
@@ -11,10 +12,11 @@ namespace PetGuardian.Models.Models
         public char Gender { get; private set; }
         public AnimalSpecies Specie { get; private set; }
         public DateTime BirthDate { get; private set; }
-        public long? Weight { get; private set; }
+        public float? Weight { get; private set; }
         public User User { get; private set; }
         public Guid UserId { get; private set; }
         public IEnumerable<PetExams>? PetExams { get; private set; }
+        public IEnumerable<Medicine>? Medicines { get; private set; }
 
         protected Pet() { }
 
@@ -23,7 +25,7 @@ namespace PetGuardian.Models.Models
             char gender, 
             AnimalSpecies specie,
             DateTime birthDate,
-            long? weight
+            float? weight
             )
         {
             PetName = petName;
@@ -63,6 +65,11 @@ namespace PetGuardian.Models.Models
             DateTime formattedDateTime = DateTime.ParseExact(brazilFormattedDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
             birthDate = formattedDateTime.Date;
+        }
+
+        public void AddMecine(Medicine medicine)
+        {
+            Medicines.Append(medicine);
         }
     }
 }

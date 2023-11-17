@@ -5,8 +5,8 @@ namespace PetGuardian.Tests.CommandTests.AddressCommandTests
     [TestClass]
     public class CreateAddressCommandTests
     {
-        private readonly CreateAddressCommand _invalidCommand = new CreateAddressCommand(" ", " ", "", "  ", "", "", "", Guid.NewGuid());
-        private readonly CreateAddressCommand _validCommand = new CreateAddressCommand("Rua Tal", "123", "Casa 02", "Barroca", "Belo Horizonte", "MG", "301112223", Guid.NewGuid());
+        private readonly CreateAddressCommand _invalidCommand = new CreateAddressCommand(" ", " ", "", "  ", "", "", "");
+        private readonly CreateAddressCommand _validCommand = new CreateAddressCommand("Rua Tal", "123", "Casa 02", "Barroca", "Belo Horizonte", "MG", "301112223");
         [TestMethod]
         public void If_Command_Is_Invalid_Returns_False()
         {

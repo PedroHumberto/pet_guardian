@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PetGuadian.Application.Dto.MedicineDto;
 using PetGuardian.Core.PetGuardianCore.Enums;
 
 namespace PetGuadian.Application.Dto.PetDto
@@ -13,6 +14,7 @@ namespace PetGuadian.Application.Dto.PetDto
         AnimalSpecies Specie,
         DateTime BirthDate,
         int? Age,
-        long? Weight,
-        Guid UserId);
+        float? Weight,
+        IEnumerable<GetMedicineDto> medicines
+        );
 }

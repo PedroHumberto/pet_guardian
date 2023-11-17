@@ -4,19 +4,19 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PetGuadian.Application.Commands.AddressCommand;
+using PetGuadian.Application.Commands.MedicineCommands;
 using PetGuadian.Application.Commands.Results;
 using PetGuadian.Application.Handlers;
 using PetGuardian.Tests.Services;
 
-namespace PetGuardian.Tests.HandlerTests.AddressHandlerTests
+namespace PetGuardian.Tests.HandlerTests.MedicineHandlerTests
 {
     [TestClass]
-    public class AddressHandlerTests
+    public class MedicineHandlerTests
     {
-        private readonly CreateAddressCommand _invalidCommand = new CreateAddressCommand(" ", " ", "", "  ", "", "", "");
-        private readonly CreateAddressCommand _validCommand = new CreateAddressCommand("Rua Tal", "123", "Casa 02", "Barroca", "Belo Horizonte", "MG", "301112223");
-        private readonly AddressHandler _handler = new AddressHandler(new FakeAddressService());
+        private readonly CreateMedicineCommand _invalidCommand = new CreateMedicineCommand("Re", "1556 asd", "asd", DateTime.UtcNow, DateTime.UtcNow, Guid.NewGuid());
+        private readonly CreateMedicineCommand _validCommand = new CreateMedicineCommand("Azitromicine", "1556 asd", "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX", DateTime.UtcNow, DateTime.UtcNow, Guid.NewGuid());
+        private readonly MedicineHandler _handler = new MedicineHandler(new FakeMedicineService());
         private GenericCommandResult _result = new GenericCommandResult();
 
         [TestMethod]

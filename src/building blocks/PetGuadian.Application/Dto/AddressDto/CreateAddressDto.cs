@@ -14,6 +14,5 @@ namespace PetGuadian.Application.Dto.AddressDto
         string Neighborhood, 
         string City, 
         string State, 
-        string PostalCode, 
-        Guid UserId);
+        string PostalCode);
 }

@@ -20,8 +20,7 @@ namespace PetGuadian.Application.Services
                 addressDto.Neighborhood,
                 addressDto.City,
                 addressDto.State,
-                addressDto.PostalCode,
-                addressDto.UserId
+                addressDto.PostalCode
                 );
 
             await _addressRepository.CreateAddress(address);
@@ -38,7 +37,7 @@ namespace PetGuadian.Application.Services
 
             var address = await _addressRepository.GetAddressById(addressId);
 
-            var addressDto = new CreateAddressDto(address.Street, address.Number, address.Complement, address.Neighborhood, address.City, address.State, address.PostalCode, default);
+            var addressDto = new CreateAddressDto(address.Street, address.Number, address.Complement, address.Neighborhood, address.City, address.State, address.PostalCode);
 
             return addressDto;
         }

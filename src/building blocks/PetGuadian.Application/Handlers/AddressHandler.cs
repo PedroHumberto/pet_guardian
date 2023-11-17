@@ -38,8 +38,7 @@ namespace PetGuadian.Application.Handlers
                 command.Neighborhood,
                 command.City,
                 command.State,
-                command.PostalCode,
-                command.UserId
+                command.PostalCode
             );
 
             //calling service

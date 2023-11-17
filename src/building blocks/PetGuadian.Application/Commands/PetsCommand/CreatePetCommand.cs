@@ -13,7 +13,7 @@ namespace PetGuadian.Application.Commands.PetsCommand
         {
         }
 
-        public CreatePetCommand(string petName, char gender, AnimalSpecies specie, DateTime birthDate, long? weight, Guid userId)
+        public CreatePetCommand(string petName, char gender, AnimalSpecies specie, DateTime birthDate, float weight, Guid userId)
         {
             PetName = petName;
             Gender = gender;
@@ -27,7 +27,7 @@ namespace PetGuadian.Application.Commands.PetsCommand
         public char Gender { get; set; }
         public AnimalSpecies Specie { get; set; }
         public DateTime BirthDate { get; set; }
-        public long? Weight { get; set; }
+        public float Weight { get; set; }
         public Guid UserId { get; set; }
 
 

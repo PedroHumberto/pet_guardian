@@ -13,8 +13,6 @@ namespace PetGuardian.Models.Models
         public string City { get; private set; } // Cidade
         public string State { get; private set; } // Estado
         public string PostalCode { get; private set; } // CEP
-        public Guid UserId { get; private set; }
-        public User User { get; private set; }
 
         protected Address() { }
 
@@ -25,8 +23,8 @@ namespace PetGuardian.Models.Models
             string neighborhood, 
             string city, 
             string state, 
-            string postalCode,
-            Guid userId)
+            string postalCode
+            )
         {
             Street = street;
             Number = number;
@@ -35,7 +33,6 @@ namespace PetGuardian.Models.Models
             City = city;
             State = state;
             PostalCode = postalCode;
-            UserId = userId;
         }
     }
 }
