@@ -16,14 +16,16 @@ namespace PetGuadian.API.Controllers
     public class PetController : ControllerBase
     {
         private readonly IPetService _petService;
+        private readonly PetHandler _handler;
 
-        public PetController(IPetService petService)
+        public PetController(IPetService petService, PetHandler handler)
         {
             _petService = petService;
+            _handler = handler;
         }
 
         [HttpPost("create_pet")]
-        public async Task<ICommandResult> CreatePet([FromBody]CreatePetCommand command, [FromServices] PetHandler _handler)
+        public async Task<ICommandResult> CreatePet([FromBody]CreatePetCommand command)
         {
             var result = (GenericCommandResult)await _handler.Handle(command);
             return result;

@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PetGuardian.Domain.Core.Data;
+using PetGuardian.Domain.Models;
 using PetGuardian.Models.Models;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,7 @@ namespace PetGuadian.API.Data
         public DbSet<Pet> Pets { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<PetExams> Exams { get; set; }
+        public DbSet<Medicine> Medicines { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

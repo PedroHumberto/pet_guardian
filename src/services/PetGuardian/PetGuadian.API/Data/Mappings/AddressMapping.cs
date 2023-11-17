@@ -38,9 +38,7 @@ namespace PetGuadian.API.Data.Mappings
                 .IsRequired()
                 .HasColumnType("varchar(10)");
 
-            builder.HasOne(a => a.User)
-                .WithOne(u => u.Address)
-                .HasForeignKey<Address>(a => a.UserId);
+            
 
             builder.ToTable("Addresses");
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PetGuardian.Domain.Core.Data;
+using PetGuardian.Domain.Models;
 using PetGuardian.Domain.Repositories;
 using PetGuardian.Models.Models;
 using System.Runtime.CompilerServices;
@@ -45,6 +46,19 @@ namespace PetGuadian.API.Data.Repositories
             return petUserList;
         }
 
+        public async Task<Pet> GetPetMedicines(Guid petId)
+        {
+            var medicines = await _context.Medicines.Where(medicine => medicine.PetId == petId).ToListAsync();
+            var pet = await _context.Pets.FirstAsync(pet => pet.Id == petId);
+
+            foreach(var medicine in medicines)
+            {
+                pet.AddMecine(medicine);
+            }
+
+            return pet;
+        }
+
         public async Task<Pet> GetPetById(Guid Id)
         {
             var pet = await _context.Pets.FirstOrDefaultAsync(p => p.Id == Id);
@@ -56,5 +70,7 @@ namespace PetGuadian.API.Data.Repositories
         {
             _context.Dispose();
         }
+
+
     }
 }

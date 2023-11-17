@@ -24,7 +24,7 @@ namespace PetGuadian.API.Controllers
         }
 
         [HttpPost("create_address")]
-        public async Task<GenericCommandResult> CreateAddress(CreateAddressCommand command)
+        public async Task<GenericCommandResult> CreateAddress([FromBody]CreateAddressCommand command)
         {
             var result = (GenericCommandResult) await _handler.Handle(command);
             

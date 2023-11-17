@@ -29,9 +29,10 @@ namespace PetGuadian.API.Data.Mappings
                 .WithOne(p => p.User);
 
 
-            builder.HasOne(u => u.Address)
-                .WithOne(a => a.User)
-                .HasForeignKey<Address>(a => a.UserId);
+            builder
+                .HasOne(u => u.Address)  
+                .WithOne()         
+                .HasForeignKey<User>(u => u.AddressId);
 
             builder.ToTable("Users");
         }

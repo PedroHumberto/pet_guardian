@@ -6,11 +6,29 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace PetGuadian.API.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstMigration : Migration
+    public partial class First_Migration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Addresses",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Street = table.Column<string>(type: "varchar(40)", nullable: false),
+                    Number = table.Column<string>(type: "varchar(15)", nullable: false),
+                    Complement = table.Column<string>(type: "varchar(15)", nullable: false),
+                    Neighborhood = table.Column<string>(type: "varchar(40)", nullable: false),
+                    City = table.Column<string>(type: "varchar(30)", nullable: false),
+                    State = table.Column<string>(type: "varchar(25)", nullable: false),
+                    PostalCode = table.Column<string>(type: "varchar(10)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Addresses", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
@@ -24,29 +42,10 @@ namespace PetGuadian.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Addresses",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Street = table.Column<string>(type: "varchar(40)", nullable: false),
-                    Number = table.Column<string>(type: "varchar(15)", nullable: false),
-                    Complement = table.Column<string>(type: "varchar(15)", nullable: false),
-                    Neighborhood = table.Column<string>(type: "varchar(40)", nullable: false),
-                    City = table.Column<string>(type: "varchar(30)", nullable: false),
-                    State = table.Column<string>(type: "varchar(25)", nullable: false),
-                    PostalCode = table.Column<string>(type: "varchar(10)", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Addresses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Addresses_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
+                        name: "FK_Users_Addresses_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Addresses",
                         principalColumn: "Id");
                 });
 
@@ -59,7 +58,7 @@ namespace PetGuadian.API.Migrations
                     Gender = table.Column<short>(type: "smallint", nullable: false),
                     Specie = table.Column<int>(type: "int", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Weight = table.Column<long>(type: "bigint", nullable: true),
+                    Weight = table.Column<float>(type: "real", nullable: true),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -92,12 +91,6 @@ namespace PetGuadian.API.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Addresses_UserId",
-                table: "Addresses",
-                column: "UserId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Exams_petId",
                 table: "Exams",
                 column: "petId");
@@ -106,14 +99,17 @@ namespace PetGuadian.API.Migrations
                 name: "IX_Pets_UserId",
                 table: "Pets",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_AddressId",
+                table: "Users",
+                column: "AddressId",
+                unique: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Addresses");
-
             migrationBuilder.DropTable(
                 name: "Exams");
 
@@ -122,6 +118,9 @@ namespace PetGuadian.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Addresses");
         }
     }
 }

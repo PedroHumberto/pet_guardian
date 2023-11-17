@@ -12,8 +12,8 @@ using PetGuadian.API.Data;
 namespace PetGuadian.API.Migrations
 {
     [DbContext(typeof(AppContextDb))]
-    [Migration("20231115205822_First Migration")]
-    partial class FirstMigration
+    [Migration("20231117000102_First_Migration")]
+    partial class First_Migration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,13 +59,7 @@ namespace PetGuadian.API.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(40)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
 
                     b.ToTable("Addresses", (string)null);
                 });
@@ -92,8 +86,8 @@ namespace PetGuadian.API.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<long?>("Weight")
-                        .HasColumnType("bigint");
+                    b.Property<float?>("Weight")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -144,17 +138,10 @@ namespace PetGuadian.API.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AddressId")
+                        .IsUnique();
+
                     b.ToTable("Users", (string)null);
-                });
-
-            modelBuilder.Entity("PetGuardian.Models.Models.Address", b =>
-                {
-                    b.HasOne("PetGuardian.Models.Models.User", "User")
-                        .WithOne("Address")
-                        .HasForeignKey("PetGuardian.Models.Models.Address", "UserId")
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("PetGuardian.Models.Models.Pet", b =>
@@ -179,6 +166,11 @@ namespace PetGuadian.API.Migrations
 
             modelBuilder.Entity("PetGuardian.Models.Models.User", b =>
                 {
+                    b.HasOne("PetGuardian.Models.Models.Address", "Address")
+                        .WithOne()
+                        .HasForeignKey("PetGuardian.Models.Models.User", "AddressId")
+                        .IsRequired();
+
                     b.OwnsOne("PetGuardian.Core.PetGuardianCore.DomainObjects.Email", "Email", b1 =>
                         {
                             b1.Property<Guid>("UserId")
@@ -198,6 +190,8 @@ namespace PetGuadian.API.Migrations
                                 .HasForeignKey("UserId");
                         });
 
+                    b.Navigation("Address");
+
                     b.Navigation("Email")
                         .IsRequired();
                 });
@@ -209,9 +203,6 @@ namespace PetGuadian.API.Migrations
 
             modelBuilder.Entity("PetGuardian.Models.Models.User", b =>
                 {
-                    b.Navigation("Address")
-                        .IsRequired();
-
                     b.Navigation("Pets");
                 });
 #pragma warning restore 612, 618

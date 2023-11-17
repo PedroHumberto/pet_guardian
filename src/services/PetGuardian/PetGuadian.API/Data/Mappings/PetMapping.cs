@@ -24,6 +24,10 @@ namespace PetGuadian.API.Data.Mappings
             builder.HasMany(p => p.PetExams)
                 .WithOne(e => e.Pet);
 
+            builder.HasMany(p => p.Medicines)
+                .WithOne(m => m.Pet);
+                
+
             builder.ToTable("Pets");
 
         }
