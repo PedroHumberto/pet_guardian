@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+
 import { Pet } from "../Models/Pet"
 import { AnimalSpecies } from '../Enums/AnimalSpecies';
 import './css/petform.css'
@@ -17,6 +18,7 @@ export const animalSpeciesMap: AnimalSpeciesMapping = {
 };
 
 export function PetForm() {
+
   const [petData, setPetData] = useState({
     petName: '',
     gender: 'M',
@@ -25,18 +27,20 @@ export function PetForm() {
     weight: 0,
     user: ''
   });
-
   const [showModal, setShowModal] = useState(false)
+
 
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setPetData({ ...petData, [name]: value });
-    console.log(petData.animalSpecies)
   };
+
+
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     // Crie uma instância da classe "Pet" com os dados do formulário
     const pet = new Pet(
       petData.petName,
@@ -46,10 +50,13 @@ export function PetForm() {
       Number(petData.weight),
       petData.user
     );
+    //FORMATA PARA O DIA ATUAL NO BRASIL
+    pet.birthDate.setDate(pet.birthDate.getDate()+ 1)
+
     // Faça algo com a instância, como enviar para o servidor ou armazenar localmente
     console.log(pet);
   };
-
+  
   return (
     <>
       <button className="addPetButton" onClick={() => setShowModal(true)}>+</button>

@@ -1,3 +1,4 @@
+import { PetCard } from "../../Components/PetCard";
 import PetForm from "../../Components/PetForm";
 import './mypets.css'
 
@@ -9,12 +10,11 @@ export function MyPets()
 
                 <h1>Confira seus Pets Aqui</h1>
                 <section>
-                    <p>
-                        AQUI VAI CONTER UM CARD
-                    </p>
+                    <PetCard/>
                 </section>
                 <div className="addpet">
                     <h2>Adicione o Pet</h2>
+                    
                     <PetForm/>
                 </div>
 

@@ -1,5 +1,3 @@
-import { User } from "../Models/User";
-
 export class Address
 {
     public street: String;
@@ -9,7 +7,6 @@ export class Address
     public city:String; 
     public state:String; 
     public postalCode:String;
-    public user:User;
     
     constructor(street:String,
         number:String,
@@ -17,8 +14,7 @@ export class Address
         neighborhood:String,
         city:String,
         state:String,
-        postalCode:String,
-        user:User)
+        postalCode:String)
         {
             this.street = street;
             this.number = number;
@@ -27,8 +23,6 @@ export class Address
             this.city = city;
             this.state = state;
             this.postalCode = postalCode;
-            this.user = user;
-
         }
 
 }

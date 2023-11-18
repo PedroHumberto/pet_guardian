@@ -1,0 +1,46 @@
+.petContainer h3{
+    margin-top: 6px;
+    font-size: 15px;
+}
+
+.petContainer h2
+{
+    margin-top: 6px;
+    font-size: 18px;
+}
+
+.petContainer{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    margin: 5px;
+    margin-left: 20px;
+    width: 220px;
+    height: 330px;
+    align-items: center;
+    background-color: rgba(95, 158, 160, 0.144);
+    transition: box-shadow 0.3s ease; /* Adiciona uma transição suave para a sombra */
+}
+.petContainer:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra quando o mouse passa por cima */
+}
+
+.petImage
+{
+    display: flex;
+    border: 2px solid blue;
+    margin: 5px; 
+    width: 120px;
+    height: 120px;
+}
+.petData{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid blue;
+    margin: 5px; 
+    width: 200px;
+    height: 180px;
+}
+.petData a{
+    font-size: 14px;
+}
