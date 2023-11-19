@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-
+import { v4 as uuidv4 } from 'uuid';
 import { Pet } from "../Models/Pet"
 import { AnimalSpecies } from '../Enums/AnimalSpecies';
 import './css/petform.css'
@@ -40,9 +40,10 @@ export function PetForm() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    const petId = uuidv4();
     // Crie uma instância da classe "Pet" com os dados do formulário
     const pet = new Pet(
+      petId,
       petData.petName,
       petData.gender,
       Number(petData.animalSpecies),

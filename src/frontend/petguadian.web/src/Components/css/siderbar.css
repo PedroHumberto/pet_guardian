@@ -5,10 +5,12 @@
   .sidebar {
     margin: 0;
     padding: 0;
-    width: 200px;
-    background-color: #f1f1f1;
+    width: 215px;
+    background-color: #fcfcfc;
     position: relative;
     overflow: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra quando o mouse passa por cima */
+
   }
   
   .sidebar a {

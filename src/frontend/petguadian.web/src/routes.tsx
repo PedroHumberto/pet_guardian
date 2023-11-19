@@ -1,6 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-
-
 import { Home } from './Pages/home'
 import { SideBar } from "./Components/SideBar";
 import { MyPets } from "./Pages/system/mypets";
@@ -30,8 +28,6 @@ const router = createBrowserRouter([
             }
         ],        
     }
-
-    
 ])
 
 export { router };
