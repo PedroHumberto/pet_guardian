@@ -36,14 +36,14 @@ namespace PetGuardian.API.Identity.Services
         }
         public async Task<string> LogIn(LoginUser user)
         {
-            var result = await _signInManager.PasswordSignInAsync(user.UserName, user.Password, false, false);
+            var result = await _signInManager.PasswordSignInAsync(user.Email, user.Password, false, false);
 
             if (!result.Succeeded)
             {
                 throw new ArgumentException($"Failed to log in: {result}");
             }
 
-            var userToken = await _signInManager.UserManager.Users.FirstOrDefaultAsync(u => u.NormalizedUserName == user.UserName.ToUpper());
+            var userToken = await _signInManager.UserManager.Users.FirstOrDefaultAsync(u => u.NormalizedUserName == user.Email.ToUpper());
 
             
 

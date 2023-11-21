@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Pet } from "../Models/Pet"
 import { AnimalSpecies } from '../Enums/AnimalSpecies';
 import './css/petform.css'
+import { CreatePetViewModel } from "../ViewModels/PetViewModels/CreatePetViewModel";
 
 export interface AnimalSpeciesMapping {
   [key: string]: AnimalSpecies;
@@ -40,10 +41,9 @@ export function PetForm() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const petId = uuidv4();
-    // Crie uma instância da classe "Pet" com os dados do formulário
-    const pet = new Pet(
-      petId,
+
+    // Crie uma instância da classe "CreatePetViewModel" com os dados do formulário
+    const pet = new CreatePetViewModel(
       petData.petName,
       petData.gender,
       Number(petData.animalSpecies),

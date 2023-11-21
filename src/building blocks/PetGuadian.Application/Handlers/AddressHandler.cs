@@ -32,6 +32,7 @@ namespace PetGuadian.Application.Handlers
 
             //mapping dto
             var createAddressDto = new CreateAddressDto(
+                Guid.NewGuid(),
                 command.Street,
                 command.Number,
                 command.Complement,
@@ -45,7 +46,7 @@ namespace PetGuadian.Application.Handlers
             await _service.CreateAddress(createAddressDto);
 
             //result
-            return new GenericCommandResult(true, "Success", command, HttpStatusCode.OK);
+            return new GenericCommandResult(true, "Success", createAddressDto, HttpStatusCode.OK);
         }
     }
 }

@@ -15,11 +15,15 @@ namespace PetGuadian.API.Data.Repositories
             _context = context;
         }
 
+        public IUnitOfWork UnitOfWork => _context;
+
+
         public IUnitOfWork IUnitOfWork => _context;
 
         public async Task CreateAddress(Address address)
         {
             await _context.Addresses.AddAsync(address);
+            await _context.Commit();
         }
 
         public async Task<Address> GetAddressById(Guid addressId)

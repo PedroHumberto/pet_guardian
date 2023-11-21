@@ -11,9 +11,15 @@ namespace PetGuadian.Application.Services
     {
         private readonly IAddressRepository _addressRepository;
 
+        public AddressService(IAddressRepository addressRepository)
+        {
+            _addressRepository = addressRepository;
+        }
+
         public async Task CreateAddress(CreateAddressDto addressDto)
         {
-            var address = new Address( 
+            var address = new Address(
+                addressDto.id,
                 addressDto.Street,
                 addressDto.Number,
                 addressDto.Complement,
@@ -37,7 +43,7 @@ namespace PetGuadian.Application.Services
 
             var address = await _addressRepository.GetAddressById(addressId);
 
-            var addressDto = new CreateAddressDto(address.Street, address.Number, address.Complement, address.Neighborhood, address.City, address.State, address.PostalCode);
+            var addressDto = new CreateAddressDto(address.Id ,address.Street, address.Number, address.Complement, address.Neighborhood, address.City, address.State, address.PostalCode);
 
             return addressDto;
         }

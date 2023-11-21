@@ -3,7 +3,7 @@ import { Home } from './Pages/home'
 import { SideBar } from "./Components/SideBar";
 import { MyPets } from "./Pages/system/mypets";
 import { Login } from "./Pages/login/login";
-import { Singup } from "./Pages/login/singup";
+import { Singup } from "./Pages/singup/singup";
 
 const router = createBrowserRouter([
     {

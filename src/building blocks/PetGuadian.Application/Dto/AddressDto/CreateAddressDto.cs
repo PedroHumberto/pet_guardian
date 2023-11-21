@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace PetGuadian.Application.Dto.AddressDto
 {
     public record CreateAddressDto(
+        Guid id,
         string Street, 
         string Number, 
         string Complement, 

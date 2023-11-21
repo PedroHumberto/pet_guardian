@@ -17,6 +17,7 @@ namespace PetGuardian.Models.Models
         protected Address() { }
 
         public Address(
+            Guid id,
             string street, 
             string number, 
             string complement, 
@@ -24,7 +25,7 @@ namespace PetGuardian.Models.Models
             string city, 
             string state, 
             string postalCode
-            )
+            ) : base(id)
         {
             Street = street;
             Number = number;

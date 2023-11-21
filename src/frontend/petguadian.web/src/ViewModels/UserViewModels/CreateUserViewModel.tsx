@@ -1,15 +1,14 @@
-import { Pet } from "../Models/Pet";
-import { Address } from "../Models/Address";
-
-export class User 
+export class CreateUserViewModel 
 {
+    public id: string;
     public name: string;
     public email: string;
     public deleted: boolean;
     public addressId: string;
 
-    constructor(name: string, email: string, addressId: string)
+    constructor(id: string, name: string, email: string, addressId: string)
     {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.addressId = addressId;

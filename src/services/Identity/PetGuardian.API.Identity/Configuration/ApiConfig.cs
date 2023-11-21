@@ -31,7 +31,7 @@ namespace PetGuardian.API.Identity.Configuration
         }
         public static IApplicationBuilder UseApiConfiguration(this IApplicationBuilder app, IWebHostEnvironment env)
         {
-  
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -57,5 +57,5 @@ namespace PetGuardian.API.Identity.Configuration
         }
 
     }
-    
+
 }

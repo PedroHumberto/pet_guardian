@@ -7,6 +7,8 @@ import './mypets.css'
 
 export function MyPets()
 {
+
+    //FAZER UM GETALL DE PETS POR USUARIO LOGADO VIA ID
     const simulatedPets: Pet[] = [
         new Pet(uuidv4(), 'Max', 'M', AnimalSpecies.Dog, new Date('2020-01-15'), 12.5, 'User1'),
         new Pet(uuidv4(), 'Bella', 'F', AnimalSpecies.Cat, new Date('2019-05-03'), 8.2, 'User2'),
