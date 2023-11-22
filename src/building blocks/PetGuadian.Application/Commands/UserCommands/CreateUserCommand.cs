@@ -13,7 +13,7 @@ namespace PetGuadian.Application.Commands.UserCommands
         {
         }
 
-        public CreateUserCommand(Guid userIdentity, string name, string email, Guid addressId)
+        public CreateUserCommand(Guid userIdentity, string name, string email, Guid? addressId)
         {
             UserIdentity = userIdentity;
             Name = name;
@@ -24,7 +24,7 @@ namespace PetGuadian.Application.Commands.UserCommands
         public Guid UserIdentity { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public Guid AddressId { get; set; }
+        public Guid? AddressId { get; set; }
 
         public void Execute()
         {

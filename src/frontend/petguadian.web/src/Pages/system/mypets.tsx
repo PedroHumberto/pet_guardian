@@ -4,9 +4,44 @@ import PetForm from "../../Components/PetForm";
 import { AnimalSpecies } from "../../Enums/AnimalSpecies";
 import { Pet } from "../../Models/Pet";
 import './mypets.css'
+import { TOKEN_KEY } from "../../Services/auth";
+
+
+
+
+interface JWTParts {
+    header: any;
+    payload: any;
+  }
+  
+  function formatarJWT(jwt: string): JWTParts {
+    const partes = jwt.split('.');
+  
+    if (partes.length !== 3) {
+      throw new Error('Formato JWT inválido');
+    }
+  
+    const [headerBase64, payloadBase64] = partes;
+  
+    const header = JSON.parse(atob(headerBase64));
+    const payload = JSON.parse(atob(payloadBase64));
+  
+    return { header, payload };
+  }
 
 export function MyPets()
 {
+    var token = localStorage.getItem(TOKEN_KEY)
+
+    if(!token){
+        token = ''
+    }
+
+    const decodedToken = JSON.parse(atob(token.split('.')[1]));
+
+    console.log("PAGINA MY PETS "+ decodedToken.id)
+    console.log(decodedToken.role)
+    
 
     //FAZER UM GETALL DE PETS POR USUARIO LOGADO VIA ID
     const simulatedPets: Pet[] = [

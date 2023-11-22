@@ -8,7 +8,7 @@ namespace PetGuadian.Application.Dto.UserDto
 {
     public class CreateUserDto
     {
-        public CreateUserDto(Guid userIdentity, string name, string email, Guid addressId)
+        public CreateUserDto(Guid userIdentity, string name, string email, Guid? addressId)
         {
             UserIdentity = userIdentity;
             Name = name;
@@ -19,6 +19,6 @@ namespace PetGuadian.Application.Dto.UserDto
         public Guid UserIdentity { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public Guid AddressId { get; set; }
+        public Guid? AddressId { get; set; }
     }
 }

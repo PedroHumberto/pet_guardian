@@ -1,90 +1,44 @@
 import { useState } from "react";
 import { UserLogin } from "../../Models/UserLogin";
-
-interface JWTParts {
-  header: any;
-  payload: any;
-}
-
-function formatarJWT(jwt: string): JWTParts {
-  const partes = jwt.split('.');
-
-  if (partes.length !== 3) {
-    throw new Error('Formato JWT inválido');
-  }
-
-  const [headerBase64, payloadBase64] = partes;
-
-  const header = JSON.parse(atob(headerBase64));
-  const payload = JSON.parse(atob(payloadBase64));
-
-  return { header, payload };
-}
-
-// Exemplo de uso:
-
+import { Link, useNavigate } from 'react-router-dom';
+import { login } from "../../Services/auth";
+import { IdentiTyApi } from "../../Services/identityApi";
 
 
 export function Login() {
   const [user, setUser] = useState({
     email: '',
-    password: ''
+    password: '',
+    error: ""
   });
+  const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
   };
 
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const userModel = new UserLogin(
       user.email,
       user.password
     );
+    const {email, password} = userModel
 
-    //FUNÇÃO PARA ACESSA R A API
-    const url = "https://localhost:7182/User/login"
+    try{
+      const response = await IdentiTyApi.post("/login", {email, password});
+      console.log("Response: ", response.data)
+      login(response.data);
+      navigate("/mypets");
 
-    var formData = new FormData();
-    formData.append('json1', JSON.stringify(userModel));
-
-    fetch(url, {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userModel)
-    })
-      .then(resp => resp.text()) // Alterado de .json() para .text()
-      .then((token) => {
-
-
-        try {
-          const { header, payload } = formatarJWT(token);
-          console.log('Cabeçalho:', header);
-          console.log('Payload:', payload);
-          const decodedToken = JSON.parse(atob(token.split('.')[1]));
-          console.log(decodedToken.id)
-          console.log(decodedToken.role)
-        } 
-        catch (error)  {
-          console.error('Erro:', error);
-        }
-      })
-      .catch((error) => {
-        console.log('Error logging in user:', error);
-      });
-
-
-
-    //------------------------
-
-
-    console.log(userModel);
+    }catch(err)
+    {
+      console.log(err);
+    }
   };
+
 
   return (
     <>

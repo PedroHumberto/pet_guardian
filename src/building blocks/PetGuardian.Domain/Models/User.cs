@@ -18,8 +18,8 @@ namespace PetGuardian.Models.Models
         public string Name { get; private set; }
         public Email Email { get; private set; }
         public IEnumerable<Pet>? Pets { get; private set; }
-        public Address Address { get; private set; }
-        public Guid AddressId { get; private set; }
+        public Address? Address { get; private set; }
+        public Guid? AddressId { get; private set; }
         public bool Deleted { get; private set; }
 
 
