@@ -27,5 +27,12 @@ namespace PetGuadian.API.Controllers
             var result = (GenericCommandResult)await _handler.Handle(command);
             return result;
         }
+        [HttpPost("get_user")]
+        public async Task<IActionResult> GetUserById(Guid userId)
+        {
+            var user = await _userService.GetUser(userId);
+
+            return Ok(user);
+        }
     }
 }

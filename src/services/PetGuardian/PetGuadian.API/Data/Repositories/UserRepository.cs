@@ -32,9 +32,11 @@ namespace PetGuadian.API.Data.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public void GetUser(Guid userId)
+        public async Task<User> GetUser(Guid userId)
         {
-            throw new NotImplementedException();
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+            return user;
         }
 
         public void UpdateUser(User updatedUser)

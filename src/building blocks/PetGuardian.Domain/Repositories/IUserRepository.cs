@@ -10,7 +10,7 @@ namespace PetGuardian.Domain.Repositories
     {
         Task CreateUser(User user);
         void UpdateUser(User updatedUser);
-        void GetUser(Guid userId);
+        Task<User> GetUser(Guid userId);
         Task InativateUser(Guid userId);
     }
 }

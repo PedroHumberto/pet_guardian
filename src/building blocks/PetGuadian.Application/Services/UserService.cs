@@ -33,9 +33,14 @@ namespace PetGuadian.Application.Services
             throw new NotImplementedException();
         }
 
-        public void GetUser(Guid userId)
+        public async Task<GetUserDto> GetUser(Guid userId)
         {
-            throw new NotImplementedException();
+            var user = await _repository.GetUser(userId);
+
+            var userMapping = new GetUserDto(user.Id, user.Name, user.Email.EmailAddress, user.AddressId);
+
+            return userMapping;
+
         }
 
         public void UpdateUser(CreateUserDto updatedUserDto)

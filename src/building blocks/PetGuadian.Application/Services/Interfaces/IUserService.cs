@@ -8,7 +8,7 @@ namespace PetGuadian.Application.Services.Interfaces
     {
         Task CreateUser(CreateUserDto userDto);
         void UpdateUser(CreateUserDto updatedUserDto);
-        void GetUser(Guid userId);
+        Task<GetUserDto> GetUser(Guid userId);
         void DeleteUser(Guid userId);
     }
 }
