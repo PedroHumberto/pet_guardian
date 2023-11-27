@@ -4,6 +4,9 @@ import { SideBar } from "./Components/SideBar";
 import { MyPets } from "./Pages/system/mypets";
 import { Login } from "./Pages/login/login";
 import { Singup } from "./Pages/singup/singup";
+import SimpleSidebar from "./Components/ChakraSideBar/SimpleSideBar";
+
+
 
 const router = createBrowserRouter([
     {

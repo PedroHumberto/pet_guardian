@@ -42,7 +42,7 @@ export function PetCard({ petList }: PetCardProps) {
                     <h2 className='petName'>{pet.petName}</h2>
 
                     <div className="petImage">
-                        <h1>Imagem</h1>
+                        
                     </div>
 
                     <div className="petData">

@@ -19,7 +19,7 @@
     width: 220px;
     height: 330px;
     align-items: center;
-    background-color: rgba(95, 158, 160, 0.144);
+    background-color: white;
     transition: box-shadow 0.3s ease; /* Adiciona uma transição suave para a sombra */
 }
 .petContainer:hover {
@@ -33,6 +33,7 @@
     margin: 5px; 
     width: 120px;
     height: 120px;
+    border-radius: 50%;
 }
 .petData{
     display: flex;

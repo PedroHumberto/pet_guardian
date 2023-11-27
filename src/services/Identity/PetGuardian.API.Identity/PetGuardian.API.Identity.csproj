@@ -21,4 +21,7 @@
   <ItemGroup>
     <Folder Include="Data\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\building blocks\PetGuadian.Application\PetGuadian.Application.csproj" />
+  </ItemGroup>
 </Project>

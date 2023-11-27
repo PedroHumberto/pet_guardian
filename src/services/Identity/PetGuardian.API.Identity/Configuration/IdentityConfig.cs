@@ -26,6 +26,8 @@ namespace PetGuardian.API.Identity.Configuration
                 .AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders();
 
+
+
             //AppSettings Config
             var appSettingsSection = configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);

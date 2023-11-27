@@ -5,9 +5,10 @@ import { AnimalSpecies } from "../../Enums/AnimalSpecies";
 import { Pet } from "../../Models/Pet";
 import './mypets.css'
 import { TOKEN_KEY, getEmail, getToken } from "../../Services/auth";
+import { IdentiTyApi } from '../../Services/identityApi';
+import { petGuardianApi } from '../../Services/petGuardianApi';
 import { useEffect, useState } from "react";
-import { petGuardianApi } from "../../Services/petGuardianApi";
-import { User } from "../../Models/User";
+
 
 
 
@@ -33,9 +34,9 @@ function formatarJWT(jwt: string): JWTParts {
 }
 
 export function MyPets() {
-  const [userData, setUserData] = useState<User>(new User("", "", ""));
-  const [showForm, setShowForm] = useState(false);
-  const [name, setName] = useState('');
+  const [pets, setPets] = useState<any>([]);
+
+
   //TROCAR PARA COOKIES DEPOIS - EXISTE UMA OPÇÃO PARA O COOKIE VENCER CONFORME O TEMPO DE EXPIRAÇÃO DEFINIDO NA API
   var token = getToken();
 
@@ -43,44 +44,33 @@ export function MyPets() {
     token = ''
   }
   const decodedToken = JSON.parse(atob(token.split('.')[1]));
-  var userIdentity = decodedToken.id
+  var userId = decodedToken.id
   var email = decodedToken.email
 
   useEffect(() => {
-    const fetchUserById = async () => {
-      try {
-        const request = await petGuardianApi.post(`/User/get_user?userId=${userIdentity}`);
-        setUserData(request.data);
-
-      } catch (error) {
-        console.log("New ERRO" + error)
-        setShowForm(true); // Mostrar o formulário se o usuário não for encontrado
-      }
-    };
-
-    fetchUserById();
-  }, [userIdentity]);
-
-
-  // Lógica para enviar o nome do usuário para o backend
-  const handleNameSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      const response = await petGuardianApi.post('/User/create_user', { userIdentity, name, email })
-      console.log(response.data);
-
-    } catch (err) {
-      console.log("Erro: " + err);
-
+    const fetchPets = async () => {
+      const petResponse = await petGuardianApi.get(`/Pet/get_pet_by_userId?userId=${userId}`)
+      console.log("Pet Reponse " + petResponse.data[0].petName)
+      setPets(petResponse.data)
     }
-    // Após o envio bem-sucedido, atualizar o estado para esconder o formulário
-    setShowForm(false);
-  };
+    fetchPets()
+  }, []);
+   
 
-  //---FIM DA FUNÇÃO QUE VERIFICA O USUARIO E CADASTRA
+  //DEVO COLOCAR OS DEMAIS ATRIBUTOS NOS PETS COMO MEDICINE
+  //petName: 'Luci', gender: 'F', specie: 1, birthDate: '2023-11-27T23:37:39.13', age: 0, …}
+  // age : 0
+
+  // birthDate : "2023-11-27T23:37:39.13"
+  // gender : "F"
+  // medicines : []
+  // petName : "Luci"
+  // specie 1
+  // weight : 14
+  console.log(pets[0]);
 
 
-  //AQUI INICIA A FUNÇÃO PARA BUSCAR OS PETS NO BANCO DE DADOS
+
   const simulatedPets: Pet[] = [
     new Pet(uuidv4(), 'Max', 'M', AnimalSpecies.Dog, new Date('2020-01-15'), 12.5, 'User1'),
     new Pet(uuidv4(), 'Bella', 'F', AnimalSpecies.Cat, new Date('2019-05-03'), 8.2, 'User2'),
@@ -97,23 +87,9 @@ export function MyPets() {
 
   return (
     <>
-      <div>
-        {showForm ? (
-          <form onSubmit={handleNameSubmit}>
-            <label>
-              Nome do Usuário:
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </label>
-            <button type="submit">Enviar</button>
-          </form>
-        ) : null}
-      </div>
-      <div className="pet-container">
+    <div className="mypets-container">
 
+      <div className="pet-container">
         <h1>Confira seus Pets Aqui</h1>
         <section className="pets-cards">
           <PetCard petList={simulatedPets} />
@@ -125,6 +101,7 @@ export function MyPets() {
         </div>
 
       </div>
+    </div>
     </>
   )
 }
