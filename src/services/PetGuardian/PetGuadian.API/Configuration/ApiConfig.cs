@@ -14,6 +14,7 @@ namespace PetGuadian.API.Configuration
             services.AddControllers();
             services.AddSwaggerConfiguration();
             services.AddEndpointsApiExplorer();
+            services.AddMemoryCache();
 
             services.AddCors(opts =>
             {

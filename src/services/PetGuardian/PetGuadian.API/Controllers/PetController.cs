@@ -43,6 +43,13 @@ namespace PetGuadian.API.Controllers
 
             return Ok(pets);
         }
+        [HttpGet("delete")]
+        public async Task<ICommandResult> DeletePet([FromBody]DeletePetCommand command)
+        {
+            GenericCommandResult result = (GenericCommandResult) await _handler.Handle(command);
+
+            return result;
+        }
 
     }
 }
