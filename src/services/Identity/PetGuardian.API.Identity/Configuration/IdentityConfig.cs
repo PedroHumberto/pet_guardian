@@ -63,7 +63,6 @@ namespace PetGuardian.API.Identity.Configuration
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITokenService, TokenService>();
 
-
             return services;
         }
     }

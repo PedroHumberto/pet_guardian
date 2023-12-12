@@ -15,6 +15,6 @@ namespace PetGuardian.Domain.Repositories
         Task<IEnumerable<Pet>> GetAllPetsByUserId(Guid userId);
         Task<Pet> GetPetMedicines(Guid petId);
         Task<Pet> GetPetById(Guid Id);
-        Task Delete(Guid Id);
+        Task DeletePet(Guid petId, Guid userId);
     }
 }

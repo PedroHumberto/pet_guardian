@@ -26,11 +26,15 @@ export function PetCard({ petList }: PetCardProps) {
                 return 'Cachorro';
             case AnimalSpecies.Cat:
                 return 'Gato';
+            case AnimalSpecies.Bird:
+                return 'Ave';
             // Adicione mais casos conforme necessário
             default:
                 return 'Desconhecido';
         }
     };
+
+
 
     return (
         <>
@@ -44,14 +48,14 @@ export function PetCard({ petList }: PetCardProps) {
                     <div className="petImage">
                         
                     </div>
-
+                        <h3>Idade: {Number(pet.age)}</h3>
                     <div className="petData">
                         <div>
                             <h3>ESPECIE:</h3>
-                            <a>{getSpeciesLabel(pet.animalSpecies)}</a>
+                            <a>{getSpeciesLabel(pet.specie)}</a>
 
                             <h3>DATA DE NASCIMENTO:</h3>
-                            <a>{format(pet.birthDate, 'dd/MM/yyyy')}</a>
+                            <a>{format(new Date(pet.birthDate), 'dd/MM/yyyy')}</a>
 
                             <h3>SEXO:</h3>
                             <a>{getGenderLabel(pet.gender)}</a>

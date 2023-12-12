@@ -5,7 +5,7 @@ import { login } from "../../Services/auth";
 import { IdentiTyApi } from "../../Services/identityApi";
 
 
-export function Login() {
+export const Login = () => {
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -79,3 +79,5 @@ export function Login() {
     </>
   );
 }
+
+export default Login;

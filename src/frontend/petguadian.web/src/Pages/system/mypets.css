@@ -1,17 +1,15 @@
-.mypets-container {
-    background-color: rgba(0, 0, 0, 0.308);
-
-}
-
-.pet-container{
-
-}
-.addpet{
-    margin-top: 155px;
-}
-.pets-cards{
+.mypets-container{
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    width: 80%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    width: 70%;
 }
+
+.addpet{
+    margin-top: 15px;
+}
+
 

@@ -10,7 +10,8 @@ namespace PetGuadian.Application.Handlers
 {
     public class PetHandler : 
         IHandler<CreatePetCommand>,
-        IHandler<UpdatePetCommand>
+        IHandler<UpdatePetCommand>,
+        IHandler<DeletePetCommand>
     {
         private readonly IPetService _service;
 
@@ -47,6 +48,19 @@ namespace PetGuadian.Application.Handlers
         public async Task<ICommandResult> Handle(UpdatePetCommand command)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<ICommandResult> Handle(DeletePetCommand command)
+        {
+            command.Execute();
+            if(!command.IsValid)
+            {
+                return new GenericCommandResult(false, "Pet Id Doesn't Match with User Id", command.Notifications, HttpStatusCode.NotFound);
+            }
+
+            await _service.DeletePet(command.PetId, command.UserId);
+
+            return new GenericCommandResult(true, "Deleted With Succssess", command, HttpStatusCode.NoContent);
         }
     }
 }

@@ -1,11 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using System.Linq;
-using System.Threading.Tasks;
-using Flunt.Notifications;
 using Flunt.Validations;
-using PetGuadian.Application.Commands.PetsCommand;
 
 namespace PetGuadian.Application.Commands.Contracts
 {

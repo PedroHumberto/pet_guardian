@@ -14,7 +14,7 @@ export function SideBar() {
     };
     return (
         <>
-            <div className='container'>
+            <div className='sidebar-container'>
 
                 <div className="sidebar">
                     <a className={activeItem === 'Pets' ? 'active' : ''} onClick={() => handleItemClick('Pets')} href="#news">

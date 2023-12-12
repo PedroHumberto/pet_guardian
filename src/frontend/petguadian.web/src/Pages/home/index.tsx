@@ -3,10 +3,10 @@ import homeImg from '../../img/img-pets-home2.jpg'
 import { NavBar } from '../../Components/NavBar'
 import { Sections } from '../../Components/Sections'
 
-export function Home() {
+export const Home = () => {
     return (
         <>
-            <div className="container">
+            <div className="index-container">
                 <NavBar/>
                 <img src={ homeImg } alt="Img inicial" />
                 <div className='sub-container'> 
@@ -18,3 +18,5 @@ export function Home() {
         </>
     )
 }
+
+export default Home;

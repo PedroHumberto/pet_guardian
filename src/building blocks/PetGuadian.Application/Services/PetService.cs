@@ -3,6 +3,7 @@ using PetGuardian.Models.Models;
 using PetGuardian.Domain.Repositories;
 using PetGuadian.Application.Services.Interfaces;
 using PetGuadian.Application.Dto.MedicineDto;
+using PetGuardian.Core.Execptions;
 
 
 namespace PetGuadian.Application.Services
@@ -28,9 +29,9 @@ namespace PetGuadian.Application.Services
             await _petRepository.CreatePet(pet, petDto.UserId);
         }
 
-        public Task Delete(Guid Id)
+        public async Task DeletePet(Guid petId, Guid userId)
         {
-            throw new NotImplementedException();
+            await _petRepository.DeletePet(petId, userId);
         }
 
         public async Task<IEnumerable<GetPetDto>> GetAllPetsByUserId(Guid userId)
@@ -51,7 +52,7 @@ namespace PetGuadian.Application.Services
                         medicineDtoList.Add(medicineDto);
                     }
                 }          
-                var petDto = new GetPetDto(pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, petAge, pet.Weight, medicineDtoList);
+                var petDto = new GetPetDto(pet.Id, pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, petAge, pet.Weight, medicineDtoList);
                 petDtoList.Add(petDto);
             }
             return petDtoList;
@@ -60,6 +61,9 @@ namespace PetGuadian.Application.Services
         public async Task<GetPetDto> GetPetById(Guid Id)
         {
             var pet = await _petRepository.GetPetById(Id);
+
+            CustomApplicationExceptions.ThrowIfObjectIsNull(pet);
+            
             var medicineDtoList = new List<GetMedicineDto>();
 
             if(pet.Medicines is not null)
@@ -71,9 +75,10 @@ namespace PetGuadian.Application.Services
                 }
             }
             var petAge = pet.GetPetAge(pet.BirthDate);
-            var petDto = new GetPetDto(pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, petAge, pet.Weight, medicineDtoList);
+            var petDto = new GetPetDto(pet.Id, pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, petAge, pet.Weight, medicineDtoList);
 
             return petDto;
         }
+
     }
 }

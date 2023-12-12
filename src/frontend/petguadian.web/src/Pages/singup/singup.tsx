@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import './singup.css'
 
 
-export function Singup() {
+export const Singup = () => {
   const [user, setUser] = useState({
     userName: '',
     email: '',
@@ -91,3 +91,5 @@ export function Singup() {
 
   );
 }
+
+export default Singup;

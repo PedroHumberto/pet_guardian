@@ -14,10 +14,10 @@
     cursor: pointer;
     flex-direction: column;
     border-radius: 10px;
-    margin: 5px;
     margin-left: 20px;
+    margin-top: 20px;
     width: 220px;
-    height: 330px;
+    height: 360px;
     align-items: center;
     background-color: white;
     transition: box-shadow 0.3s ease; /* Adiciona uma transição suave para a sombra */

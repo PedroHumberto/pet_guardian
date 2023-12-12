@@ -9,6 +9,7 @@ using PetGuardian.Core.PetGuardianCore.Enums;
 namespace PetGuadian.Application.Dto.PetDto
 {
     public record GetPetDto(
+        Guid petId,
         string PetName, 
         char Gender, 
         AnimalSpecies Specie,
