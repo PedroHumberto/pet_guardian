@@ -18,6 +18,11 @@ namespace PetGuardian.Tests.Repositories
             throw new NotImplementedException();
         }
 
+        public Task DeletePet(Guid petId, Guid userId)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IEnumerable<GetPetDto>> GetAllPetsByUserId(Guid userId)
         {
             throw new NotImplementedException();

@@ -18,7 +18,7 @@ namespace PetGuardian.Tests.Services
             throw new NotImplementedException();
         }
 
-        public void GetUser(Guid userId)
+        public Task<GetUserDto> GetUser(Guid userId)
         {
             throw new NotImplementedException();
         }
@@ -27,5 +27,7 @@ namespace PetGuardian.Tests.Services
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.IdentityModel.Tokens;
-using PetGuardian.Core.Execptions;
+using PetGuardian.Core.Exceptions;
 using PetGuardian.Domain.Core.Data;
 using PetGuardian.Domain.Models;
 using PetGuardian.Domain.Repositories;
@@ -25,7 +25,7 @@ namespace PetGuadian.API.Data.Repositories
 
         public async Task CreatePet(Pet pet, Guid userId)
         {
-            CustomApplicationExceptions.ThrowIfObjectIsNull(pet);
+            CustomApplicationExceptions.ThrowIfObjectIsNull(pet, "pet", "Object is Null");
 
             pet.AddUser(userId);
 
@@ -39,30 +39,33 @@ namespace PetGuadian.API.Data.Repositories
 
         public async Task DeletePet(Guid petId, Guid userId)
         {
-            Pet pet = await _context.Pets.AsNoTracking().FirstOrDefaultAsync(p => p.Id == petId && p.UserId == userId);
+            Pet? pet = await _context.Pets.AsNoTracking().FirstOrDefaultAsync(p => p.Id == petId && p.UserId == userId);
 
-            CustomApplicationExceptions.ThrowIfObjectIsNull(pet);
+            CustomApplicationExceptions.ThrowIfObjectIsNull(pet, "pet", "Pet is Null for delete");
 
-            _context.Pets.Remove(pet);
+            if (pet is not null)
+            {
+                _context.Pets.Remove(pet);
 
-            await _context.Commit();
-
+                await _context.Commit();
+            }
         }
         public async Task<IEnumerable<Pet>> GetAllPetsByUserId(Guid userId)
         {
-            
-            CustomApplicationExceptions.ThrowIfNull(userId.ToString());
-
-            #pragma warning disable CS8603 // Possible null reference return.
-            return await _cache.GetOrCreateAsync(CacheKeyForPets(userId), async entry => {
+#pragma warning disable CS8603 // Possible null reference return.
+            return await _cache.GetOrCreateAsync(CacheKeyForPets(userId), async entry =>
+            {
                 entry.SetAbsoluteExpiration(TimeSpan.FromMinutes(10));
-                var petUserList = await _context.Pets.AsNoTracking().Where(p => p.UserId == userId).ToListAsync();
+                List<Pet> petUserList = await _context.Pets.AsNoTracking().Where(p => p.UserId == userId).ToListAsync();
 
-                CustomApplicationExceptions.ThrowIfAListOfObjectsIsNullOrEmpty(petUserList);
+                if (!petUserList.Any())
+                {
+                    CustomApplicationExceptions.ThrowIfAListOfObjectsIsNullOrEmpty(petUserList, "userId", "No pets found for the specified user.");
 
-                return petUserList ?? Enumerable.Empty<Pet>();
+                }
+                return petUserList;
             });
-            #pragma warning restore CS8603 // Possible null reference return.
+#pragma warning restore CS8603 // Possible null reference return.
         }
 
         public async Task<Pet> GetPetMedicines(Guid petId)
@@ -70,7 +73,7 @@ namespace PetGuadian.API.Data.Repositories
             var medicines = await _context.Medicines.Where(medicine => medicine.PetId == petId).ToListAsync();
             var pet = await _context.Pets.AsNoTracking().FirstAsync(pet => pet.Id == petId);
 
-            foreach(var medicine in medicines)
+            foreach (var medicine in medicines)
             {
                 pet.AddMecine(medicine);
             }
@@ -82,13 +85,16 @@ namespace PetGuadian.API.Data.Repositories
         {
 
             // Check if the data is already in the cache
-            if (_cache.TryGetValue(CacheKeyForPets(id), out Pet cachedPet))
+            if (_cache.TryGetValue(CacheKeyForPets(id), out Pet? cachedPet))
             {
-                return cachedPet;
-            }
-            var pet = await _context.Pets.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
+                CustomApplicationExceptions.ThrowIfObjectIsNull(cachedPet, "Cached Pet", "No cached pet found with the given ID.");
 
-            CustomApplicationExceptions.ThrowIfObjectIsNull(pet);
+                return cachedPet;
+
+            }
+            Pet? pet = await _context.Pets.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
+
+            CustomApplicationExceptions.ThrowIfObjectIsNull(pet, "pet", "Pet is null here");
 
             return pet;
         }
@@ -98,7 +104,9 @@ namespace PetGuadian.API.Data.Repositories
             _context.Dispose();
         }
 
-        private string CacheKeyForPets(Guid userId){
+        private string CacheKeyForPets(Guid userId)
+        {
+
             return $"UserPets:{userId}";
         }
 

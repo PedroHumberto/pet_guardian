@@ -3,7 +3,7 @@ using PetGuardian.Models.Models;
 using PetGuardian.Domain.Repositories;
 using PetGuadian.Application.Services.Interfaces;
 using PetGuadian.Application.Dto.MedicineDto;
-using PetGuardian.Core.Execptions;
+using PetGuardian.Core.Exceptions;
 
 
 namespace PetGuadian.Application.Services
@@ -62,7 +62,7 @@ namespace PetGuadian.Application.Services
         {
             var pet = await _petRepository.GetPetById(Id);
 
-            CustomApplicationExceptions.ThrowIfObjectIsNull(pet);
+            CustomApplicationExceptions.ThrowIfObjectIsNull(pet, pet.PetName, "Pet Is Null");
             
             var medicineDtoList = new List<GetMedicineDto>();
 

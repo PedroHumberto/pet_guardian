@@ -27,6 +27,7 @@ namespace PetGuadian.API.Controllers
         [HttpPost("create_pet")]
         public async Task<ICommandResult> CreatePet([FromBody]CreatePetCommand command)
         {
+            
             var result = (GenericCommandResult)await _handler.Handle(command);
             return result;
         }
@@ -38,7 +39,7 @@ namespace PetGuadian.API.Controllers
 
             if (pets.IsNullOrEmpty())
             {
-                return NotFound();
+                return NotFound("No pets found for the given user.");
             }
 
             return Ok(pets);

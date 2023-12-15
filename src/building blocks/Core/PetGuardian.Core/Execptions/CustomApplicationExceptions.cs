@@ -17,7 +17,7 @@ namespace PetGuardian.Core.Exceptions
                 throw new CustomApplicationExceptions($"{paramName} : {message}");
         }
 
-        public static void ThrowIfAListOfObjectsIsNullOrEmpty(object? item, string paramName, string message = DefaultErrorMessage)
+        public static void ThrowIfObjectIsNull(object? item, string paramName, string message = DefaultErrorMessage)
         {
             if (item is null)
                 throw new CustomApplicationExceptions($"{paramName} : {message}");

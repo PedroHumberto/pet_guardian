@@ -20,11 +20,16 @@ namespace PetGuardian.API.Identity.Controllers
         [HttpPost("singup")]
         public async Task<IActionResult> SingUp(CreateUser newUser)
         {
+            if (newUser is null)
+            {
+                return BadRequest("User Data Is Required");
+            }
+
             var result = await _userService.SingUp(newUser);
 
-            if(!result.Succeeded)
+            if (!result.Succeeded)
             {
-                return NotFound(result);
+                return BadRequest(result);
             }
 
             return Ok(result);
@@ -33,9 +38,21 @@ namespace PetGuardian.API.Identity.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginUser user)
         {
-            var result = await _userService.LogIn(user);
+            if (user is null)
+            {
+                return BadRequest("Login data is required");
+            }
+            try
+            {
 
-            return Ok(result);
+                var result = await _userService.LogIn(user);
+                return Ok(result);
+            }
+            catch (ArgumentException ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+
         }
     }
 }

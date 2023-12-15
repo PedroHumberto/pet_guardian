@@ -26,7 +26,7 @@ namespace PetGuadian.Application.Handlers
             command.Execute();
             if(!command.IsValid)
             {
-                return new GenericCommandResult(false, "Wrong Info in Pet", command.Notifications, HttpStatusCode.NotFound);
+                return new GenericCommandResult(false, "Pet data is required", command.Notifications, HttpStatusCode.BadRequest);
             }
 
             //gerar CreatePetDTO
@@ -55,7 +55,7 @@ namespace PetGuadian.Application.Handlers
             command.Execute();
             if(!command.IsValid)
             {
-                return new GenericCommandResult(false, "Pet Id Doesn't Match with User Id", command.Notifications, HttpStatusCode.NotFound);
+                return new GenericCommandResult(false, "User Id is required", command.Notifications, HttpStatusCode.NotFound);
             }
 
             await _service.DeletePet(command.PetId, command.UserId);
