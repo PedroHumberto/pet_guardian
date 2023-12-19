@@ -27,7 +27,7 @@ namespace PetGuadian.Application.Handlers
             command.Execute();
             if(!command.IsValid)
             {
-                return new GenericCommandResult(false, "Wrong Info in User", command.Notifications, HttpStatusCode.NotFound);
+                return new GenericCommandResult(false, "Wrong Info in User", command.Notifications, HttpStatusCode.BadRequest);
             }
 
             //mapping to User DTO
@@ -40,7 +40,7 @@ namespace PetGuadian.Application.Handlers
             //call service
             await _service.CreateUser(createUserDto);
 
-            return new GenericCommandResult(true, "Success", createUserDto, HttpStatusCode.OK);
+            return new GenericCommandResult(true, "Success", createUserDto, HttpStatusCode.Created);
         }
     }
 }

@@ -11,7 +11,7 @@ using PetGuadian.Application.Services.Interfaces;
 
 namespace PetGuadian.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class PetController : ControllerBase
     {

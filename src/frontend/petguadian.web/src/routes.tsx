@@ -4,7 +4,6 @@ import { SideBar } from "./Components/SideBar";
 import { MyPets } from "./Pages/system/mypets";
 import { Login } from "./Pages/login/login";
 import { Singup } from "./Pages/singup/singup";
-import SimpleSidebar from "./Components/ChakraSideBar/SimpleSideBar";
 import { NotFound } from "./Pages/notFound/notFound";
 import { PetDetails } from "./Components/PetDetails";
 import CustomSideBar from "./Components/TestSideBar/CustomSideBar";

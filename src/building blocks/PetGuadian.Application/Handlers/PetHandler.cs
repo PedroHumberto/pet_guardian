@@ -42,7 +42,7 @@ namespace PetGuadian.Application.Handlers
             await _service.CreatePet(createPetDto);
 
             //retornar o resultado
-            return new GenericCommandResult(true, "Success", createPetDto, HttpStatusCode.OK);
+            return new GenericCommandResult(true, "Success", createPetDto, HttpStatusCode.Created);
         }
 
         public async Task<ICommandResult> Handle(UpdatePetCommand command)

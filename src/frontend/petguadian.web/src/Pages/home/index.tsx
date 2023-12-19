@@ -1,5 +1,5 @@
 import './index.css'
-import homeImg from '../../img/img-pets-home2.jpg'
+import homeImg from '../../assets/home-sembackground.png'
 import { NavBar } from '../../Components/NavBar'
 import { Sections } from '../../Components/Sections'
 

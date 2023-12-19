@@ -27,7 +27,7 @@ namespace PetGuadian.Application.Handlers
             command.Execute();
             if(!command.IsValid)
             {
-                return new GenericCommandResult(false, "Wrong Address", command.Notifications, HttpStatusCode.NotFound);
+                return new GenericCommandResult(false, "Wrong Address", command.Notifications, HttpStatusCode.BadRequest);
             }
 
             //mapping dto
@@ -46,7 +46,7 @@ namespace PetGuadian.Application.Handlers
             await _service.CreateAddress(createAddressDto);
 
             //result
-            return new GenericCommandResult(true, "Success", createAddressDto, HttpStatusCode.OK);
+            return new GenericCommandResult(true, "Success", createAddressDto, HttpStatusCode.Created);
         }
     }
 }

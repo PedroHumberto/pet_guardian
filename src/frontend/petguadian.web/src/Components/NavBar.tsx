@@ -1,45 +1,49 @@
-import './css/navbar.css'
+import styles from './css/navbar.module.css';
+import logo from '../assets/Logo.png';
 
 export function NavBar() {
     return (
         <>
             <header>
-                <div className="logo">
-                    <h1>IMAGEM</h1>
+                <div className={styles.container}>
+
+                    <nav className={styles.navbar}>
+                        <ul>
+                            <div className={styles.logo}>
+                                <img src={ logo } alt="logo" />
+                            </div>
+                            <li>
+                                <div className="menubtncontainer">
+                                    <form action="index.html">
+                                        <a className="menubtn">Pagina Inicial</a>
+                                    </form>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="menubtncontainer">
+                                    <a className="menubtn">Quem Somos</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="menubtncontainer">
+                                    <form action="loyalt-card.html">
+                                        <a className="menubtn">Nosso Sistema</a>
+                                    </form>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="menubtncontainer">
+                                    <a className="menubtn">Cadastro</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="menubtncontainer">
+                                    <a className="menubtn">Login</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-                <nav className="navbar">
-                    <ul>
-                        <li>
-                            <div className="menubtncontainer">
-                                <form action="index.html">
-                                    <button className="menubtn">Pagina Inicial</button>
-                                </form>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="menubtncontainer">
-                                <button className="menubtn">Quem Somos</button>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="menubtncontainer">
-                                <form action="loyalt-card.html">
-                                    <button className="menubtn">Nosso Sistema</button>
-                                </form>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="menubtncontainer">
-                                <button className="menubtn">Cadastro</button>
-                            </div>
-                        </li>
-                        <li>
-                            <div className="menubtncontainer">
-                                <button className="menubtn">Login</button>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
             </header>
         </>
     )

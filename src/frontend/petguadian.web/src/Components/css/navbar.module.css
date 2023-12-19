@@ -1,40 +1,38 @@
-.logo{
+.container{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+.logo img{
+    width: 130px;
+    height: 130px;
+    margin-right: 40vw;
 }
 .navbar ul{
-    list-style-type: none;    
-    background-color: #fd4a36e8;
+    list-style-type: none;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: center;
-    margin: 0px auto;
-    height: 55px;
-    align-items: center;
+    justify-content: flex-end;
+    align-items: baseline;
+
 }
 .navbar a {
-    color: white;
+    color: #225169;
     text-decoration: none;
-}
-.menubtn {
-    background-color: #fd4a3600;
-    color: white;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    width: 213px;
-    margin: 0px 14px 0px 13px;
-    height: 55px;
+    margin-left: 40px;
+    font-weight: bolder;
+    font-family: "Sofia", sans-serif;
+    font-size: 25px;
 }
 
-  /* Change the background color of the menubtncontainer button when the menubtncontainer content is shown */
-.menubtncontainer:hover .menubtn {
-    background-color: #fa3620;
+.menubtn a{
+    text-decoration: solid;
 }
+
+
+  /* Change the background color of the menubtncontainer button when the menubtncontainer content is shown */
+
 
 @media (min-width: 497px) and (max-width:960px){
     .navbar ul{

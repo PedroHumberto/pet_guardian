@@ -27,7 +27,7 @@ namespace PetGuadian.Application.Handlers
             command.Execute();
             if(!command.IsValid)
             {
-                return new GenericCommandResult(false, "Wrong data", command.Notifications, HttpStatusCode.NotFound);
+                return new GenericCommandResult(false, "Wrong data", command.Notifications, HttpStatusCode.BadRequest);
             }
 
             //Create DTO
@@ -41,7 +41,7 @@ namespace PetGuadian.Application.Handlers
             
             await _service.CreateMedicine(createMedicineDto);
 
-            return new GenericCommandResult(true, "Success", createMedicineDto, HttpStatusCode.OK);
+            return new GenericCommandResult(true, "Success", createMedicineDto, HttpStatusCode.Created);
         }
     }
 }
