@@ -24,7 +24,6 @@ namespace PetGuadian.API.Data.Mappings
                 .HasColumnType($"varchar({Email.EmailMaxLen})");
             });
 
-
             builder.HasMany(u => u.Pets)
                 .WithOne(p => p.User);
 

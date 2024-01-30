@@ -11,8 +11,9 @@ namespace PetGuardian.Domain.Models
     {
         protected Medicine(){}
 
-        public Medicine(string remedyName, string dosage, string observations, DateTime startDate, DateTime? endDate)
+        public Medicine(Guid petId, string remedyName, string dosage, string observations, DateTime startDate, DateTime? endDate)
         {
+            PetId = petId;
             RemedyName = remedyName;
             Dosage = dosage;
             Observations = observations;

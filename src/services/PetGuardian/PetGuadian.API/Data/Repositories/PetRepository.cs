@@ -27,6 +27,7 @@ namespace PetGuadian.API.Data.Repositories
         {
             CustomApplicationExceptions.ThrowIfObjectIsNull(pet, "pet", "Object is Null");
 
+
             pet.AddUser(userId);
 
             await _context.Pets.AddAsync(pet);
@@ -52,20 +53,21 @@ namespace PetGuadian.API.Data.Repositories
         }
         public async Task<IEnumerable<Pet>> GetAllPetsByUserId(Guid userId)
         {
-#pragma warning disable CS8603 // Possible null reference return.
-            return await _cache.GetOrCreateAsync(CacheKeyForPets(userId), async entry =>
+            var result = await _cache.GetOrCreateAsync(CacheKeyForPets(userId), async entry =>
             {
                 entry.SetAbsoluteExpiration(TimeSpan.FromMinutes(10));
-                List<Pet> petUserList = await _context.Pets.AsNoTracking().Where(p => p.UserId == userId).ToListAsync();
-
-                if (!petUserList.Any())
-                {
-                    CustomApplicationExceptions.ThrowIfAListOfObjectsIsNullOrEmpty(petUserList, "userId", "No pets found for the specified user.");
-
-                }
+                List<Pet> petUserList = await _context.Pets
+                    .Include(p => p.Medicines) // Inclui a lista de medicamentos para cada Pet
+                    .AsNoTracking()
+                    .Where(p => p.UserId == userId)
+                    .ToListAsync();
+                    
                 return petUserList;
             });
-#pragma warning restore CS8603 // Possible null reference return.
+
+            
+
+            return result ?? Enumerable.Empty<Pet>();
         }
 
         public async Task<Pet> GetPetMedicines(Guid petId)
@@ -81,22 +83,31 @@ namespace PetGuadian.API.Data.Repositories
             return pet;
         }
 
-        public async Task<Pet> GetPetById(Guid id)
+        public async Task<Pet> GetPetById(Guid userId, Guid petId)
         {
-
-            // Check if the data is already in the cache
-            if (_cache.TryGetValue(CacheKeyForPets(id), out Pet? cachedPet))
+            if (_context is null)
             {
-                CustomApplicationExceptions.ThrowIfObjectIsNull(cachedPet, "Cached Pet", "No cached pet found with the given ID.");
-
-                return cachedPet;
-
+                throw new InvalidOperationException("Database context is not initialized.");
             }
-            Pet? pet = await _context.Pets.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
 
-            CustomApplicationExceptions.ThrowIfObjectIsNull(pet, "pet", "Pet is null here");
+            var result = await _cache.GetOrCreateAsync(CacheKeyForPets(petId), async entry =>
+            {
+                entry.SetAbsoluteExpiration(TimeSpan.FromMinutes(10));
+                Pet pet = await _context.Pets
+                    .Include(p => p.Medicines)
+                    .Include(p => p.PetExams)
+                    .AsNoTracking()
+                    .FirstAsync<Pet>(p => p.Id == petId && p.UserId == userId);
 
-            return pet;
+                if (pet is null)
+                {
+                    CustomApplicationExceptions.ThrowIfObjectIsNull(pet, "petId", "No pet found for the specified user.");
+                }
+
+                return pet;
+            });
+
+            return result;
         }
 
         public void Dispose()

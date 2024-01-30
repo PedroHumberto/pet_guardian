@@ -1,3 +1,4 @@
+using PetGuardian.Core.Exceptions;
 using PetGuardian.Core.PetGuardianCore.DomainObjects;
 using PetGuardian.Core.PetGuardianCore.Enums;
 using PetGuardian.Domain.Models;
@@ -15,7 +16,7 @@ namespace PetGuardian.Models.Models
         public float? Weight { get; private set; }
         public User User { get; private set; }
         public Guid UserId { get; private set; }
-        public IEnumerable<PetExams>? PetExams { get; private set; }
+        public IEnumerable<PetExam>? PetExams { get; private set; }
         public IEnumerable<Medicine>? Medicines { get; private set; }
 
         protected Pet() { }
@@ -26,7 +27,7 @@ namespace PetGuardian.Models.Models
             AnimalSpecies specie,
             DateTime birthDate,
             float? weight
-            )
+            ) 
         {
             PetName = petName;
             Gender = gender;
@@ -34,10 +35,18 @@ namespace PetGuardian.Models.Models
             BirthDate = birthDate;
             Weight = weight;
         }
-
-        public void AddExams(PetExams exam)
+        
+        public void AddMecine(Medicine medicine)
         {
-            PetExams.Append(exam);
+            Medicines.Append(medicine);
+        }
+
+        public void AddExams(PetExam exam)
+        {
+            if(exam.ExamLink is null){
+                CustomApplicationExceptions.ThrowIfObjectIsNull(exam, "AddExam", "PetExams is Null");
+            }
+            _ = PetExams.Append(exam);
         }
 
         public void AddUser(Guid Id)
@@ -67,9 +76,5 @@ namespace PetGuardian.Models.Models
             birthDate = formattedDateTime.Date;
         }
 
-        public void AddMecine(Medicine medicine)
-        {
-            Medicines.Append(medicine);
-        }
     }
 }

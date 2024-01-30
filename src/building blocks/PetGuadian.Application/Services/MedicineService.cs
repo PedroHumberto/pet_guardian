@@ -20,7 +20,7 @@ namespace PetGuadian.Application.Services
 
         public async Task CreateMedicine(CreateMedicineDto createDto)
         {
-            var medicine = new Medicine(createDto.RemedyName, createDto.Dosage, createDto.Observations, createDto.StartDate, createDto.EndDate);
+            var medicine = new Medicine(createDto.PetId, createDto.RemedyName, createDto.Dosage, createDto.Observations, createDto.StartDate, createDto.EndDate);
             await _repository.CreatMedicine(medicine);
         }
     }

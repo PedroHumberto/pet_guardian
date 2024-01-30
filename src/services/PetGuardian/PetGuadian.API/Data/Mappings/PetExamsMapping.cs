@@ -4,22 +4,22 @@ using PetGuardian.Models.Models;
 
 namespace PetGuadian.API.Data.Mappings
 {
-    public class PetExamsMapping : IEntityTypeConfiguration<PetExams>
+    public class PetExamsMapping : IEntityTypeConfiguration<PetExam>
     {
-        public void Configure(EntityTypeBuilder<PetExams> builder)
+        public void Configure(EntityTypeBuilder<PetExam> builder)
         {
             builder.HasKey(e => e.Id);
-
-            builder.Property(e => e.ExamLink)
-                .IsRequired();
 
             builder.Property(e => e.ExamName)
                 .IsRequired()
                 .HasColumnType("varchar(40)");
 
+            builder.Property(e => e.ExamLink)
+                .IsRequired();
+                
             builder.HasOne(e => e.Pet)
                 .WithMany(p => p.PetExams)
-                .HasForeignKey(e => e.petId);
+                .HasForeignKey(e => e.PetId);
         }
     }
 }

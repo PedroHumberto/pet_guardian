@@ -1,0 +1,28 @@
+.load_screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ocupa a altura total da tela */
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.7); /* Fundo levemente transparente */
+  }
+  
+  .loader {
+    border: 5px solid #f3f3f3; /* Cor de fundo do loader */
+    border-top: 5px solid #3498db; /* Cor da animação do loader */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .load_screen p {
+    text-align: center;
+    margin-top: 10px;
+  }

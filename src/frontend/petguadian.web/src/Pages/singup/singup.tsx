@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { User } from "../../Models/User";
-import { UserLogin } from "../../Models/UserLogin";
+import styles from './singup.module.css';
+import singupImage from '../../assets/minimalist-pet2.png'
+
+
 import { IdentiTyApi } from "../../Services/identityApi";
 import { useNavigate } from "react-router-dom";
-import './singup.css'
 
 
 export const Singup = () => {
@@ -37,57 +38,71 @@ export const Singup = () => {
   };
 
   return (
-    <div className="user-form-container">
-      <div className="userForm">
-        <h2>Cadastro de Usuario</h2>
+  <div className={styles.container}>
+    <div className={styles.subcontainer}>
+      <div className={styles.userForm}>
+        <h1>Cadastre-se</h1>
         <form onSubmit={handleSubmit}>
           <label>
-            Name:
+            <p>Nome:</p>
             <input
+              className={styles.customInput}
               type="text"
               name="userName"
               value={user.userName}
+              placeholder="Digite seu nome"
               onChange={handleInputChange}
               required
             />
           </label>
           <label>
-            Email:
+            <p>Email</p>
             <input
+              className={styles.customInput}
               type="text"
               name="email"
+              placeholder="Digite seu Email"
               value={user.email}
               onChange={handleInputChange}
               required
             />
           </label>
           <label>
-            Senha:
+            <p>Senha:</p>
             <input
+              className={styles.customInput}
               type="password"
               name="password"
+              placeholder="Digite sua Senha"
               value={user.password}
               onChange={handleInputChange}
               required
             />
           </label>
           <label>
-            Senha:
+            <p>Confirme a Senha:</p>
             <input
+              className={styles.customInput}
               type="password"
               name="rePassword"
+              placeholder="Repita a Senha"
               value={user.rePassword}
               onChange={handleInputChange}
               required
             />
           </label>
-          <div className="addAndCloseBtns">
-            <button type="submit">CADASTRAR</button>
-            <h1>{singUpErrors}</h1>
+          
+          <button type="submit">CADASTRAR</button>
+          <div className={styles.loginLink}>
+            <a href="/login">Já Possui Cadastro? Clique Aqui</a>
           </div>
         </form>
       </div>
+
+
+      <img src={singupImage} alt="imagem de pets minimalistas" />
     </div>
+</div>
 
   );
 }

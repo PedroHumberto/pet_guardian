@@ -12,7 +12,7 @@ namespace PetGuadian.Application.Services.Interfaces
     {
         Task CreatePet(CreatePetDto pet);
         Task<IEnumerable<GetPetDto>> GetAllPetsByUserId(Guid userId);
-        Task<GetPetDto> GetPetById(Guid Id);
+        Task<GetPetDto> GetPetById(Guid UserId, Guid PetId);
         Task DeletePet(Guid petId, Guid userId);
     }
 }

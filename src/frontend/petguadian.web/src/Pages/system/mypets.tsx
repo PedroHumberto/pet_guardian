@@ -5,9 +5,8 @@ import './mypets.css'
 import { TOKEN_KEY, getEmail, getToken } from "../../Services/auth";
 import { petGuardianApi } from '../../Services/petGuardianApi';
 import { useEffect, useState } from "react";
-
-
-
+import { useNavigate } from "react-router-dom";
+import LoadScreen from "../../Components/LoadScreen"; // Import the LoadScreen component
 
 interface JWTParts {
   header: any;
@@ -31,6 +30,8 @@ function formatarJWT(jwt: string): JWTParts {
 
 export function MyPets() {
   const [pets, setPets] = useState<any>([]);
+  const [loading, setLoading] = useState<boolean>(true); // State to control the loading screen
+  const navigate = useNavigate();
 
 
   //TROCAR PARA COOKIES DEPOIS - EXISTE UMA OPÇÃO PARA O COOKIE VENCER CONFORME O TEMPO DE EXPIRAÇÃO DEFINIDO NA API
@@ -45,13 +46,21 @@ export function MyPets() {
 
   useEffect(() => {
     const fetchPets = async () => {
-      const petResponse = await petGuardianApi.get(`/Pet/get_pet_by_userId?userId=${userId}`)
-      console.log("Pet Reponse " + petResponse.data[0].petName)
-      setPets(petResponse.data)
+
+      try {
+        const petResponse = await petGuardianApi.get(`/Pet/get_pets_by_userId?userId=${userId}`)
+        console.log("Pet Reponse " + petResponse.data[0].petName)
+        setPets(petResponse.data)
+        setLoading(false); // Set loading to false after the request is done
+      }
+      catch {
+        navigate("/login");
+      }
+
     }
     fetchPets()
   }, []);
-   
+
 
   //DEVO COLOCAR OS DEMAIS ATRIBUTOS NOS PETS COMO MEDICINE
   //petName: 'Luci', gender: 'F', specie: 1, birthDate: '2023-11-27T23:37:39.13', age: 0, …}
@@ -69,15 +78,17 @@ export function MyPets() {
 
   return (
     <>
-      <div className="mypets-container">
-        
+      {loading ? <LoadScreen /> : ( // Show LoadScreen if loading is true
+        <>
+          <div className="mypets-container">
             <PetCard petList={pets} />
-
-      </div>
-      <div className="addpet">
+          </div>
+          <div className="addpet">
             <h2>Adicione o Pet</h2>
             <PetForm />
-      </div>
+          </div>
+        </>
+      )}
     </>
   )
 }

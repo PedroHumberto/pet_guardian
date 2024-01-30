@@ -1,26 +1,23 @@
 *{
     font-family: 'Roboto', sans-serif;
 }
-p{
-    font-family: 'Roboto', sans-serif;
-}
-body{
-    background-color:rgba(139, 212, 241, 0.103);
-}
+
+
 hr{
     width: 940px;
 }
-img{
-    width: 80vw;
-    height: 700px;
+.home_image{
+    width: 810px;
+    height: 410px;
 }
-.index-container{
+.index_container{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: white;
 }
-.sub-container{
+.sub_container{
     width: 940px;
     margin: auto;
     display: flex;
@@ -47,7 +44,7 @@ footer{
 footer p{
     color: white;
 }
-.footer-container{
+.footer_container{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -60,7 +57,7 @@ footer p{
 
 /*here starts the media queri*/
 @media (min-width: 497px) and (max-width:960px){
-    .sub-container{
+    .sub_container{
         width: 497px;
         margin: 0 auto;
         display: flex;
@@ -71,7 +68,7 @@ footer p{
 }
 
 @media (max-width:496px){
-    .sub-container{
+    .sub_container{
         width: auto;
         margin: 0 auto;
         display: flex;

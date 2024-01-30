@@ -28,6 +28,7 @@ namespace PetGuadian.API.Configuration
 
             var conn = configuration.GetConnectionString("DefaultConnection");
 
+
             services.AddDbContext<AppContextDb>(opts =>
             {
                 opts.UseSqlServer(conn, options =>

@@ -1,5 +1,6 @@
 import styles from './css/navbar.module.css';
 import logo from '../assets/Logo.png';
+import { Link } from 'react-router-dom';
 
 export function NavBar() {
     return (
@@ -8,7 +9,7 @@ export function NavBar() {
                 <div className={styles.container}>
 
                     <nav className={styles.navbar}>
-                        <ul>
+                        <ul className='navbar-content'>
                             <div className={styles.logo}>
                                 <img src={ logo } alt="logo" />
                             </div>
@@ -33,14 +34,15 @@ export function NavBar() {
                             </li>
                             <li>
                                 <div className="menubtncontainer">
-                                    <a className="menubtn">Cadastro</a>
+                                    <Link to="/login" className="menubtn">Login</Link>
                                 </div>
                             </li>
                             <li>
                                 <div className="menubtncontainer">
-                                    <a className="menubtn">Login</a>
+                                    <Link to="/singup"className="menubtn">Cadastro</Link>
                                 </div>
                             </li>
+
                         </ul>
                     </nav>
                 </div>

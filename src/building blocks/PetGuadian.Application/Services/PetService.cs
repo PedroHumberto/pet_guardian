@@ -11,7 +11,6 @@ namespace PetGuadian.Application.Services
     public class PetService : IPetService
     {
         private readonly IPetRepository _petRepository;
-
         public PetService(IPetRepository petRepository)
         {
             _petRepository = petRepository;
@@ -19,9 +18,9 @@ namespace PetGuadian.Application.Services
 
         public async Task CreatePet(CreatePetDto petDto)
         {
-            var pet = new Pet( 
+            var pet = new Pet(
                 petDto.PetName,
-                petDto.Gender, 
+                petDto.Gender,
                 petDto.Specie,
                 petDto.BirthDate,
                 petDto.Weight);
@@ -37,48 +36,34 @@ namespace PetGuadian.Application.Services
         public async Task<IEnumerable<GetPetDto>> GetAllPetsByUserId(Guid userId)
         {
             var pets = await _petRepository.GetAllPetsByUserId(userId);
-            var petDtoList = new List<GetPetDto>();
-            var medicineDtoList = new List<GetMedicineDto>();
 
-            foreach (var pet in pets)
+            return pets.Select(pet =>
             {
                 pet.BrFormattedBirthDate(pet.BirthDate);
                 var petAge = pet.GetPetAge(pet.BirthDate);
-                if(pet.Medicines is not null)
-                {
-                    foreach(var medicine in pet.Medicines)
-                    {
-                        var medicineDto = new GetMedicineDto(medicine.RemedyName, medicine.Dosage, medicine.Observations, medicine.StartDate, medicine.EndDate);
-                        medicineDtoList.Add(medicineDto);
-                    }
-                }          
-                var petDto = new GetPetDto(pet.Id, pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, petAge, pet.Weight, medicineDtoList);
-                petDtoList.Add(petDto);
-            }
-            return petDtoList;
+
+                var medicineDtos = pet.Medicines?.Select(medicine =>
+                    new GetMedicineDto(medicine.RemedyName, medicine.Dosage, medicine.Observations, medicine.StartDate, medicine.EndDate)
+                ) ?? Enumerable.Empty<GetMedicineDto>();
+
+                return new GetPetDto(pet.Id, pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, petAge, pet.Weight, medicineDtos.ToList());
+            }).ToList();
         }
 
-        public async Task<GetPetDto> GetPetById(Guid Id)
+        public async Task<GetPetDto> GetPetById(Guid userId, Guid petId)
         {
-            var pet = await _petRepository.GetPetById(Id);
+            var pet = await _petRepository.GetPetById(userId, petId);
 
             CustomApplicationExceptions.ThrowIfObjectIsNull(pet, pet.PetName, "Pet Is Null");
-            
-            var medicineDtoList = new List<GetMedicineDto>();
 
-            if(pet.Medicines is not null)
-            {
-                foreach(var medicine in pet.Medicines)
-                {
-                    var medicineDto = new GetMedicineDto(medicine.RemedyName, medicine.Dosage, medicine.Observations, medicine.StartDate, medicine.EndDate);
-                    medicineDtoList.Add(medicineDto);
-                }
-            }
+            var medicineDtoList = pet.Medicines?.Select(medicine =>
+                    new GetMedicineDto(medicine.RemedyName, medicine.Dosage, medicine.Observations, medicine.StartDate, medicine.EndDate)
+                ) ?? Enumerable.Empty<GetMedicineDto>();
+
             var petAge = pet.GetPetAge(pet.BirthDate);
             var petDto = new GetPetDto(pet.Id, pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, petAge, pet.Weight, medicineDtoList);
 
             return petDto;
         }
-
     }
 }
