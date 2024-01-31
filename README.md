@@ -1,20 +1,21 @@
-# Pai de Pet
+# Pet Guardian
 
-Nome do Sistema: Pai de Pet (PaidPet)
 
-## Objetivo:
+System Name: Pet Guardian
 
-Permitir que o usuario tenha total controle sobre os dados de seu pet, como exames, vacinas, doenças. Será possivel anexar os exames e criar observações para cada exame cadastro, assim como o cadastro de Vacinas e Afins.
+## Objective:
 
-Futuramente será criado um menu separado para Veterinarios onde os donos de Pet poderão compartilhar os dados do Pet direto com o veterinario cadastrado.
+To allow the user to have complete control over their pet's data, including exams, vaccines, and illnesses. Users can attach exams and create observations for each registered exam, as well as register vaccines and related information.
+
+In the future, a separate menu will be created for veterinarians, where pet owners can directly share their pet's data with the registered veterinarian.
 
 ## Pet
 
 ### Create Pet (POST)
 
-Para Criar um Pet é necessario passar o ID do usuario. O Id pode ser recuperado via JWT que vai ser o retorno da requisição da Identity API.
+To create a pet, it is necessary to provide the user ID. The ID can be retrieved via JWT, which will be the return of the Identity API request.
 
-Para mais informações consulte a pasta Identity:
+For more information, refer to the Identity folder:
 <a href="https://github.com/PedroHumberto/pet_guardian/tree/main/src/services/PetGuardian/PetGuadian.API">Identity API </a>
 
 Request HTTP: ``api/v1/Pet/create_pet``
@@ -34,7 +35,7 @@ Request Body:
 
 ### Delete Pet (POST)
 
-Para deletar um pet é necessario passar no corpo da requisição o Id do Pet que quer deletar e o Id do usuario que está deletando
+To delete a pet, the request body must contain the ID of the pet to be deleted and the ID of the user who is deleting it.
 
 Request HTTP: ``api/v1/Pet/delete``
 
@@ -79,8 +80,7 @@ Result
 ### Get Pet By Id (GET)
 
 
-Retorna apenas um unico Pet Buscado pela ID, observe que deve passar a Id do Usuario, pois ela vai confirmar se esse PET pertence ao usuario escolhido
-
+Returns only a single pet searched by ID. Note that you must provide the user ID, as it will confirm whether this pet belongs to the chosen user.
 
 Request HTTP: ``api/v1/Pet/get_pet/{userId}/{petId}``
 
