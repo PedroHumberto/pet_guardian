@@ -29,9 +29,10 @@ namespace PetGuadian.Application.Commands.PetsCommand
 
         public void Execute()
         {
-                AddNotifications(new Contract<UpdatePetCommand>()
-                .Requires()
-                .IsGreaterThan(PetName, 1, "PetName", "Pet's Name needs to be greater than 1 char" )
+                AddNotifications(new CustomContract<UpdatePetCommand>()
+                .CustomRequires()
+                .IsGenderValid(Gender, "Gender is not correct try M or F")
+                .IsGreaterOrEqualsThan(PetName, 3, "The name needs to be greather than 3 char")
             );
         }
     }

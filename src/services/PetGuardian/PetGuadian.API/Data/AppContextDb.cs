@@ -26,6 +26,7 @@ namespace PetGuadian.API.Data
         public DbSet<Address> Addresses { get; set; }
         public DbSet<PetExam> PetExams { get; set; }
         public DbSet<Medicine> Medicines { get; set; }
+        public DbSet<Vaccine> Vaccines { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

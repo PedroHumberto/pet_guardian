@@ -15,7 +15,6 @@ namespace PetGuadian.Application.Dto.PetDto
         AnimalSpecies Specie,
         DateTime BirthDate,
         int? Age,
-        float? Weight,
-        IEnumerable<GetMedicineDto> medicines
+        float? Weight
         );
 }

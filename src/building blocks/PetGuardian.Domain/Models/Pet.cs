@@ -16,6 +16,7 @@ namespace PetGuardian.Models.Models
         public float? Weight { get; private set; }
         public User User { get; private set; }
         public Guid UserId { get; private set; }
+        public IEnumerable<Vaccine> Vaccines {get; private set; }
         public IEnumerable<PetExam>? PetExams { get; private set; }
         public IEnumerable<Medicine>? Medicines { get; private set; }
 
@@ -53,6 +54,10 @@ namespace PetGuardian.Models.Models
         {
             Medicines.Append(medicine);
         }
+        public void AddVaccine(Vaccine vaccine)
+        {
+            Vaccines.Append(vaccine);
+        }
 
         public void AddExams(PetExam exam)
         {
@@ -60,7 +65,7 @@ namespace PetGuardian.Models.Models
             {
                 CustomApplicationExceptions.ThrowIfObjectIsNull(exam, "AddExam", "PetExams is Null");
             }
-            _ = PetExams.Append(exam);
+            PetExams.Append(exam);
         }
 
         public void AddUser(Guid Id)

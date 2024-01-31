@@ -33,6 +33,25 @@ Request Body:
 }
 ```
 
+
+## Update (PATCH)
+
+Request HTTP: ``api/v1/Pet/update``
+
+
+Request Body:
+```json
+{
+  "userId": "f6fbe4ab-1537-4a82-bb21-500b0568ee3c",
+  "petId": "7923bf91-3349-48e9-8895-1dcc439c23d9",
+  "petName": "Mudei Nome",
+  "gender": "F",
+  "birthDate": "2024-01-31T22:15:25.213Z",
+  "weight": 10
+}
+```
+
+
 ### Delete Pet (POST)
 
 To delete a pet, the request body must contain the ID of the pet to be deleted and the ID of the user who is deleting it.
@@ -63,16 +82,7 @@ Result
     "specie": 1,
     "birthDate": "2023-11-30T15:15:22.744",
     "age": 0,
-    "weight": 0,
-    "medicines": [
-      {
-        "remedyName": "string",
-        "dosage": "string",
-        "observations": "string",
-        "startDate": "2022-04-22T10:34:23",
-        "endDate": "2022-04-22T10:34:23"
-      }
-    ]
+    "weight": 0
   },
 ]
 ```
@@ -84,7 +94,7 @@ Returns only a single pet searched by ID. Note that you must provide the user ID
 
 Request HTTP: ``api/v1/Pet/get_pet/{userId}/{petId}``
 
-Result
+Result:
 ```json
 {
     "petId": "Id",
@@ -93,20 +103,12 @@ Result
     "specie": 1,
     "birthDate": "2023-11-30T15:15:22.744",
     "age": 0,
-    "weight": 0,
-    "medicines": [
-      {
-        "remedyName": "string",
-        "dosage": "string",
-        "observations": "string",
-        "startDate": "2022-04-22T10:34:23",
-        "endDate": "2022-04-22T10:34:23"
-      }
-    ]
+    "weight": 0
 },
 
 ```
-
 ---
 
-## 
+## Medicine
+## Exam
+## User

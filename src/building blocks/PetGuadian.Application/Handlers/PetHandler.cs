@@ -73,7 +73,7 @@ namespace PetGuadian.Application.Handlers
             command.Execute();
             if (!command.IsValid)
             {
-                return new GenericCommandResult(false, "User Id is required", command.Notifications, HttpStatusCode.NotFound);
+                return new GenericCommandResult(false, "User Id is required", command.Notifications, HttpStatusCode.BadRequest);
             }
 
             await _service.DeletePet(command.PetId, command.UserId);

@@ -41,12 +41,7 @@ namespace PetGuadian.Application.Services
             {
                 pet.BrFormattedBirthDate(pet.BirthDate);
                 var petAge = pet.GetPetAge(pet.BirthDate);
-
-                var medicineDtos = pet.Medicines?.Select(medicine =>
-                    new GetMedicineDto(medicine.RemedyName, medicine.Dosage, medicine.Observations, medicine.StartDate, medicine.EndDate)
-                ) ?? Enumerable.Empty<GetMedicineDto>();
-
-                return new GetPetDto(pet.Id, pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, petAge, pet.Weight, medicineDtos.ToList());
+                return new GetPetDto(pet.Id, pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, petAge, pet.Weight);
             }).ToList();
         }
 
@@ -56,12 +51,8 @@ namespace PetGuadian.Application.Services
 
             CustomApplicationExceptions.ThrowIfObjectIsNull(pet, pet.PetName, "Pet Is Null");
 
-            var medicineDtoList = pet.Medicines?.Select(medicine =>
-                    new GetMedicineDto(medicine.RemedyName, medicine.Dosage, medicine.Observations, medicine.StartDate, medicine.EndDate)
-                ) ?? Enumerable.Empty<GetMedicineDto>();
-
             var petAge = pet.GetPetAge(pet.BirthDate);
-            var petDto = new GetPetDto(pet.Id, pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, petAge, pet.Weight, medicineDtoList);
+            var petDto = new GetPetDto(pet.Id, pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, petAge, pet.Weight);
 
             return petDto;
         }

@@ -14,7 +14,7 @@ namespace PetGuardian.Tests.HandlerTests.PetHandlerTests
     [TestClass]
     public class UpdatePetHandlerTest
     {
-        private readonly UpdatePetCommand _invalidCommand = new UpdatePetCommand(Guid.NewGuid(), Guid.NewGuid(), "Jorge", 'G', DateTime.Now, 15);
+        private readonly UpdatePetCommand _invalidCommand = new UpdatePetCommand(Guid.NewGuid(), Guid.NewGuid(), "J", 'H', DateTime.Now, 15);
         private readonly UpdatePetCommand _validCommand = new UpdatePetCommand(Guid.NewGuid(), Guid.NewGuid(), "Jorge", 'M', DateTime.Now, 15);
         private readonly PetHandler _handler = new PetHandler(new FakePetService());
         private GenericCommandResult _result = new GenericCommandResult();
@@ -43,7 +43,7 @@ namespace PetGuardian.Tests.HandlerTests.PetHandlerTests
         public async Task When_command_is_valid_the_result_needs_to_return_Created()
         {
             _result = (GenericCommandResult)await _handler.Handle(_validCommand);
-            Assert.AreEqual(_result.StatusCode, HttpStatusCode.Created);
+            Assert.AreEqual(_result.StatusCode, HttpStatusCode.NoContent);
         }
     }
 }

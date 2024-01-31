@@ -43,6 +43,7 @@ namespace PetGuadian.API.Data.Repositories
 
             if (pet is not null)
             {
+                _cache.Remove(CacheKeyForPets(userId));
                 _context.Pets.Remove(pet);
                 await _context.Commit();
             }
@@ -53,7 +54,6 @@ namespace PetGuadian.API.Data.Repositories
             {
                 entry.SetAbsoluteExpiration(TimeSpan.FromMinutes(10));
                 List<Pet> petUserList = await _context.Pets
-                    .Include(p => p.Medicines) // Inclui a lista de medicamentos para cada Pet
                     .AsNoTracking()
                     .Where(p => p.UserId == userId)
                     .ToListAsync();
@@ -82,9 +82,8 @@ namespace PetGuadian.API.Data.Repositories
             {
                 throw new InvalidOperationException("Database context is not initialized.");
             }
-
             Pet? result = await _cache.GetOrCreateAsync(CacheKeyForPets(petId), async entry =>
-            {   //ERRO AQUI DURANTE O UPDATE, A CLASSE UPDATE NÃO RECEBE LISTA DE MEDICINES NEM DE EXAMES. CORRIGIR ESSA QUERY
+            {  
                 entry.SetAbsoluteExpiration(TimeSpan.FromMinutes(10));
                 Pet pet = await _context.Pets
                     .AsNoTracking()

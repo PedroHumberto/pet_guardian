@@ -29,6 +29,7 @@ namespace PetGuadian.API.Configuration
             services.AddScoped<IPetRepository, PetRepository>();
             services.AddScoped<IMedicineService, MedicineService>();
             services.AddScoped<IMedicineRepository, MedicineRepository>();
+            services.AddScoped<IVaccineRepository, VaccineRepository>();
 
             //HANDLERS
             services.AddScoped<AddressHandler, AddressHandler>();

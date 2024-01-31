@@ -38,9 +38,8 @@ namespace PetGuardian.Tests.Repositories
             throw new NotImplementedException();
         }
 
-        public Task Update(UpdatePetDto petDto)
+        public async Task Update(UpdatePetDto petDto)
         {
-            throw new NotImplementedException();
         }
     }
 }
