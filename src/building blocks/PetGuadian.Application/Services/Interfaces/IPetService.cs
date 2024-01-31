@@ -13,6 +13,7 @@ namespace PetGuadian.Application.Services.Interfaces
         Task CreatePet(CreatePetDto pet);
         Task<IEnumerable<GetPetDto>> GetAllPetsByUserId(Guid userId);
         Task<GetPetDto> GetPetById(Guid UserId, Guid PetId);
+        Task Update(UpdatePetDto petDto);
         Task DeletePet(Guid petId, Guid userId);
     }
 }

@@ -27,7 +27,7 @@ namespace PetGuardian.Tests.HandlerTests.UserHandlerTests
         public async Task When_command_is_invalid_the_result_needs_to_return_StatusCode_NotFound()
         {
             _result = (GenericCommandResult)await _handler.Handle(_invalidCommand);
-            Assert.AreEqual(_result.StatusCode, HttpStatusCode.NotFound);
+            Assert.AreEqual(_result.StatusCode, HttpStatusCode.BadRequest);
         }
 
         [TestMethod]
@@ -38,10 +38,10 @@ namespace PetGuardian.Tests.HandlerTests.UserHandlerTests
         }
 
         [TestMethod]
-        public async Task When_command_is_valid_the_result_needs_to_return_200Ok()
+        public async Task When_command_is_valid_the_result_needs_to_return_Created()
         {
             _result = (GenericCommandResult)await _handler.Handle(_validCommand);
-            Assert.AreEqual(_result.StatusCode, HttpStatusCode.OK);
+            Assert.AreEqual(_result.StatusCode, HttpStatusCode.Created);
         }
 
     }

@@ -22,12 +22,12 @@ namespace PetGuardian.Models.Models
         protected Pet() { }
 
         public Pet(
-            string petName, 
-            char gender, 
+            string petName,
+            char gender,
             AnimalSpecies specie,
             DateTime birthDate,
             float? weight
-            ) 
+            )
         {
             PetName = petName;
             Gender = gender;
@@ -35,7 +35,20 @@ namespace PetGuardian.Models.Models
             BirthDate = birthDate;
             Weight = weight;
         }
-        
+
+        public void Update(string name, char gender, DateTime birthDate, float? weight)
+        {
+            PetName = name;
+            Gender = gender;
+            BirthDate = birthDate;
+            if (weight is null)
+            {
+                Weight = 0;
+            }
+            Weight = weight;
+
+        }
+
         public void AddMecine(Medicine medicine)
         {
             Medicines.Append(medicine);
@@ -43,15 +56,16 @@ namespace PetGuardian.Models.Models
 
         public void AddExams(PetExam exam)
         {
-            if(exam.ExamLink is null){
+            if (exam.ExamLink is null)
+            {
                 CustomApplicationExceptions.ThrowIfObjectIsNull(exam, "AddExam", "PetExams is Null");
             }
             _ = PetExams.Append(exam);
         }
 
         public void AddUser(Guid Id)
-        { 
-            UserId = Id; 
+        {
+            UserId = Id;
         }
 
         public int GetPetAge(DateTime birthDate)

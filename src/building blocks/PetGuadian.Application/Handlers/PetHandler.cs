@@ -5,10 +5,11 @@ using PetGuadian.Application.Commands.Results;
 using PetGuadian.Application.Dto.PetDto;
 using PetGuadian.Application.Handlers.Contracts;
 using PetGuadian.Application.Services.Interfaces;
+using PetGuardian.Models.Models;
 
 namespace PetGuadian.Application.Handlers
 {
-    public class PetHandler : 
+    public class PetHandler :
         IHandler<CreatePetCommand>,
         IHandler<UpdatePetCommand>,
         IHandler<DeletePetCommand>
@@ -24,20 +25,20 @@ namespace PetGuadian.Application.Handlers
         {
             //Fail Test Verification
             command.Execute();
-            if(!command.IsValid)
+            if (!command.IsValid)
             {
                 return new GenericCommandResult(false, "Pet data is required", command.Notifications, HttpStatusCode.BadRequest);
             }
 
             //gerar CreatePetDTO
             CreatePetDto createPetDto = new CreatePetDto(
-                command.PetName, 
-                command.Gender, 
-                command.Specie, 
+                command.PetName,
+                command.Gender,
+                command.Specie,
                 command.BirthDate,
-                command.Weight, 
+                command.Weight,
                 command.UserId);
-            
+
             //salvar
             await _service.CreatePet(createPetDto);
 
@@ -47,13 +48,30 @@ namespace PetGuadian.Application.Handlers
 
         public async Task<ICommandResult> Handle(UpdatePetCommand command)
         {
-            throw new NotImplementedException();
+            command.Execute();
+            if (!command.IsValid)
+            {
+                return new GenericCommandResult(false, "Data is Required", command.Notifications, HttpStatusCode.BadRequest);
+            }
+
+            var updatedPet = new UpdatePetDto(
+                command.PetId,
+                command.UserId,
+                command.PetName,
+                command.Gender,
+                command.BirthDate,
+                command.Weight);
+
+
+            await _service.Update(updatedPet);
+
+            return new GenericCommandResult(true, "Update Successfull", command, HttpStatusCode.NoContent);
         }
 
         public async Task<ICommandResult> Handle(DeletePetCommand command)
         {
             command.Execute();
-            if(!command.IsValid)
+            if (!command.IsValid)
             {
                 return new GenericCommandResult(false, "User Id is required", command.Notifications, HttpStatusCode.NotFound);
             }

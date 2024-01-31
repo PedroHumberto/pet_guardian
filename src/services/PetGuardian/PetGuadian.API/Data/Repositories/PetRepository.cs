@@ -27,15 +27,12 @@ namespace PetGuadian.API.Data.Repositories
         {
             CustomApplicationExceptions.ThrowIfObjectIsNull(pet, "pet", "Object is Null");
 
-
             pet.AddUser(userId);
 
             await _context.Pets.AddAsync(pet);
-
             _cache.Remove(CacheKeyForPets(userId));
 
             await _context.Commit();
-
         }
 
         public async Task DeletePet(Guid petId, Guid userId)
@@ -47,7 +44,6 @@ namespace PetGuadian.API.Data.Repositories
             if (pet is not null)
             {
                 _context.Pets.Remove(pet);
-
                 await _context.Commit();
             }
         }
@@ -64,9 +60,6 @@ namespace PetGuadian.API.Data.Repositories
                     
                 return petUserList;
             });
-
-            
-
             return result ?? Enumerable.Empty<Pet>();
         }
 
@@ -90,12 +83,10 @@ namespace PetGuadian.API.Data.Repositories
                 throw new InvalidOperationException("Database context is not initialized.");
             }
 
-            var result = await _cache.GetOrCreateAsync(CacheKeyForPets(petId), async entry =>
-            {
+            Pet? result = await _cache.GetOrCreateAsync(CacheKeyForPets(petId), async entry =>
+            {   //ERRO AQUI DURANTE O UPDATE, A CLASSE UPDATE NÃO RECEBE LISTA DE MEDICINES NEM DE EXAMES. CORRIGIR ESSA QUERY
                 entry.SetAbsoluteExpiration(TimeSpan.FromMinutes(10));
                 Pet pet = await _context.Pets
-                    .Include(p => p.Medicines)
-                    .Include(p => p.PetExams)
                     .AsNoTracking()
                     .FirstAsync<Pet>(p => p.Id == petId && p.UserId == userId);
 
@@ -103,10 +94,8 @@ namespace PetGuadian.API.Data.Repositories
                 {
                     CustomApplicationExceptions.ThrowIfObjectIsNull(pet, "petId", "No pet found for the specified user.");
                 }
-
                 return pet;
-            });
-
+            }) ?? throw new CustomApplicationExceptions("Pet is Null");
             return result;
         }
 
@@ -117,10 +106,14 @@ namespace PetGuadian.API.Data.Repositories
 
         private string CacheKeyForPets(Guid userId)
         {
-
             return $"UserPets:{userId}";
         }
 
-
+        public async Task Update(Pet pet)
+        {
+            await Task.Run(() => _cache.Remove(CacheKeyForPets(pet.UserId)));
+            _context.Pets.Update(pet);
+            await _context.Commit();
+        }
     }
 }

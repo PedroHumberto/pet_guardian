@@ -65,5 +65,16 @@ namespace PetGuadian.Application.Services
 
             return petDto;
         }
+
+        public async Task Update(UpdatePetDto petDto)
+        {
+            Pet? pet = await _petRepository.GetPetById(petDto.userId, petDto.petId);
+            pet.Update(petDto.PetName,
+            petDto.Gender, 
+            petDto.BirthDate, 
+            petDto.Weight);
+
+            await _petRepository.Update(pet);
+        }
     }
 }

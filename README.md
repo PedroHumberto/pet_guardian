@@ -17,7 +17,9 @@ Para Criar um Pet é necessario passar o ID do usuario. O Id pode ser recuperado
 Para mais informações consulte a pasta Identity:
 <a href="https://github.com/PedroHumberto/pet_guardian/tree/main/src/services/PetGuardian/PetGuadian.API">Identity API </a>
 
-Request: ``api/v1/Pet/create_pet``
+Request HTTP: ``api/v1/Pet/create_pet``
+
+
 Request Body:
 ```json
 {
@@ -34,7 +36,8 @@ Request Body:
 
 Para deletar um pet é necessario passar no corpo da requisição o Id do Pet que quer deletar e o Id do usuario que está deletando
 
-Request: ``api/v1/Pet/delete``
+Request HTTP: ``api/v1/Pet/delete``
+
 
 Request Body:
 ```json
@@ -46,8 +49,9 @@ Request Body:
 
 ### Get All Pet By User Id (GET)
 
+Request HTTP: ``api/v1/Pet/get_pets_by_userId?userId={Id}``
 
-Request: ``api/v1/Pet/get_pets_by_userId?userId={Id}``
+
 Result
 ```json
 [
@@ -72,6 +76,36 @@ Result
 ]
 ```
 
+### Get Pet By Id (GET)
+
+
+Retorna apenas um unico Pet Buscado pela ID, observe que deve passar a Id do Usuario, pois ela vai confirmar se esse PET pertence ao usuario escolhido
+
+
+Request HTTP: ``api/v1/Pet/get_pet/{userId}/{petId}``
+
+Result
+```json
+{
+    "petId": "Id",
+    "petName": "string",
+    "gender": "F||M",
+    "specie": 1,
+    "birthDate": "2023-11-30T15:15:22.744",
+    "age": 0,
+    "weight": 0,
+    "medicines": [
+      {
+        "remedyName": "string",
+        "dosage": "string",
+        "observations": "string",
+        "startDate": "2022-04-22T10:34:23",
+        "endDate": "2022-04-22T10:34:23"
+      }
+    ]
+},
+
+```
 
 ---
 

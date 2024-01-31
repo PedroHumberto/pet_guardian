@@ -32,5 +32,15 @@ namespace PetGuardian.Tests.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public Task<GetPetDto> GetPetById(Guid UserId, Guid PetId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Update(UpdatePetDto petDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

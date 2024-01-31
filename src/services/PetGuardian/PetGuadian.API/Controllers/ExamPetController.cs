@@ -22,7 +22,7 @@ namespace PetGuadian.API.Controllers
         }
 
         [HttpPost("add_exam")]
-        public async Task<ICommandResult> CreateMedicine([FromBody]CreateExamCommand command)
+        public async Task<ICommandResult> CreateExam([FromBody]CreateExamCommand command)
         {
             var result = (GenericCommandResult) await _handler.Handle(command);
 

@@ -10,6 +10,7 @@ using PetGuadian.Application.Handlers.Contracts;
 using PetGuadian.Application.Services.Interfaces;
 using PetGuardian.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Net;
 
 
 namespace PetGuadian.API.Controllers
@@ -88,6 +89,20 @@ namespace PetGuadian.API.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, "Internal Server Error: " + ex.Message);
+            }
+        }
+
+        [HttpPatch("update")]
+        public async Task<ICommandResult> UpdatePet([FromBody] UpdatePetCommand command)
+        {
+            try
+            {
+                GenericCommandResult result = (GenericCommandResult)await _handler.Handle(command);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new GenericCommandResult(false, $"Internal Server Error: {ex.Message} ", ex, HttpStatusCode.BadRequest);
             }
         }
     }
