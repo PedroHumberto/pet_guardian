@@ -53,15 +53,16 @@ namespace PetGuadian.Application.Handlers
             {
                 return new GenericCommandResult(false, "Data is Required", command.Notifications, HttpStatusCode.BadRequest);
             }
+            
+            GetPetDto getPet = await _service.GetPetById(command.UserId, command.PetId);
 
             var updatedPet = new UpdatePetDto(
-                command.PetId,
+                getPet.Id,
                 command.UserId,
                 command.PetName,
                 command.Gender,
                 command.BirthDate,
                 command.Weight);
-
 
             await _service.Update(updatedPet);
 

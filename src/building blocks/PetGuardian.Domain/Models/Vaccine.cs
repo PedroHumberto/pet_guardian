@@ -28,5 +28,6 @@ namespace PetGuardian.Domain.Models
         public void SetNote(string _note){
             Notes = _note;
         }
+
     }
 }

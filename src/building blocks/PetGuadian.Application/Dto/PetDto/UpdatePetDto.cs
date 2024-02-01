@@ -11,6 +11,6 @@ namespace PetGuadian.Application.Dto.PetDto
         string PetName, 
         char Gender, 
         DateTime BirthDate,
-        float? Weight);
-    
+        float? Weight
+    );
 }

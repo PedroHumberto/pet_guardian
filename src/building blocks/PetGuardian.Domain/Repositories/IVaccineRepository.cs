@@ -12,7 +12,7 @@ namespace PetGuardian.Domain.Repositories
         Task Create(Vaccine vaccine);
         Task<IEnumerable<Vaccine>> GetAllVaccinesByPetId(Guid petId);
         Task Update(Vaccine vaccine);
-        Task<Vaccine> GetVaccineById(Guid id);
+        Task<Vaccine> GetVaccineById(Guid vaccineId, Guid petId);
         Task Delete(Guid vaccineId, Guid petId);
     }
 }

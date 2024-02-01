@@ -58,11 +58,11 @@ namespace PetGuadian.API.Data.Repositories
             return vaccines ?? Enumerable.Empty<Vaccine>();
         }
 
-        public async Task<Vaccine> GetVaccineById(Guid id)
+        public async Task<Vaccine> GetVaccineById(Guid vaccineId, Guid petId)
         {
 
             var vaccine = await _context.Vaccines
-                .FirstAsync(v => v.Id == id);
+                .FirstAsync(v => v.Id == vaccineId && v.PetId == petId);
             if(vaccine is null){
                 throw new CustomApplicationExceptions("Error in Vaccine Id");
             }
