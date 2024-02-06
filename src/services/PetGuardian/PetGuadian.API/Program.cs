@@ -1,3 +1,5 @@
+using System.Reflection;
+using MediatR;
 using PetGuadian.API.Configuration;
 
 
@@ -7,6 +9,7 @@ builder.Services.AddApiConfiguration(builder.Configuration);
 
 //DependencyInjetions
 builder.Services.RegisterServices();
+
 
 
 var app = builder.Build();

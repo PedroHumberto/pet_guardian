@@ -1,14 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Reflection;
+using MediatR;
 using PetGuadian.API.Data;
 using PetGuadian.API.Data.Repositories;
-using PetGuadian.Application.Commands.AddressCommand;
+using PetGuadian.Application.Commands.Contracts;
 using PetGuadian.Application.Commands.PetsCommand;
-using PetGuadian.Application.Commands.UserCommands;
 using PetGuadian.Application.Handlers;
-using PetGuadian.Application.Handlers.Contracts;
+using PetGuadian.Application.Queries.PetQueries;
 using PetGuadian.Application.Services;
 using PetGuadian.Application.Services.Interfaces;
 using PetGuardian.Domain.Repositories;
@@ -36,6 +33,18 @@ namespace PetGuadian.API.Configuration
             services.AddScoped<UserHandler, UserHandler>();
             services.AddScoped<PetHandler, PetHandler>();
             services.AddScoped<MedicineHandler, MedicineHandler>();
+
+            //MEDIATR
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            services.AddTransient<IRequestHandler<CreatePetCommand, ICommandResult>, PetHandler>();
+            services.AddTransient<IRequestHandler<UpdatePetCommand, ICommandResult>, PetHandler>();
+            services.AddTransient<IRequestHandler<DeletePetCommand, ICommandResult>, PetHandler>();
+
+            //Queries
+            services.AddTransient<IRequestHandler<FindAllPetsByUserIdCommand, ICommandResult>, PetHandler>();
+            services.AddTransient<IRequestHandler<FindPetByIdCommand, ICommandResult>, PetHandler>();
+            
 
             
             services.AddScoped<AppContextDb>();

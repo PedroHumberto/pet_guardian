@@ -1,16 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using PetGuadian.Application.Commands.Contracts;
-using PetGuadian.Application.Commands.MedicineCommands;
 using PetGuadian.Application.Commands.PetsCommand;
 using PetGuadian.Application.Commands.Results;
-using PetGuadian.Application.Dto.PetDto;
-using PetGuadian.Application.Handlers;
-using PetGuadian.Application.Handlers.Contracts;
-using PetGuadian.Application.Services.Interfaces;
-using PetGuardian.Domain.Models;
-using Microsoft.AspNetCore.Authorization;
 using System.Net;
+using MediatR;
+using PetGuadian.Application.Queries.PetQueries;
 
 
 namespace PetGuadian.API.Controllers
@@ -22,12 +16,10 @@ namespace PetGuadian.API.Controllers
     [ApiController]
     public class PetController : ControllerBase
     {
-        private readonly IPetService _petService;
-        private readonly PetHandler _handler;
+        private readonly IMediator _handler;
 
-        public PetController(IPetService petService, PetHandler handler)
+        public PetController(IMediator handler)
         {
-            _petService = petService;
             _handler = handler;
         }
 
@@ -40,7 +32,7 @@ namespace PetGuadian.API.Controllers
         [HttpPost("create_pet")]
         public async Task<ICommandResult> CreatePet([FromBody] CreatePetCommand command)
         {
-            var result = (GenericCommandResult)await _handler.Handle(command);
+            var result = (GenericCommandResult)await _handler.Send(command);
             return result;
         }
 
@@ -50,14 +42,10 @@ namespace PetGuadian.API.Controllers
         /// <param name="userId">The ID of the user whose pets are to be retrieved</param>
         /// <returns>A list of pets or a not found result</returns>
         [HttpGet("get_pets_by_userId")]
-        public async Task<IActionResult> GetPetByUserId(Guid userId)
+        public async Task<ICommandResult> GetPetByUserId([FromQuery] FindAllPetsByUserIdCommand request)
         {
-            var pets = await _petService.GetAllPetsByUserId(userId);
-            if (pets.IsNullOrEmpty())
-            {
-                return NotFound("No pets found for the given user.");
-            }
-            return Ok(pets);
+            var result = (GenericCommandResult)await _handler.Send(request);
+            return result;
         }
 
         /// <summary>
@@ -68,7 +56,7 @@ namespace PetGuadian.API.Controllers
         [HttpGet("delete")]
         public async Task<ICommandResult> DeletePet([FromBody] DeletePetCommand command)
         {
-            GenericCommandResult result = (GenericCommandResult)await _handler.Handle(command);
+            GenericCommandResult result = (GenericCommandResult)await _handler.Send(command);
             return result;
         }
 
@@ -79,17 +67,11 @@ namespace PetGuadian.API.Controllers
         /// <param name="petId">The ID of the pet to be retrieved</param>
         /// <returns>The requested pet or an internal server error if an exception occurs</returns>
         [HttpGet("get_pet/{userId}/{petId}")]
-        public async Task<IActionResult> GetPetById(Guid userId, Guid petId)
+        public async Task<ICommandResult> GetPetById(FindPetByIdCommand command)
         {
-            try
-            {
-                var pet = await _petService.GetPetById(userId, petId);
-                return Ok(pet);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, "Internal Server Error: " + ex.Message);
-            }
+
+            var result = await _handler.Send(command);
+            return result;
         }
 
         [HttpPatch("update")]
@@ -97,7 +79,7 @@ namespace PetGuadian.API.Controllers
         {
             try
             {
-                GenericCommandResult result = (GenericCommandResult)await _handler.Handle(command);
+                GenericCommandResult result = (GenericCommandResult)await _handler.Send(command);
                 return result;
             }
             catch (Exception ex)

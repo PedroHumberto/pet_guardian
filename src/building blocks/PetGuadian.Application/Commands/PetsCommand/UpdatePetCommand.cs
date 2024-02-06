@@ -1,11 +1,12 @@
 
 using Flunt.Notifications;
 using Flunt.Validations;
+using MediatR;
 using PetGuadian.Application.Commands.Contracts;
 
 namespace PetGuadian.Application.Commands.PetsCommand
 {
-    public class UpdatePetCommand : Notifiable<Notification>, ICommand
+    public class UpdatePetCommand : Notifiable<Notification>, ICommand, IRequest<ICommandResult>
     {
         public UpdatePetCommand()
         {

@@ -1,11 +1,12 @@
 
 using Flunt.Notifications;
 using Flunt.Validations;
+using MediatR;
 using PetGuadian.Application.Commands.Contracts;
 
 namespace PetGuadian.Application.Commands.PetsCommand
 {
-    public class DeletePetCommand : Notifiable<Notification>, ICommand
+    public class DeletePetCommand : Notifiable<Notification>, ICommand, IRequest<ICommandResult>
     {
         public DeletePetCommand(Guid petId, Guid userId)
         {

@@ -1,13 +1,15 @@
 
 using Flunt.Notifications;
 using Flunt.Validations;
+using MediatR;
 using PetGuadian.Application.Commands.Contracts;
+using PetGuadian.Application.Dto.PetDto;
 using PetGuardian.Core.PetGuardianCore.Enums;
 using PetGuardian.Models.Models;
 
 namespace PetGuadian.Application.Commands.PetsCommand
 {
-    public class CreatePetCommand : Notifiable<Notification>, ICommand
+    public class CreatePetCommand : Notifiable<Notification>, ICommand, IRequest<ICommandResult>
     {
         public CreatePetCommand()
         {
