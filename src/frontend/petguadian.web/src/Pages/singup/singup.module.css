@@ -4,6 +4,7 @@ h1{
     margin-bottom: 15px;
     margin: auto;
     margin-bottom: 20px;
+    color: #e97a55;
 }
 
 .container {
@@ -13,7 +14,8 @@ h1{
     align-items: center;
     height: 100vh;
   /* Define um gradiente linear como o fundo da página */
-    background: linear-gradient(to bottom right, #02bfe9, #0083B0, #00B4DB, #0083B0);
+    background: linear-gradient(to bottom right, #FFB770, #FF852F, #FFB770);
+
     /* Garante que o fundo cubra toda a página */
     background-size: cover;
     /* Fixa o fundo para que o gradiente não role com a página */
@@ -24,6 +26,7 @@ h1{
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-around;
     background: #FFFFFB; /* Fundo do card */
     border-radius: 15px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.596); /* Efeito de sombreado */
@@ -37,7 +40,7 @@ h1{
     flex-direction: column;
     align-items: flex-start;
     border-radius: 15px;
-    padding: 20px;
+    padding: 5px;
     
 }
 
@@ -72,7 +75,7 @@ h1{
 }
 
 .userForm input {
-    width: 300px;
+    width: 100%;
     border: 0;
     border-radius: 0px;
     border-bottom: 2px solid #9e9e9e;
@@ -87,8 +90,8 @@ h1{
 }
 
 .userForm input:focus {
-    border-width: 3px;
-    border-image: linear-gradient(to right, #11998e, #38ef7d);
+    border-width: 2px;
+    border-image: linear-gradient(to right, #E6954E, #FFB770, #FFD1A4);
     border-image-slice: 1;
 }
 
@@ -105,7 +108,7 @@ h1{
 
 
 .userForm button {
-    background-color: #007bff; /* Cor de fundo do botão */
+    background-color: #e97a55; /* Cor de fundo do botão */
     width: 100%;
     margin-left: auto;
     color: white;
@@ -118,7 +121,7 @@ h1{
 }
 
 .userForm button:hover {
-    background-color: #0056b3; /* Cor de fundo do botão no hover */
+    background-color: #e6663b; /* Cor de fundo do botão no hover */
 }
 
 .loginLink {
@@ -126,13 +129,13 @@ h1{
 }
 
 .loginLink a {
-    color: #007bff;
+    color: #666666;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .loginLink a:hover {
-    color: #0056b3;
+    color: #e6663b;
 }
 
 .name{
@@ -149,6 +152,27 @@ h1{
 }
 
 img{
-    width: 450px;
-    height: 510px;
+    width: 52%;
+    height: 70%;
+
+}
+
+@media (max-width: 1240px) {
+
+    .subcontainer {
+        /* Faça o subcontainer (e, portanto, o formulário) ocupar uma largura maior da tela quando a imagem não estiver visível */
+        width: 60%; /* Ajuste conforme necessário */
+
+        
+    }
+}
+@media (max-width: 900px) {
+    img {
+        display: none;
+    }
+
+    .subcontainer {
+        /* Faça o subcontainer (e, portanto, o formulário) ocupar uma largura maior da tela quando a imagem não estiver visível */
+        width: 80%; /* Ajuste conforme necessário */
+    }
 }

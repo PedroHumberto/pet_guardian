@@ -31,7 +31,6 @@ namespace PetGuadian.Application.Handlers
                 return new GenericCommandResult(false, "Pet data is required", request.Notifications, HttpStatusCode.BadRequest);
             }
 
-            //gerar CreatePetDTO
             CreatePetDto createPetDto = new CreatePetDto(
                 request.PetName,
                 request.Gender,
@@ -40,13 +39,10 @@ namespace PetGuadian.Application.Handlers
                 request.Weight,
                 request.UserId);
 
-            //salvar
             await _service.CreatePet(createPetDto);
 
-            //retornar o resultado
             return new GenericCommandResult(true, "Success", createPetDto, HttpStatusCode.Created);
         }
-
 
         public async Task<ICommandResult> Handle(DeletePetCommand command)
         {
@@ -97,8 +93,6 @@ namespace PetGuadian.Application.Handlers
             return new GenericCommandResult(true, "Deleted With Success", request, HttpStatusCode.NoContent);
         }
 
-
-
         public async Task<ICommandResult> Handle(FindAllPetsByUserIdCommand request, CancellationToken cancellationToken)
         {
             try{
@@ -106,7 +100,7 @@ namespace PetGuadian.Application.Handlers
                 return new GenericCommandResult(true, "Success", result, HttpStatusCode.NoContent);
 
             }catch(Exception ex){
-                return new GenericCommandResult(false, $"Error: {ex.Message}", ex, HttpStatusCode.NoContent);
+                return new GenericCommandResult(false, $"Error: {ex.Message}", ex, HttpStatusCode.BadRequest);
             }
         }
 
@@ -117,7 +111,7 @@ namespace PetGuadian.Application.Handlers
                 return new GenericCommandResult(true, "Success", result, HttpStatusCode.NoContent);
 
             }catch(Exception ex){
-                return new GenericCommandResult(false, $"Error: {ex.Message}", ex, HttpStatusCode.NoContent);
+                return new GenericCommandResult(false, $"Error: {ex.Message}", ex, HttpStatusCode.BadRequest);
             }
 
         }

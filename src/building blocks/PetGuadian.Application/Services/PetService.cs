@@ -48,9 +48,7 @@ namespace PetGuadian.Application.Services
         public async Task<GetPetDto> GetPetById(Guid userId, Guid petId)
         {
             var pet = await _petRepository.GetPetById(userId, petId);
-
             CustomApplicationExceptions.ThrowIfObjectIsNull(pet, pet.PetName, "Pet Is Null");
-
             var petAge = pet.GetPetAge(pet.BirthDate);
             var petDto = new GetPetDto(pet.Id, pet.PetName, pet.Gender, pet.Specie, pet.BirthDate, petAge, pet.Weight);
 

@@ -6,32 +6,87 @@
 hr{
     width: 940px;
 }
-.home_image{
-    width: 810px;
-    height: 410px;
+
+a{
+    margin: 5px;
+    color: rgb(141, 141, 141);
 }
-.index_container{
-    min-height: 100vh;
+
+footer {
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0544f;
+    color: white;
+}
+
+footer p {
+    font-size: 1em;
+    font-weight: 400;
+}
+
+
+.container{
+    background-color: rgba(31, 31, 31, 0.075);
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: white;
+    border-color: blue;
+    width: 100vw;
+    height: 100vh;
+    border-bottom: 2px solid black;
 }
 .sub_container{
-    width: 940px;
+    height: 100vh;
+    width: 70vw;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+
+.home_image {
+    margin-top: 10px;
+    width: 63vw;
+    height: 55vh;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.185); /* Adiciona uma sombra suave */
+    transition: box-shadow 0.3s ease; /* Adiciona uma transição suave */
+
+}
+.home_image:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.267); /* Aumenta ligeiramente a sombra ao passar o mouse */
+}
+.cards_section{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+}
+.card{
+    background: linear-gradient(to bottom right, #ff862f18, #ff862f18, #ff862f18, #ff862f18);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 15px;
+    width: 250px;
+    height: 125px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.185); /* Adiciona uma sombra suave */
+    transition: box-shadow 0.3s ease; /* Adiciona uma transição suave */
+}
+.card_title{
+    color: rgb(216, 141, 2);
+}
+.card:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.267); /* Aumenta ligeiramente a sombra ao passar o mouse */
 }
 
-.title{
-    margin-top: 70px;
-    height: 70px;
-    text-align: center;
-    font-size: 36px;
-    font-weight: bolder;
-}
 
 footer{
     display: flex;
@@ -54,28 +109,9 @@ footer p{
 }
 
 
-
-/*here starts the media queri*/
-@media (min-width: 497px) and (max-width:960px){
-    .sub_container{
-        width: 497px;
-        margin: 0 auto;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
+@media screen and (max-width: 801px) {
+    .home_image {
+        width: 80vw;
+        height: 30vh;
     }
-}
-
-@media (max-width:496px){
-    .sub_container{
-        width: auto;
-        margin: 0 auto;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        margin: 15px;
-    }
-    
-}
+  }
