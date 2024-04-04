@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PetGuardian.Domain.Core.Data;
-using PetGuardian.Domain.Models;
+using PetGuardian.Domain.Pets;
 using PetGuardian.Domain.Repositories;
 
 namespace PetGuadian.API.Data.Repositories

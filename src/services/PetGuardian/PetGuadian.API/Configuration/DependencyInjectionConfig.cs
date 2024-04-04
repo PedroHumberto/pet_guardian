@@ -8,7 +8,8 @@ using PetGuadian.Application.Handlers;
 using PetGuadian.Application.Queries.PetQueries;
 using PetGuadian.Application.Services;
 using PetGuadian.Application.Services.Interfaces;
-using PetGuardian.Domain.Repositories;
+using PetGuardian.Domain.Pets;
+using PetGuardian.Domain.Users;
 
 namespace PetGuadian.API.Configuration
 {

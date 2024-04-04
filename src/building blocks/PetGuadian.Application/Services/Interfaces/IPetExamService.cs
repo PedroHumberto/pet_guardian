@@ -1,5 +1,5 @@
 using PetGuadian.Application.Dto.PetExamDto;
-using PetGuardian.Models.Models;
+using PetGuardian.Domain.Pets;
 
 namespace PetGuadian.Application.Services.Interfaces
 {

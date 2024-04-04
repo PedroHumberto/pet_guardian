@@ -1,13 +1,13 @@
 using PetGuardian.Core.Exceptions;
 using PetGuardian.Core.PetGuardianCore.DomainObjects;
 using PetGuardian.Core.PetGuardianCore.Enums;
-using PetGuardian.Domain.Models;
+using PetGuardian.Domain.Users;
 using System.Globalization;
 
 
-namespace PetGuardian.Models.Models
+namespace PetGuardian.Domain.Pets
 {
-    public class Pet : Entity
+    public sealed class Pet : Entity
     {
         public string PetName { get; private set; }
         public char Gender { get; private set; }
@@ -16,9 +16,9 @@ namespace PetGuardian.Models.Models
         public float? Weight { get; private set; }
         public User User { get; private set; }
         public Guid UserId { get; private set; }
-        public IEnumerable<Vaccine> Vaccines {get; private set; }
-        public IEnumerable<PetExam>? PetExams { get; private set; }
-        public IEnumerable<Medicine>? Medicines { get; private set; }
+        public IEnumerable<Vaccine> Vaccines { get; private set; } = new List<Vaccine>();
+        public IEnumerable<PetExam>? PetExams { get; private set; } = new List<PetExam>();
+        public IEnumerable<Medicine>? Medicines { get; private set; } = new List<Medicine>();
 
         protected Pet() { }
 
@@ -50,24 +50,6 @@ namespace PetGuardian.Models.Models
 
         }
 
-        public void AddMecine(Medicine medicine)
-        {
-            Medicines.Append(medicine);
-        }
-        public void AddVaccine(Vaccine vaccine)
-        {
-            Vaccines.Append(vaccine);
-        }
-
-        public void AddExams(PetExam exam)
-        {
-            if (exam.ExamLink is null)
-            {
-                CustomApplicationExceptions.ThrowIfObjectIsNull(exam, "AddExam", "PetExams is Null");
-            }
-            PetExams.Append(exam);
-        }
-
         public void AddUser(Guid Id)
         {
             UserId = Id;
@@ -78,7 +60,7 @@ namespace PetGuardian.Models.Models
             DateTime currentDate = DateTime.Now;
             int age = currentDate.Year - birthDate.Year;
             // Verifique se o anivers�rio deste ano j� ocorreu.
-            if (currentDate.Month < birthDate.Month || (currentDate.Month == birthDate.Month && currentDate.Day < birthDate.Day))
+            if (currentDate.Month < birthDate.Month || currentDate.Month == birthDate.Month && currentDate.Day < birthDate.Day)
             {
                 age--;
             }

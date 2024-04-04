@@ -1,9 +1,8 @@
 ﻿using PetGuadian.Application.Dto.PetDto;
-using PetGuardian.Models.Models;
-using PetGuardian.Domain.Repositories;
 using PetGuadian.Application.Services.Interfaces;
 using PetGuadian.Application.Dto.MedicineDto;
 using PetGuardian.Core.Exceptions;
+using PetGuardian.Domain.Pets;
 
 
 namespace PetGuadian.Application.Services

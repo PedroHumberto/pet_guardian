@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PetGuardian.Core.PetGuardianCore.DomainObjects;
-using PetGuardian.Models.Models;
 
-namespace PetGuardian.Domain.Models
+namespace PetGuardian.Domain.Pets
 {
-    public class Medicine : Entity
+    public class Medicine
     {
-        protected Medicine(){}
+        protected Medicine() { }
 
         public Medicine(Guid petId, string remedyName, string dosage, string observations, DateTime startDate, DateTime? endDate)
         {

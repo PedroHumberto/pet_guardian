@@ -4,8 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using PetGuardian.Core.Exceptions;
 using PetGuardian.Domain.Core.Data;
 using PetGuardian.Domain.Models;
-using PetGuardian.Domain.Repositories;
-using PetGuardian.Models.Models;
+using PetGuardian.Domain.Pets;
 using System.Runtime.CompilerServices;
 
 namespace PetGuadian.API.Data.Repositories

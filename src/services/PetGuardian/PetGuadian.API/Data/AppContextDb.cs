@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using PetGuardian.Domain.Core.Data;
-using PetGuardian.Domain.Models;
-using PetGuardian.Models.Models;
+using PetGuardian.Domain.Pets;
+using PetGuardian.Domain.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

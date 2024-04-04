@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PetGuardian.Domain.Models;
+using PetGuardian.Domain.Pets;
 
 namespace PetGuadian.API.Data.Mappings
 {

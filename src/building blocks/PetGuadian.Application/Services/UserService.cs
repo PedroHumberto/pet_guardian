@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using PetGuadian.Application.Dto.UserDto;
 using PetGuadian.Application.Services.Interfaces;
-using PetGuardian.Domain.Repositories;
+using PetGuardian.Domain.Users;
 using PetGuardian.Models.Models;
 
 namespace PetGuadian.Application.Services
