@@ -8,7 +8,7 @@ namespace PetGuardian.Domain.Users
         private User(Guid? identityId, string firstName,string secondName, string email) : base(identityId)
         {
             FirstName = firstName;
-            SecondName = SecondName;
+            SecondName = secondName;
             Email = new Email(email);
             Deleted = false;
         }

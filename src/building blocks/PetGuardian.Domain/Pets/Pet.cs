@@ -1,6 +1,6 @@
-using PetGuardian.Core.Exceptions;
-using PetGuardian.Core.PetGuardianCore.DomainObjects;
-using PetGuardian.Core.PetGuardianCore.Enums;
+using PetGuardian.Core.Domain.Enums;
+using PetGuardian.Domain.Abstractions;
+using PetGuardian.Domain.Pets.Events;
 using PetGuardian.Domain.Users;
 using System.Globalization;
 
@@ -9,20 +9,9 @@ namespace PetGuardian.Domain.Pets
 {
     public sealed class Pet : Entity
     {
-        public string PetName { get; private set; }
-        public char Gender { get; private set; }
-        public AnimalSpecies Specie { get; private set; }
-        public DateTime BirthDate { get; private set; }
-        public float? Weight { get; private set; }
-        public User User { get; private set; }
-        public Guid UserId { get; private set; }
-        public IEnumerable<Vaccine> Vaccines { get; private set; } = new List<Vaccine>();
-        public IEnumerable<PetExam>? PetExams { get; private set; } = new List<PetExam>();
-        public IEnumerable<Medicine>? Medicines { get; private set; } = new List<Medicine>();
+        private Pet() { }
 
-        protected Pet() { }
-
-        public Pet(
+        private Pet(
             string petName,
             char gender,
             AnimalSpecies specie,
@@ -37,6 +26,33 @@ namespace PetGuardian.Domain.Pets
             Weight = weight;
         }
 
+        public string PetName { get; private set; }
+        public char Gender { get; private set; }
+        public AnimalSpecies Specie { get; private set; }
+        public DateTime BirthDate { get; private set; }
+        public float? Weight { get; private set; }
+        public User User { get; private set; }
+        public Guid UserId { get; private set; }
+        public IEnumerable<Vaccine> Vaccines { get; private set; } = new List<Vaccine>();
+        public IEnumerable<PetExam>? PetExams { get; private set; } = new List<PetExam>();
+        public IEnumerable<Medicine>? Medicines { get; private set; } = new List<Medicine>();
+
+
+        public static Pet Create(
+            string petName,
+            char gender,
+            AnimalSpecies specie,
+            DateTime birthDate,
+            float? weight)
+            {
+                var pet = new Pet(petName, gender, specie, birthDate, weight);
+
+                //RASE A COMMAND HERE
+                pet.RaiseDomainEvent(new PetCreateDomainEvent(pet.Id));
+
+                return pet;
+            }
+
         public void Update(string name, char gender, DateTime birthDate, float? weight)
         {
             PetName = name;
@@ -49,6 +65,7 @@ namespace PetGuardian.Domain.Pets
             Weight = weight;
 
         }
+
 
         public void AddUser(Guid Id)
         {
@@ -78,4 +95,6 @@ namespace PetGuardian.Domain.Pets
         }
 
     }
+
+
 }

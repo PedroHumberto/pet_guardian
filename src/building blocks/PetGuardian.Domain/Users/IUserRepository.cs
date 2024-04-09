@@ -9,7 +9,7 @@ namespace PetGuardian.Domain.Users
     {
         Task CreateUser(User user);
         void UpdateUser(User updatedUser);
-        Task<User> GetUser(Guid userId);
+        Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
         Task InativateUser(Guid userId);
     }
 }
