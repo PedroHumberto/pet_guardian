@@ -1,9 +1,8 @@
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using PetGuardian.Core.Exceptions;
 using PetGuardian.Domain.Core.Data;
-using PetGuardian.Domain.Pets;
+using PetGuardian.Domain.Models;
 using PetGuardian.Domain.Repositories;
 
 namespace PetGuadian.API.Data.Repositories

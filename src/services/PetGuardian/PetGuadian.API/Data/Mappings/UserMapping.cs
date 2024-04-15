@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PetGuardian.Core.PetGuardianCore.DomainObjects;
-using PetGuardian.Domain.Users;
+using PetGuardian.Domain.Models;
 
 namespace PetGuadian.API.Data.Mappings
 {
