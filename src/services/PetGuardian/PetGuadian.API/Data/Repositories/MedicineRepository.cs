@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using PetGuardian.Domain.Core.Data;
 using PetGuardian.Domain.Models;
 using PetGuardian.Domain.Repositories;
@@ -22,6 +18,11 @@ namespace PetGuadian.API.Data.Repositories
         {
             await _context.Medicines.AddAsync(medicine);
             await _context.Commit();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
 
         public Task<IEnumerable<Medicine>> GetMedicineByPetId(Guid petId)

@@ -1,5 +1,5 @@
 ﻿
-using PetGuardian.Models.Models;
+using PetGuardian.Domain.Models;
 using PetGuardian.Domain.Repositories;
 using PetGuadian.Application.Services.Interfaces;
 using PetGuadian.Application.Dto.UserDto;

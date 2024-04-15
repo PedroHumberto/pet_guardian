@@ -1,11 +1,10 @@
 using PetGuardian.Core.Exceptions;
 using PetGuardian.Core.PetGuardianCore.DomainObjects;
 using PetGuardian.Core.PetGuardianCore.Enums;
-using PetGuardian.Domain.Models;
 using System.Globalization;
 
 
-namespace PetGuardian.Models.Models
+namespace PetGuardian.Domain.Models
 {
     public class Pet : Entity
     {
@@ -73,12 +72,14 @@ namespace PetGuardian.Models.Models
             UserId = Id;
         }
 
-        public int GetPetAge(DateTime birthDate)
+        public int GetPetAge()
         {
             DateTime currentDate = DateTime.Now;
-            int age = currentDate.Year - birthDate.Year;
-            // Verifique se o anivers�rio deste ano j� ocorreu.
-            if (currentDate.Month < birthDate.Month || (currentDate.Month == birthDate.Month && currentDate.Day < birthDate.Day))
+            int age = currentDate.Year - BirthDate.Year;
+            
+            if (currentDate.Month < BirthDate.Month || 
+            (currentDate.Month == BirthDate.Month && 
+            currentDate.Day < BirthDate.Day))
             {
                 age--;
             }

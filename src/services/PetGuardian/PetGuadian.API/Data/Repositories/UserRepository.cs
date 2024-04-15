@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PetGuardian.Domain.Core.Data;
+using PetGuardian.Domain.Models;
 using PetGuardian.Domain.Repositories;
-using PetGuardian.Models.Models;
-
 namespace PetGuadian.API.Data.Repositories
 {
     public class UserRepository : IUserRepository
@@ -40,6 +39,17 @@ namespace PetGuadian.API.Data.Repositories
         }
 
         public void UpdateUser(User updatedUser)
+        {
+            throw new NotImplementedException();
+        }
+
+    
+        Task<User> IUserRepository.GetUser(Guid userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
         {
             throw new NotImplementedException();
         }

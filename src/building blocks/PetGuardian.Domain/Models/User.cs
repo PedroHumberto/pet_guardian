@@ -1,11 +1,13 @@
-
 using PetGuardian.Core.PetGuardianCore.DomainObjects;
 
-namespace PetGuardian.Models.Models
+namespace PetGuardian.Domain.Models
 {
     public class User : Entity
     {
-        public User(Guid? identityId, string name, string email) : base(identityId)
+        public User(
+            Guid? identityId, 
+            string name, 
+            string email) : base(identityId)
         {
             Name = name;
             Email = new Email(email);

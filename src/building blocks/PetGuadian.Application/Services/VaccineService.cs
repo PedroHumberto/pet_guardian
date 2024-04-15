@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using PetGuadian.Application.Dto.VaccineDto;
 using PetGuadian.Application.Services.Interfaces;
-using PetGuardian.Domain.Core.Data;
 using PetGuardian.Domain.Models;
 using PetGuardian.Domain.Repositories;
 

@@ -5,7 +5,7 @@ using MediatR;
 using PetGuadian.Application.Commands.Contracts;
 using PetGuadian.Application.Dto.PetDto;
 using PetGuardian.Core.PetGuardianCore.Enums;
-using PetGuardian.Models.Models;
+using PetGuardian.Domain.Models;
 
 namespace PetGuadian.Application.Commands.PetsCommand
 {

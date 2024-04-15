@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using PetGuadian.Application.Dto.UserDto;
 using PetGuadian.Application.Services.Interfaces;
 using PetGuardian.Domain.Repositories;
-using PetGuardian.Models.Models;
+using PetGuardian.Domain.Models;
 
 namespace PetGuadian.Application.Services
 {
@@ -21,9 +17,9 @@ namespace PetGuadian.Application.Services
         public async Task CreateUser(CreateUserDto userDto)
         {
             var user = new User(
-                userDto.UserIdentity,
-                userDto.Name,
-                userDto.Email);
+                userDto.userIdentity,
+                userDto.name,
+                userDto.email);
 
             await _repository.CreateUser(user);
         }

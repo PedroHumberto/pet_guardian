@@ -1,13 +1,10 @@
-﻿using PetGuardian.Models.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using PetGuardian.Domain.Core.Data;
+using PetGuardian.Domain.Models;
 
 namespace PetGuardian.Domain.Repositories
 {
-    public interface IAddressRepository
+    public interface IAddressRepository : IRepository<Address>
     {
         Task CreateAddress(Address address);
         Task UpdateAddress(Address updatedAddress);

@@ -3,7 +3,7 @@ using Flunt.Notifications;
 using Flunt.Validations;
 using PetGuadian.Application.Commands.Contracts;
 using PetGuardian.Core.PetGuardianCore.Enums;
-using PetGuardian.Models.Models;
+using PetGuardian.Domain.Models;
 
 namespace PetGuadian.Application.Commands.UserCommands
 {

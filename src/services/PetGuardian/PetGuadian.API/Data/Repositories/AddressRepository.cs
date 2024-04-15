@@ -2,7 +2,7 @@
 using PetGuadian.Application.Dto;
 using PetGuardian.Domain.Core.Data;
 using PetGuardian.Domain.Repositories;
-using PetGuardian.Models.Models;
+using PetGuardian.Domain.Models;
 
 namespace PetGuadian.API.Data.Repositories
 {
@@ -24,6 +24,11 @@ namespace PetGuadian.API.Data.Repositories
         {
             await _context.Addresses.AddAsync(address);
             await _context.Commit();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<Address> GetAddressById(Guid addressId)

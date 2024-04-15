@@ -1,6 +1,4 @@
-
 using PetGuardian.Core.PetGuardianCore.DomainObjects;
-using PetGuardian.Models.Models;
 
 namespace PetGuardian.Domain.Models
 {
