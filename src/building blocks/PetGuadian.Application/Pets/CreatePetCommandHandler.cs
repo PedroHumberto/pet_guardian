@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PetGuadian.Application.Abstractions.Commands;
+using PetGuadian.Application.Exceptions;
 using PetGuardian.Domain.Abstractions;
 using PetGuardian.Domain.Pets;
 using PetGuardian.Domain.Users;
@@ -42,9 +43,10 @@ namespace PetGuadian.Application.Pets
                 await _petRepository.CreatePet(pet);
 
                 //PRECISA DE COMUNICAR COM O USER PARA PASSAR A ID.
-
-                return pet.Id;
-            }catch
+                user.AddPet(pet);
+                await _userRepository.UpdateUser(user);
+                return pet.Id;                
+            }catch(ConcurrencyException)
             {
                 return Result.Failure<Guid>(PetErrors.Overlap);
             }

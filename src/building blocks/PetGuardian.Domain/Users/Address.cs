@@ -1,5 +1,3 @@
-using PetGuardian.Core.PetGuardianCore.DomainObjects;
-
 namespace PetGuardian.Domain.Users
 {
     public record Address(string street,

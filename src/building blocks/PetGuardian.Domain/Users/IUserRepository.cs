@@ -8,7 +8,7 @@ namespace PetGuardian.Domain.Users
     public interface IUserRepository
     {
         Task CreateUser(User user);
-        void UpdateUser(User updatedUser);
+        Task UpdateUser(User updatedUser);
         Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
         Task InativateUser(Guid userId);
     }

@@ -1,4 +1,4 @@
-using PetGuardian.Core.PetGuardianCore.DomainObjects;
+using PetGuardian.Domain.Abstractions;
 using PetGuardian.Domain.Pets;
 
 namespace PetGuardian.Domain.Users
@@ -28,6 +28,14 @@ namespace PetGuardian.Domain.Users
             var user = new User(Guid.NewGuid(), firstName, secondName, email);
 
             return user;
+        }
+        public void AddPet(Pet pet)
+        {
+            if(pet is null)
+            {
+                throw new ArgumentNullException(nameof(pet));
+            }
+            Pets.Append(pet);
         }
     }
 }

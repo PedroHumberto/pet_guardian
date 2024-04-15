@@ -47,7 +47,7 @@ namespace PetGuardian.Domain.Pets
             {
                 var pet = new Pet(petName, gender, specie, birthDate, weight);
 
-                //RASE A COMMAND HERE
+                //RASE A DOMAINEVENT HERE
                 pet.RaiseDomainEvent(new PetCreateDomainEvent(pet.Id));
 
                 return pet;
@@ -76,7 +76,6 @@ namespace PetGuardian.Domain.Pets
         {
             DateTime currentDate = DateTime.Now;
             int age = currentDate.Year - birthDate.Year;
-            // Verifique se o anivers�rio deste ano j� ocorreu.
             if (currentDate.Month < birthDate.Month || currentDate.Month == birthDate.Month && currentDate.Day < birthDate.Day)
             {
                 age--;
