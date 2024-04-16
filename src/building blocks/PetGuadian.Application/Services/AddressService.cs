@@ -16,24 +16,7 @@ namespace PetGuadian.Application.Services
             _addressRepository = addressRepository;
         }
 
-        public async Task CreateAddress(CreateAddressDto addressDto)
-        {
-            var address = new Address(
-                addressDto.id,
-                addressDto.Street,
-                addressDto.Number,
-                addressDto.Complement,
-                addressDto.Neighborhood,
-                addressDto.City,
-                addressDto.State,
-                addressDto.PostalCode
-                );
 
-            await _addressRepository.CreateAddress(address);
-
-            
-
-        }
 
         public Task UpdateAddress(CreateUserDto updatedAddressDto)
         {

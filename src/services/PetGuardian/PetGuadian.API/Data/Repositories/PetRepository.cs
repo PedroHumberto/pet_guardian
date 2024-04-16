@@ -53,7 +53,7 @@ namespace PetGuadian.API.Data.Repositories
                 entry.SetAbsoluteExpiration(TimeSpan.FromMinutes(10));
                 List<Pet> petUserList = await _context.Pets
                     .AsNoTracking()
-                    .Where(PetQueries.GetAllPetsByUserIdQuery(userId))
+                    .Where(p => p.UserId == userId)
                     .ToListAsync();
                     
                 return petUserList;
@@ -85,7 +85,7 @@ namespace PetGuadian.API.Data.Repositories
                 entry.SetAbsoluteExpiration(TimeSpan.FromMinutes(10));
                 Pet pet = await _context.Pets
                     .AsNoTracking()
-                    .FirstAsync<Pet>(PetQueries.GetPetByIdQuery(userId, petId));
+                    .FirstAsync<Pet>(p => p.Id == petId && p.UserId == userId);
 
                 if (pet is null)
                 {

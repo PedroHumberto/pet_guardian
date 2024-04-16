@@ -2,21 +2,54 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net;
 using System.Threading.Tasks;
+using MediatR;
+using PetGuadian.Application.Commands.Contracts;
+using PetGuadian.Application.Commands.Results;
 using PetGuadian.Application.Dto.PetDto;
 using PetGuardian.Domain.Models;
+using PetGuardian.Domain.Repositories;
 
 namespace PetGuadian.Application.Queries.PetQueries
 {
-    public class PetQueries
+    public class PetQueries : 
+        IRequestHandler<FindPetByIdCommand, ICommandResult>,
+        IRequestHandler<FindAllPetsByUserIdCommand, ICommandResult>
     {
-        public static Expression<Func<Pet, bool>> GetAllPetsByUserIdQuery(Guid userId)
+        private readonly IPetRepository _petRepository;
+
+        public PetQueries(IPetRepository petRepository)
         {
-            return pet => pet.UserId == userId;
+            _petRepository = petRepository;
         }
-        public static Expression<Func<Pet, bool>> GetPetByIdQuery(Guid userId, Guid petId)
+
+
+        public async Task<ICommandResult> Handle(FindPetByIdCommand request, CancellationToken cancellationToken)
         {
-            return p => p.Id == petId && p.UserId == userId;
+
+            if (request is null)
+            {
+                new GenericCommandResult(false, "Pet data is required", request, HttpStatusCode.BadRequest);
+            }
+
+            var pet = await _petRepository.GetPetById(request.UserId, request.PetId);
+
+            var petDto = new GetPetDto(pet.Id, 
+                pet.PetName, 
+                pet.Gender, 
+                pet.Specie,
+                pet.BirthDate,
+                pet.GetPetAge(),
+                pet.Weight
+                );
+            
+            return new GenericCommandResult(true, "Success", petDto, HttpStatusCode.OK);
+        }
+
+        public Task<ICommandResult> Handle(FindAllPetsByUserIdCommand request, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
     }
 }
