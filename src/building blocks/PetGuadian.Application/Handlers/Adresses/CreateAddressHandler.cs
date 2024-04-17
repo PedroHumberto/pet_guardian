@@ -9,12 +9,12 @@ using PetGuardian.Domain.Repositories;
 
 namespace PetGuadian.Application.Handlers.Adresses
 {
-    public class CreatAddressHandler : IRequestHandler<CreateAddressCommand, ICommandResult>
+    public class CreateAddressHandler : IRequestHandler<CreateAddressCommand, ICommandResult>
     {
         private readonly IAddressRepository _repository;
 
 
-        public CreatAddressHandler(IAddressRepository repository)
+        public CreateAddressHandler(IAddressRepository repository)
         {
             _repository = repository;
         }

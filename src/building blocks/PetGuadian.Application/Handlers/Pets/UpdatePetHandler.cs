@@ -4,7 +4,6 @@ using PetGuadian.Application.Commands.Contracts;
 using PetGuadian.Application.Commands.PetsCommand;
 using PetGuadian.Application.Commands.Results;
 using PetGuadian.Application.Dto.PetDto;
-using PetGuadian.Application.Services.Interfaces;
 using PetGuardian.Domain.Repositories;
 
 namespace PetGuadian.Application.Handlers.Pets

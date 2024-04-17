@@ -1,14 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Flunt.Notifications;
 using Flunt.Validations;
+using MediatR;
 using PetGuadian.Application.Commands.Contracts;
 
 namespace PetGuadian.Application.Commands.MedicineCommands
 {
-    public class CreateMedicineCommand : Notifiable<Notification>, ICommand
+    public class CreateMedicineCommand : Notifiable<Notification>, ICommand, IRequest<ICommandResult>
     {
         public CreateMedicineCommand()
         {

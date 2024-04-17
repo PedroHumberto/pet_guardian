@@ -1,14 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using PetGuadian.Application.Dto.MedicineDto;
 using PetGuardian.Core.PetGuardianCore.Enums;
 
-namespace PetGuadian.Application.Dto.PetDto
+namespace PetGuadian.Application.Queries.PetQueries
 {
-    public record GetPetDto(
+    public record PetResponse(
         Guid Id,
         string PetName, 
         char Gender, 
