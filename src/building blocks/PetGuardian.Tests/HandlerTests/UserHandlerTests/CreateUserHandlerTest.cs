@@ -1,33 +1,29 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PetGuadian.Application.Commands.PetsCommand;
-using PetGuadian.Application.Commands.Results;
-using PetGuadian.Application.Handlers;
-using PetGuadian.Application.Handlers.Pets;
-using PetGuardian.Tests.Repositories;
 
-namespace PetGuardian.Tests.HandlerTests.PetHandlerTests
+using System.Net;
+using PetGuadian.Application.Commands.Results;
+using PetGuadian.Application.Commands.UserCommands;
+using PetGuadian.Application.Handlers.Users;
+using PetGuardian.Tests.Services;
+
+namespace PetGuardian.Tests.HandlerTests.UserHandlerTests
 {
     [TestClass]
-    public class UpdatePetHandlerTest
+    public class CreateUserHandlerTest
     {
-        private readonly UpdatePetCommand _invalidCommand = new UpdatePetCommand(Guid.NewGuid(), Guid.NewGuid(), "J", 'H', DateTime.Now, 15);
-        private readonly UpdatePetCommand _validCommand = new UpdatePetCommand(Guid.NewGuid(), Guid.NewGuid(), "Jorge", 'M', DateTime.Now, 15);
-        private readonly UpdatePetHandler _handler = new UpdatePetHandler(new FakePetRepository());
-        private readonly CancellationToken cancellationToken = new CancellationToken();
-
+        private readonly CreateUserCommand _invalidCommand = new CreateUserCommand(Guid.NewGuid(), "Ped", "teste@email.com", Guid.NewGuid());
+        private readonly CreateUserCommand _validCommand = new CreateUserCommand(Guid.NewGuid(), "Pedro", "teste@email.com", Guid.NewGuid());
+        
+        private readonly CreateUserHandler _handler = new CreateUserHandler(new FakeUserRepository());
+        private readonly CancellationToken cancellationToken= new CancellationToken();
         private GenericCommandResult _result = new GenericCommandResult();
+
         [TestMethod]
         public async Task When_command_is_invalid_need_interrupt_execution()
         {
             _result = (GenericCommandResult)await _handler.Handle(_invalidCommand, cancellationToken);
             Assert.AreEqual(_result.Success, false);
-
         }
+
         [TestMethod]
         public async Task When_command_is_invalid_the_result_needs_to_return_StatusCode_NotFound()
         {
@@ -46,7 +42,8 @@ namespace PetGuardian.Tests.HandlerTests.PetHandlerTests
         public async Task When_command_is_valid_the_result_needs_to_return_Created()
         {
             _result = (GenericCommandResult)await _handler.Handle(_validCommand, cancellationToken);
-            Assert.AreEqual(_result.StatusCode, HttpStatusCode.NoContent);
+            Assert.AreEqual(_result.StatusCode, HttpStatusCode.Created);
         }
+
     }
 }

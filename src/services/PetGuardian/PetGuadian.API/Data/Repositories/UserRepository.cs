@@ -16,9 +16,9 @@ namespace PetGuadian.API.Data.Repositories
         public IUnitOfWork UnitOfWork => _context;
 
 
-        public async Task CreateUser(User user)
+        public async Task CreateUser(User user, CancellationToken cancellationToken)
         {
-            await _context.Users.AddAsync(user);
+            await _context.Users.AddAsync(user, cancellationToken);
             await _context.Commit();
         }
 
@@ -50,6 +50,16 @@ namespace PetGuadian.API.Data.Repositories
         }
 
         public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> SharePetWithVeterinarian(Guid vetId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> RemovePetSharedWithVeterinarian(Guid vetId)
         {
             throw new NotImplementedException();
         }

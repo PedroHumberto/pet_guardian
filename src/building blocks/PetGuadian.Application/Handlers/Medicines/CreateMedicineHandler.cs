@@ -37,7 +37,7 @@ namespace PetGuadian.Application.Handlers.Medicines
             try
             {
                 await _repository.CreateMedicine(medicine, cancellationToken);
-                return new GenericCommandResult(true, "Success", medicine, HttpStatusCode.OK);
+                return new GenericCommandResult(true, "Success", medicine, HttpStatusCode.Created);
             }
             catch(Exception ex)
             {

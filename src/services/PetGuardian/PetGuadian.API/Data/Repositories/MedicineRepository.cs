@@ -14,20 +14,29 @@ namespace PetGuadian.API.Data.Repositories
         }
 
         public IUnitOfWork UnitOfWork => _context;
-        public async Task CreatMedicine(Medicine medicine)
+
+
+        public async Task CreateMedicine(Medicine medicine, CancellationToken cancellationToken)
         {
-            await _context.Medicines.AddAsync(medicine);
+            await _context.Medicines.AddAsync(medicine, cancellationToken);
             await _context.Commit();
         }
+        
+        public Task<Medicine> GetMedicineById(Guid petId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteMedicine(Guid MedicineId, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
 
         public void Dispose()
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Medicine>> GetMedicineByPetId(Guid petId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

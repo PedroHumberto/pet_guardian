@@ -34,12 +34,14 @@ namespace PetGuadian.Application.Handlers.Users
                     request.Email
                 );
                 await _repository.CreateUser(user, cancellationToken);
+
+                return new GenericCommandResult(true, "Succsess", user, HttpStatusCode.Created);
+
             }
             catch(Exception ex)
             {
                 return new GenericCommandResult(false, "Execption", ex, HttpStatusCode.BadRequest);
             }
-            throw new NotImplementedException();
         }
     }
 }

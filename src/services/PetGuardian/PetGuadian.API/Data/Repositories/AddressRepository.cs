@@ -34,7 +34,7 @@ namespace PetGuadian.API.Data.Repositories
 
         public async Task<Address> GetAddressById(Guid addressId)
         {
-            var address = await _context.Addresses.FirstOrDefaultAsync(AddressQueries.GetAddressById(addressId));
+            var address = await _context.Addresses.FirstOrDefaultAsync(a => a.Id == addressId);
 
             return address;
         }

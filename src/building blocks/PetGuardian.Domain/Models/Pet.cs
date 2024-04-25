@@ -15,9 +15,10 @@ namespace PetGuardian.Domain.Models
         public float? Weight { get; private set; }
         public User User { get; private set; }
         public Guid UserId { get; private set; }
-        public IEnumerable<Vaccine> Vaccines {get; private set; }
-        public IEnumerable<PetExam>? PetExams { get; private set; }
-        public IEnumerable<Medicine>? Medicines { get; private set; }
+        public IEnumerable<Vaccine> Vaccines {get; private set; } = new List<Vaccine>();
+        public IEnumerable<PetExam>? PetExams { get; private set; } = new List<PetExam>();
+        public IEnumerable<Medicine>? Medicines { get; private set; } = new List<Medicine>();
+        public IEnumerable<Veterinarian> VeterinariansAllowed { get; private set; } = new List<Veterinarian>();
 
         protected Pet() { }
 
@@ -87,13 +88,13 @@ namespace PetGuardian.Domain.Models
             return age;
         }
 
-        public void BrFormattedBirthDate(DateTime birthDate)
+        public void BrFormattedBirthDate()
         {
-            string brazilFormattedDate = birthDate.ToString("dd/MM/yyyy");
+            string brazilFormattedDate = BirthDate.ToString("dd/MM/yyyy");
 
             DateTime formattedDateTime = DateTime.ParseExact(brazilFormattedDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
-            birthDate = formattedDateTime.Date;
+            BirthDate = formattedDateTime.Date;
         }
 
     }

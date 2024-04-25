@@ -22,6 +22,7 @@ namespace PetGuadian.API.Data.Repositories
         public async Task CreateExam(PetExam exam)
         {
             CustomApplicationExceptions.ThrowIfObjectIsNull(exam, "exam", "Object is Null");
+
             await _context.PetExams.AddAsync(exam);
             await _context.Commit();
         }

@@ -42,7 +42,7 @@ namespace PetGuadian.API.Controllers
         /// <param name="userId">The ID of the user whose pets are to be retrieved</param>
         /// <returns>A list of pets or a not found result</returns>
         [HttpGet("get_pets_by_userId")]
-        public async Task<ICommandResult> GetPetByUserId([FromQuery] FindAllPetsByUserIdCommand request)
+        public async Task<ICommandResult> GetAllPetsByUserId([FromQuery] FindAllPetsByUserIdQuerie request)
         {
             var result = (GenericCommandResult)await _handler.Send(request);
             return result;
@@ -67,9 +67,8 @@ namespace PetGuadian.API.Controllers
         /// <param name="petId">The ID of the pet to be retrieved</param>
         /// <returns>The requested pet or an internal server error if an exception occurs</returns>
         [HttpGet("get_pet/{userId}/{petId}")]
-        public async Task<ICommandResult> GetPetById(FindPetByIdCommand command)
+        public async Task<ICommandResult> GetPetById(FindPetByIdQuerie command)
         {
-
             var result = await _handler.Send(command);
             return result;
         }

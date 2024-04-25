@@ -35,7 +35,7 @@ namespace PetGuadian.Application.Handlers.Pets
 
             await _repository.Update(updatePet, cancellationToken);
 
-            return new GenericCommandResult(true, "Update Successfull", request, HttpStatusCode.NoContent);
+            return new GenericCommandResult(true, "Update Successfull", request, HttpStatusCode.OK);
         }
     }
 }

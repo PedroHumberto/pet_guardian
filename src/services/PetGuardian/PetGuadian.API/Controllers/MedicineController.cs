@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PetGuadian.Application.Commands.Contracts;
 using PetGuadian.Application.Commands.MedicineCommands;
 using PetGuadian.Application.Commands.Results;
-using PetGuadian.Application.Handlers;
-using PetGuadian.Application.Services.Interfaces;
-using PetGuardian.Domain.Repositories;
+using PetGuadian.Application.Handlers.Contracts;
+
 
 namespace PetGuadian.API.Controllers
 {
@@ -16,19 +12,18 @@ namespace PetGuadian.API.Controllers
     [ApiController]
     public class MedicineController : ControllerBase
     {
-        private readonly MedicineHandler _handler;
-        private readonly IMedicineService _service;
+        private readonly IMediator _handler;
+        
 
-        public MedicineController(MedicineHandler handler, IMedicineService service)
+        public MedicineController(IMediator handler)
         {
             _handler = handler;
-            _service = service;
         }
 
         [HttpPost("crate_medicine")]
         public async Task<ICommandResult> CreateMedicine([FromBody]CreateMedicineCommand command)
         {
-            var result = (GenericCommandResult) await _handler.Handle(command);
+            var result = (GenericCommandResult) await _handler.Send(command);
 
             return result;
         }

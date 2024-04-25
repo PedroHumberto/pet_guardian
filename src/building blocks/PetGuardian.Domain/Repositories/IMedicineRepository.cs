@@ -6,7 +6,8 @@ namespace PetGuardian.Domain.Repositories
 {
     public interface IMedicineRepository : IRepository<Medicine>
     {
-        Task CreatMedicine(Medicine medicine);
-        Task<IEnumerable<Medicine>> GetMedicineByPetId(Guid petId);
+        Task CreateMedicine(Medicine Medicine, CancellationToken cancellationToken);
+        Task<Medicine> GetMedicineById(Guid MedicineId);
+        Task DeleteMedicine(Guid MedicineId, CancellationToken cancellationToken);
     }
 }

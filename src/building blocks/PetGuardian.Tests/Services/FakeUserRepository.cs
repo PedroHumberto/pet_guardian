@@ -2,24 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using PetGuadian.Application.Dto.PetDto;
+using PetGuadian.Application.Dto.UserDto;
 using PetGuardian.Domain.Core.Data;
 using PetGuardian.Domain.Models;
 using PetGuardian.Domain.Repositories;
 
-namespace PetGuardian.Tests.Repositories
+namespace PetGuardian.Tests.Services
 {
-    public class FakePetRepository : IPetRepository
+    public class FakeUserRepository : IUserRepository
     {
         public IUnitOfWork UnitOfWork => throw new NotImplementedException();
 
-
-
-        public async Task CreatePet(Pet pet, Guid userId, CancellationToken cancellationToken)
+        public async Task CreateUser(User user, CancellationToken cancellationToken)
         {
         }
 
-        public Task DeletePet(Guid petId, Guid userId, CancellationToken cancellationToken)
+
+        public void DeleteUser(Guid userId)
         {
             throw new NotImplementedException();
         }
@@ -29,23 +28,32 @@ namespace PetGuardian.Tests.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Pet>> GetAllPetsByUserId(Guid userId)
+
+        public Task<GetUserDto> GetUser(Guid userId)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<Pet> GetPetById(Guid userId, Guid petId)
+        public Task InativateUser(Guid userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Pet> GetPetMedicines(Guid petId)
+
+        public void UpdateUser(CreateUserDto updatedUserDto)
         {
             throw new NotImplementedException();
         }
 
-        public async Task Update(Pet pet, CancellationToken cancellationToken)
+        public void UpdateUser(User updatedUser)
         {
+            throw new NotImplementedException();
         }
+
+        Task<User> IUserRepository.GetUser(Guid userId)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
