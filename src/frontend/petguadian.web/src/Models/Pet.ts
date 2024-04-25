@@ -2,7 +2,7 @@ import { AnimalSpecies } from "../Enums/AnimalSpecies";
 
 export class Pet
 {
-    public petId : string;
+    public id : string;
     public petName?: string;
     public gender: string;
     public specie: AnimalSpecies;
@@ -21,7 +21,7 @@ export class Pet
         weight: Number,
         user: string)
         {
-            this.petId = petId
+            this.id = petId
             this.petName = petName;
             this.gender = gender;
             this.specie = specie;

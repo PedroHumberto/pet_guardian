@@ -16,6 +16,7 @@ export function PetCard({ petList }: PetCardProps) {
         return gender === 'F' ? 'Fêmea' : 'Macho';
     };
     const handleCardClick = (petId: string) => {
+        console.log(petId)
         // Aqui você pode redirecionar para o componente desejado, por exemplo, "/pet-details"
         navigate(`/pet-details/${petId}`);
     };
@@ -42,7 +43,7 @@ export function PetCard({ petList }: PetCardProps) {
                 <div 
                     className="petContainer" 
                     key={index}
-                    onClick={() => handleCardClick(pet.petId)}>
+                    onClick={() => handleCardClick(pet.id)}>
                     <h2 className='petName'>{pet.petName}</h2>
 
                     <div className="petImage">
