@@ -35,7 +35,7 @@ namespace PetGuadian.API.Data.Repositories
 
         public async Task DeletePet(Guid petId, Guid userId, CancellationToken cancellationToken)
         {
-            Pet? pet = await _context.Pets.AsNoTracking().FirstOrDefaultAsync(p => p.Id == petId && p.UserId == userId);
+            Pet? pet = await _context.Pets.AsNoTracking().FirstAsync(p => p.Id == petId && p.UserId == userId);
 
             CustomApplicationExceptions.ThrowIfObjectIsNull(pet, "pet", "Pet is Null for delete");
 
@@ -112,5 +112,17 @@ namespace PetGuadian.API.Data.Repositories
             _context.Pets.Update(pet);
             await _context.Commit();
         }
+
+        public async Task<bool> SharePetWithVeterinarian(Pet pet)
+        {
+            _context.Pets.Update(pet);
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> RemovePetSharedWithVeterinarian(Guid vetId)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

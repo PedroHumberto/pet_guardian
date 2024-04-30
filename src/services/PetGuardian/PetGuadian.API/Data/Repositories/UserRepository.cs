@@ -54,14 +54,6 @@ namespace PetGuadian.API.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<bool> SharePetWithVeterinarian(Guid vetId)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task<bool> RemovePetSharedWithVeterinarian(Guid vetId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

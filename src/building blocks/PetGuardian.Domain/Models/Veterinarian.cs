@@ -15,6 +15,16 @@ namespace PetGuardian.Domain.Models
         public string SecondName { get; private set; }
         public IEnumerable<Pet> PetSharedList { get; private set; } = new List<Pet>();
         public CRVCode CrvCode { get; private set; }
+
+
+        public void setPetShared(Pet pet)
+        {
+            if (pet is null)
+            {
+                return ;
+            }
+            PetSharedList.Append(pet);
+        }
         
     }
 }

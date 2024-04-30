@@ -13,8 +13,6 @@ namespace PetGuardian.Tests.Repositories
     {
         public IUnitOfWork UnitOfWork => throw new NotImplementedException();
 
-
-
         public async Task CreatePet(Pet pet, Guid userId, CancellationToken cancellationToken)
         {
         }
@@ -34,7 +32,7 @@ namespace PetGuardian.Tests.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<Pet> GetPetById(Guid userId, Guid petId)
+        public Task<Pet> GetPetById(Guid userId, Guid petId)
         {
             throw new NotImplementedException();
         }
@@ -44,8 +42,20 @@ namespace PetGuardian.Tests.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task Update(Pet pet, CancellationToken cancellationToken)
+        public Task<bool> RemovePetSharedWithVeterinarian(Guid vetId)
         {
+            throw new NotImplementedException();
         }
+
+        public Task<bool> SharePetWithVeterinarian(Pet updatedPet)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Update(Pet pet, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

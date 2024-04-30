@@ -97,5 +97,10 @@ namespace PetGuardian.Domain.Models
             BirthDate = formattedDateTime.Date;
         }
 
+        public void SharePetToVet(Veterinarian veterinarian)
+        {
+            VeterinariansAllowed.Append(veterinarian);
+        }
+
     }
 }

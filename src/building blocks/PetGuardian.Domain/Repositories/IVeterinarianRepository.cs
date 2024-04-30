@@ -13,5 +13,8 @@ namespace PetGuardian.Domain.Repositories
         Task Update(Veterinarian veterinarian);
         Task Delete(Guid veterinarianId);
         Task<IEnumerable<Pet>> GetAllPetsShared();
+        Task<bool> RegisterPet(Veterinarian veterinarian);
+
+        Task<Veterinarian> GetVeterinarian(Guid vetId);
     }
 }

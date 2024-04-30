@@ -5,6 +5,7 @@ using PetGuadian.Application.Commands.Results;
 using System.Net;
 using MediatR;
 using PetGuadian.Application.Queries.PetQueries;
+using PetGuadian.Application.Commands.VeterinariansCommand;
 
 
 namespace PetGuadian.API.Controllers
@@ -75,6 +76,20 @@ namespace PetGuadian.API.Controllers
 
         [HttpPatch("update")]
         public async Task<ICommandResult> UpdatePet([FromBody] UpdatePetCommand command)
+        {
+            try
+            {
+                GenericCommandResult result = (GenericCommandResult)await _handler.Send(command);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new GenericCommandResult(false, $"Internal Server Error: {ex.Message} ", ex, HttpStatusCode.BadRequest);
+            }
+        }
+
+        [HttpPatch("share-pet")]
+        public async Task<ICommandResult> SharePet([FromBody] SharePetWithVeterinarianCommand command)
         {
             try
             {

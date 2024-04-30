@@ -12,5 +12,7 @@ namespace PetGuardian.Domain.Repositories
         Task<Pet> GetPetMedicines(Guid petId);
         Task<Pet> GetPetById(Guid userId, Guid petId);
         Task DeletePet(Guid petId, Guid userId, CancellationToken cancellationToken);
+        Task<bool> SharePetWithVeterinarian(Pet updatedPet);
+        Task<bool> RemovePetSharedWithVeterinarian(Guid vetId);
     }
 }

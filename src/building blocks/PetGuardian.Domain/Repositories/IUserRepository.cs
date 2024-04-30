@@ -10,7 +10,6 @@ namespace PetGuardian.Domain.Repositories
         void UpdateUser(User updatedUser);
         Task<User> GetUser(Guid userId);
         Task InativateUser(Guid userId);
-        Task<bool> SharePetWithVeterinarian(Guid vetId);
-        Task<bool> RemovePetSharedWithVeterinarian(Guid vetId);
+
     }
 }
