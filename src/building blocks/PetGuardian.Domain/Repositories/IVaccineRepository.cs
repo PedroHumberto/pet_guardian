@@ -9,7 +9,7 @@ namespace PetGuardian.Domain.Repositories
 {
     public interface IVaccineRepository : IRepository<Vaccine>
     {
-        Task Create(Vaccine vaccine);
+        Task Create(Vaccine vaccine, CancellationToken cancellationToken);
         Task<IEnumerable<Vaccine>> GetAllVaccinesByPetId(Guid petId);
         Task Update(Vaccine vaccine);
         Task<Vaccine> GetVaccineById(Guid vaccineId, Guid petId);

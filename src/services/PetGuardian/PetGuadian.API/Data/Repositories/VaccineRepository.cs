@@ -20,12 +20,12 @@ namespace PetGuadian.API.Data.Repositories
 
         public IUnitOfWork UnitOfWork => _context;
 
-        public async Task Create(Vaccine vaccine)
+        public async Task Create(Vaccine vaccine, CancellationToken cancellationToken)
         {
             if(vaccine is null){
                 throw new CustomApplicationExceptions("Object is null");
             }
-            await _context.Vaccines.AddAsync(vaccine);
+            await _context.Vaccines.AddAsync(vaccine, cancellationToken);
 
             _cache.Remove(key: CacheKeyForVaccine(vaccine.PetId));
 

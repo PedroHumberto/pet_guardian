@@ -9,11 +9,13 @@ using PetGuadian.Application.Commands.ExamCommand;
 using PetGuadian.Application.Commands.MedicineCommands;
 using PetGuadian.Application.Commands.PetsCommand;
 using PetGuadian.Application.Commands.UserCommands;
+using PetGuadian.Application.Commands.VaccineCommands;
 using PetGuadian.Application.Handlers.Adresses;
 using PetGuadian.Application.Handlers.Exams;
 using PetGuadian.Application.Handlers.Medicines;
 using PetGuadian.Application.Handlers.Pets;
 using PetGuadian.Application.Handlers.Users;
+using PetGuadian.Application.Handlers.Vaccines;
 using PetGuadian.Application.Queries.AddressQueries;
 using PetGuadian.Application.Queries.MedicineQueries;
 using PetGuadian.Application.Queries.PetQueries;
@@ -40,7 +42,8 @@ namespace PetGuadian.API.Configuration
             // services.AddScoped<DeletePetHandler, DeletePetHandler>();
             //services.AddScoped<PetQueries, PetQueries>();
             //MEDIATR
-            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+
 
 
 
@@ -64,6 +67,8 @@ namespace PetGuadian.API.Configuration
             services.AddTransient<IRequestHandler<CreateMedicineCommand, ICommandResult>, CreateMedicineHandler>();
             services.AddTransient<IRequestHandler<DeleteMedicineCommand, ICommandResult>, DeleteMedicineHandler>();
             services.AddTransient<IRequestHandler<GetMedicineByIdQuerie, ICommandResult>, MedicineQueries>();
+            //VACCINE
+            services.AddTransient<IRequestHandler<CreateVaccineCommand, ICommandResult>, CreateVaccineHandler>();
 
             
             services.AddScoped<AppContextDb>();

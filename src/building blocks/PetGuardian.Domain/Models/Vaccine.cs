@@ -13,6 +13,8 @@ namespace PetGuardian.Domain.Models
             Notes = notes;
         }
 
+        protected Vaccine() {}
+
         public string Name { get; private set; }
         public DateTime VaccinatedAt { get; private set; }
         public bool FirstVaccin { get; private set; }

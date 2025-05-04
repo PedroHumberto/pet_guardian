@@ -22,7 +22,7 @@ namespace PetGuadian.API.Data.Mappings
             builder.HasOne(v => v.Pet)
             .WithMany(p => p.Vaccines)
             .HasForeignKey(v => v.PetId)
-            .OnDelete(DeleteBehavior.SetNull);
+            .OnDelete(DeleteBehavior.NoAction);
 
             builder.ToTable("Vaccines");
         }
