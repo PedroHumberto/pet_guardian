@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from './singup.module.css';
-import singupImage from '../../assets/minimalist-pet2.png'
+import singupImage from '../../assets/minimalist-pet2-nobackground.png'
 
 
 import { IdentiTyApi } from "../../Services/identityApi";
@@ -98,8 +98,6 @@ export const Singup = () => {
           </div>
         </form>
       </div>
-
-
       <img src={singupImage} alt="imagem de pets minimalistas" />
     </div>
 </div>

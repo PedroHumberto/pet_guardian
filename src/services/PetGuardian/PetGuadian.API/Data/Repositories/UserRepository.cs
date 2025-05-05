@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PetGuardian.Domain.Core.Data;
+using PetGuardian.Domain.Models;
 using PetGuardian.Domain.Repositories;
-using PetGuardian.Models.Models;
-
 namespace PetGuadian.API.Data.Repositories
 {
     public class UserRepository : IUserRepository
@@ -17,9 +16,9 @@ namespace PetGuadian.API.Data.Repositories
         public IUnitOfWork UnitOfWork => _context;
 
 
-        public async Task CreateUser(User user)
+        public async Task CreateUser(User user, CancellationToken cancellationToken)
         {
-            await _context.Users.AddAsync(user);
+            await _context.Users.AddAsync(user, cancellationToken);
             await _context.Commit();
         }
 
@@ -43,5 +42,18 @@ namespace PetGuadian.API.Data.Repositories
         {
             throw new NotImplementedException();
         }
+
+    
+        Task<User> IUserRepository.GetUser(Guid userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+
     }
 }

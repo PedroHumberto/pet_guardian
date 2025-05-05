@@ -1,16 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using PetGuardian.Models.Models;
+
+using PetGuardian.Domain.Core.Data;
+using PetGuardian.Domain.Models;
 
 namespace PetGuardian.Domain.Repositories
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User>
     {
-        Task CreateUser(User user);
+        Task CreateUser(User user, CancellationToken cancellationToken);
         void UpdateUser(User updatedUser);
         Task<User> GetUser(Guid userId);
         Task InativateUser(Guid userId);
+
     }
 }

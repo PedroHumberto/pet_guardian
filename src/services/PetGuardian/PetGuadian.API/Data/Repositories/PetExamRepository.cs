@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using PetGuardian.Core.Exceptions;
 using PetGuardian.Domain.Core.Data;
 using PetGuardian.Domain.Repositories;
-using PetGuardian.Models.Models;
+using PetGuardian.Domain.Models;
 
 namespace PetGuadian.API.Data.Repositories
 {
@@ -26,6 +22,7 @@ namespace PetGuadian.API.Data.Repositories
         public async Task CreateExam(PetExam exam)
         {
             CustomApplicationExceptions.ThrowIfObjectIsNull(exam, "exam", "Object is Null");
+
             await _context.PetExams.AddAsync(exam);
             await _context.Commit();
         }

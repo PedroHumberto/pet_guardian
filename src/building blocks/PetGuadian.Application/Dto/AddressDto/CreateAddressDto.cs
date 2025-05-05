@@ -1,4 +1,4 @@
-﻿using PetGuardian.Models.Models;
+﻿using PetGuardian.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

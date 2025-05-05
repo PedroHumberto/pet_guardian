@@ -1,6 +1,4 @@
-
 using PetGuardian.Core.PetGuardianCore.DomainObjects;
-using PetGuardian.Models.Models;
 
 namespace PetGuardian.Domain.Models
 {
@@ -14,6 +12,8 @@ namespace PetGuardian.Domain.Models
             PetId = petId;
             Notes = notes;
         }
+
+        protected Vaccine() {}
 
         public string Name { get; private set; }
         public DateTime VaccinatedAt { get; private set; }

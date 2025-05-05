@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PetGuardian.Models.Models;
+using PetGuardian.Domain.Models;
 
 namespace PetGuadian.API.Data.Mappings
 {
@@ -26,6 +26,13 @@ namespace PetGuadian.API.Data.Mappings
 
             builder.HasMany(p => p.Medicines)
                 .WithOne(m => m.Pet);
+
+            builder.HasMany(p => p.Vaccines)
+                .WithOne(m => m.Pet);
+
+            builder.HasMany(p => p.VeterinariansAllowed)
+                .WithMany(v => v.PetSharedList);
+                
                 
 
             builder.ToTable("Pets");

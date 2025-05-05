@@ -1,8 +1,7 @@
 
-
 using PetGuardian.Core.PetGuardianCore.DomainObjects;
 
-namespace PetGuardian.Models.Models
+namespace PetGuardian.Domain.Models
 {
     public class Address : Entity
     {

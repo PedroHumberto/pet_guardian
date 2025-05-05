@@ -1,12 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
-using Microsoft.IdentityModel.Tokens;
+using PetGuadian.Application.Queries.PetQueries;
 using PetGuardian.Core.Exceptions;
 using PetGuardian.Domain.Core.Data;
 using PetGuardian.Domain.Models;
 using PetGuardian.Domain.Repositories;
-using PetGuardian.Models.Models;
-using System.Runtime.CompilerServices;
 
 namespace PetGuadian.API.Data.Repositories
 {
@@ -23,21 +21,21 @@ namespace PetGuadian.API.Data.Repositories
             _cache = cache;
         }
 
-        public async Task CreatePet(Pet pet, Guid userId)
+        public async Task CreatePet(Pet pet, Guid userId, CancellationToken cancellationToken)
         {
             CustomApplicationExceptions.ThrowIfObjectIsNull(pet, "pet", "Object is Null");
 
             pet.AddUser(userId);
 
-            await _context.Pets.AddAsync(pet);
+            await _context.Pets.AddAsync(pet, cancellationToken);
             _cache.Remove(CacheKeyForPets(userId));
 
             await _context.Commit();
         }
 
-        public async Task DeletePet(Guid petId, Guid userId)
+        public async Task DeletePet(Guid petId, Guid userId, CancellationToken cancellationToken)
         {
-            Pet? pet = await _context.Pets.AsNoTracking().FirstOrDefaultAsync(p => p.Id == petId && p.UserId == userId);
+            Pet? pet = await _context.Pets.AsNoTracking().FirstAsync(p => p.Id == petId && p.UserId == userId);
 
             CustomApplicationExceptions.ThrowIfObjectIsNull(pet, "pet", "Pet is Null for delete");
 
@@ -108,11 +106,23 @@ namespace PetGuadian.API.Data.Repositories
             return $"UserPets:{userId}";
         }
 
-        public async Task Update(Pet pet)
+        public async Task Update(Pet pet, CancellationToken cancellationToken)
         {
             await Task.Run(() => _cache.Remove(CacheKeyForPets(pet.UserId)));
             _context.Pets.Update(pet);
             await _context.Commit();
         }
+
+        public async Task<bool> SharePetWithVeterinarian(Pet pet)
+        {
+            _context.Pets.Update(pet);
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> RemovePetSharedWithVeterinarian(Guid vetId)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

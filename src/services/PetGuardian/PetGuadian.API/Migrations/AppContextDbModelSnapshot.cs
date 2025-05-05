@@ -22,41 +22,7 @@ namespace PetGuadian.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("PetGuardian.Domain.Models.Medicine", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Dosage")
-                        .IsRequired()
-                        .HasColumnType("varchar(40)");
-
-                    b.Property<DateTime?>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Observations")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("PetId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("RemedyName")
-                        .IsRequired()
-                        .HasColumnType("varchar(30)");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PetId");
-
-                    b.ToTable("Medicines");
-                });
-
-            modelBuilder.Entity("PetGuardian.Models.Models.Address", b =>
+            modelBuilder.Entity("PetGuardian.Domain.Models.Address", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -95,7 +61,41 @@ namespace PetGuadian.API.Migrations
                     b.ToTable("Addresses", (string)null);
                 });
 
-            modelBuilder.Entity("PetGuardian.Models.Models.Pet", b =>
+            modelBuilder.Entity("PetGuardian.Domain.Models.Medicine", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Dosage")
+                        .IsRequired()
+                        .HasColumnType("varchar(40)");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Observations")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("PetId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("RemedyName")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PetId");
+
+                    b.ToTable("Medicines");
+                });
+
+            modelBuilder.Entity("PetGuardian.Domain.Models.Pet", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -127,11 +127,14 @@ namespace PetGuadian.API.Migrations
                     b.ToTable("Pets", (string)null);
                 });
 
-            modelBuilder.Entity("PetGuardian.Models.Models.PetExam", b =>
+            modelBuilder.Entity("PetGuardian.Domain.Models.PetExam", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ExamDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ExamLink")
                         .IsRequired()
@@ -141,17 +144,21 @@ namespace PetGuadian.API.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(40)");
 
-                    b.Property<Guid>("petId")
+                    b.Property<string>("Observations")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("PetId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("petId");
+                    b.HasIndex("PetId");
 
                     b.ToTable("PetExams");
                 });
 
-            modelBuilder.Entity("PetGuardian.Models.Models.User", b =>
+            modelBuilder.Entity("PetGuardian.Domain.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -176,9 +183,72 @@ namespace PetGuadian.API.Migrations
                     b.ToTable("Users", (string)null);
                 });
 
+            modelBuilder.Entity("PetGuardian.Domain.Models.Vaccine", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("FirstVaccin")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(40)");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<Guid>("PetId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("VaccinatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PetId");
+
+                    b.ToTable("Vaccines", (string)null);
+                });
+
+            modelBuilder.Entity("PetGuardian.Domain.Models.Veterinarian", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("varchar(40)");
+
+                    b.Property<string>("SecondName")
+                        .IsRequired()
+                        .HasColumnType("varchar(40)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Veterinarians", (string)null);
+                });
+
+            modelBuilder.Entity("PetVeterinarian", b =>
+                {
+                    b.Property<Guid>("PetSharedListId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("VeterinariansAllowedId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("PetSharedListId", "VeterinariansAllowedId");
+
+                    b.HasIndex("VeterinariansAllowedId");
+
+                    b.ToTable("PetVeterinarian");
+                });
+
             modelBuilder.Entity("PetGuardian.Domain.Models.Medicine", b =>
                 {
-                    b.HasOne("PetGuardian.Models.Models.Pet", "Pet")
+                    b.HasOne("PetGuardian.Domain.Models.Pet", "Pet")
                         .WithMany("Medicines")
                         .HasForeignKey("PetId")
                         .IsRequired();
@@ -186,9 +256,9 @@ namespace PetGuadian.API.Migrations
                     b.Navigation("Pet");
                 });
 
-            modelBuilder.Entity("PetGuardian.Models.Models.Pet", b =>
+            modelBuilder.Entity("PetGuardian.Domain.Models.Pet", b =>
                 {
-                    b.HasOne("PetGuardian.Models.Models.User", "User")
+                    b.HasOne("PetGuardian.Domain.Models.User", "User")
                         .WithMany("Pets")
                         .HasForeignKey("UserId")
                         .IsRequired();
@@ -196,21 +266,21 @@ namespace PetGuadian.API.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("PetGuardian.Models.Models.PetExam", b =>
+            modelBuilder.Entity("PetGuardian.Domain.Models.PetExam", b =>
                 {
-                    b.HasOne("PetGuardian.Models.Models.Pet", "Pet")
+                    b.HasOne("PetGuardian.Domain.Models.Pet", "Pet")
                         .WithMany("PetExams")
-                        .HasForeignKey("petId")
+                        .HasForeignKey("PetId")
                         .IsRequired();
 
                     b.Navigation("Pet");
                 });
 
-            modelBuilder.Entity("PetGuardian.Models.Models.User", b =>
+            modelBuilder.Entity("PetGuardian.Domain.Models.User", b =>
                 {
-                    b.HasOne("PetGuardian.Models.Models.Address", "Address")
+                    b.HasOne("PetGuardian.Domain.Models.Address", "Address")
                         .WithOne()
-                        .HasForeignKey("PetGuardian.Models.Models.User", "AddressId");
+                        .HasForeignKey("PetGuardian.Domain.Models.User", "AddressId");
 
                     b.OwnsOne("PetGuardian.Core.PetGuardianCore.DomainObjects.Email", "Email", b1 =>
                         {
@@ -237,14 +307,66 @@ namespace PetGuadian.API.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PetGuardian.Models.Models.Pet", b =>
+            modelBuilder.Entity("PetGuardian.Domain.Models.Vaccine", b =>
+                {
+                    b.HasOne("PetGuardian.Domain.Models.Pet", "Pet")
+                        .WithMany("Vaccines")
+                        .HasForeignKey("PetId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Pet");
+                });
+
+            modelBuilder.Entity("PetGuardian.Domain.Models.Veterinarian", b =>
+                {
+                    b.OwnsOne("PetGuardian.Core.DomainObjects.CRVCode", "CrvCode", b1 =>
+                        {
+                            b1.Property<Guid>("VeterinarianId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int>("CodeNumber")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("FromState")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("VeterinarianId");
+
+                            b1.ToTable("Veterinarians");
+
+                            b1.WithOwner()
+                                .HasForeignKey("VeterinarianId");
+                        });
+
+                    b.Navigation("CrvCode")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PetVeterinarian", b =>
+                {
+                    b.HasOne("PetGuardian.Domain.Models.Pet", null)
+                        .WithMany()
+                        .HasForeignKey("PetSharedListId")
+                        .IsRequired();
+
+                    b.HasOne("PetGuardian.Domain.Models.Veterinarian", null)
+                        .WithMany()
+                        .HasForeignKey("VeterinariansAllowedId")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PetGuardian.Domain.Models.Pet", b =>
                 {
                     b.Navigation("Medicines");
 
                     b.Navigation("PetExams");
+
+                    b.Navigation("Vaccines");
                 });
 
-            modelBuilder.Entity("PetGuardian.Models.Models.User", b =>
+            modelBuilder.Entity("PetGuardian.Domain.Models.User", b =>
                 {
                     b.Navigation("Pets");
                 });

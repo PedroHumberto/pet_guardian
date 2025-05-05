@@ -5,6 +5,7 @@ using PetGuadian.Application.Commands.Results;
 using System.Net;
 using MediatR;
 using PetGuadian.Application.Queries.PetQueries;
+using PetGuadian.Application.Commands.VeterinariansCommand;
 
 
 namespace PetGuadian.API.Controllers
@@ -42,7 +43,7 @@ namespace PetGuadian.API.Controllers
         /// <param name="userId">The ID of the user whose pets are to be retrieved</param>
         /// <returns>A list of pets or a not found result</returns>
         [HttpGet("get_pets_by_userId")]
-        public async Task<ICommandResult> GetPetByUserId([FromQuery] FindAllPetsByUserIdCommand request)
+        public async Task<ICommandResult> GetAllPetsByUserId([FromQuery] FindAllPetsByUserIdQuerie request)
         {
             var result = (GenericCommandResult)await _handler.Send(request);
             return result;
@@ -67,15 +68,28 @@ namespace PetGuadian.API.Controllers
         /// <param name="petId">The ID of the pet to be retrieved</param>
         /// <returns>The requested pet or an internal server error if an exception occurs</returns>
         [HttpGet("get_pet/{userId}/{petId}")]
-        public async Task<ICommandResult> GetPetById(FindPetByIdCommand command)
+        public async Task<ICommandResult> GetPetById(FindPetByIdQuerie command)
         {
-
             var result = await _handler.Send(command);
             return result;
         }
 
         [HttpPatch("update")]
         public async Task<ICommandResult> UpdatePet([FromBody] UpdatePetCommand command)
+        {
+            try
+            {
+                GenericCommandResult result = (GenericCommandResult)await _handler.Send(command);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return new GenericCommandResult(false, $"Internal Server Error: {ex.Message} ", ex, HttpStatusCode.BadRequest);
+            }
+        }
+
+        [HttpPatch("share-pet")]
+        public async Task<ICommandResult> SharePet([FromBody] SharePetWithVeterinarianCommand command)
         {
             try
             {

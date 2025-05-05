@@ -7,6 +7,7 @@ import { petGuardianApi } from '../../Services/petGuardianApi';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoadScreen from "../../Components/LoadScreen"; // Import the LoadScreen component
+import { isConstructorDeclaration } from "typescript";
 
 interface JWTParts {
   header: any;
@@ -42,18 +43,21 @@ export function MyPets() {
   }
   const decodedToken = JSON.parse(atob(token.split('.')[1]));
   var userId = decodedToken.id
+  console.log(userId)
   var email = decodedToken.email
 
   useEffect(() => {
     const fetchPets = async () => {
-
+      
       try {
-        const petResponse = await petGuardianApi.get(`/Pet/get_pets_by_userId?userId=${userId}`)
-        console.log("Pet Reponse " + petResponse.data[0].petName)
-        setPets(petResponse.data)
+        const petResponse = await petGuardianApi.get(`/Pet/get_pets_by_userId?Id=${userId}`)
+        console.log("response: " + petResponse.data.data[0].petName)
+        setPets(petResponse.data.data)
         setLoading(false); // Set loading to false after the request is done
       }
-      catch {
+      catch(error) {
+        
+        console.log("Error: " + error);
         navigate("/login");
       }
 

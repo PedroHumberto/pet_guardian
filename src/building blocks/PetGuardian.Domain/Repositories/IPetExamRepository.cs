@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using PetGuardian.Domain.Core.Data;
-using PetGuardian.Models.Models;
+using PetGuardian.Domain.Models;
 
 namespace PetGuardian.Domain.Repositories
 {

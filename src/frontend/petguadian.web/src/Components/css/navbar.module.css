@@ -7,14 +7,13 @@
 .logo img{
     width: 130px;
     height: 130px;
-    margin-right: 40vw;
 }
 .navbar ul{
     list-style-type: none;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
 }
 .navbar li{
@@ -22,45 +21,68 @@
 
 }
 .navbar a {
-    color: #225169;
+    color: #FF852F;
     text-decoration: none;
     margin-left: 50px;
     font-weight: bolder;
     font-family: "Sofia", sans-serif;
-    font-size: 25px;
+    font-size: 22px;
 }
 
 .menubtn a{
     text-decoration: solid;
 }
 
+/* Estilos para a Sidebar em telas menores que 961px */
+@media (max-width: 960px) {
+    .navbar {
+        position: fixed; /* Posicionamento fixo da barra lateral */
+        top: 0; /* Alinhada ao topo da página */
+        left: 0; /* Alinhada à esquerda da página */
+        width: 250px; /* Largura da barra lateral */
+        height: 100vh; /* Altura total da tela */
+        background-color: #fff; /* Cor de fundo da barra lateral */
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.158); /* Sombra para destaque */
+        transform: translateX(-100%); /* Inicialmente ocultada à esquerda */
+        transition: transform 0.3s ease-in-out; /* Transição suave para a entrada */
+    }
 
-  /* Change the background color of the menubtncontainer button when the menubtncontainer content is shown */
+    /* Quando a barra lateral estiver ativa, ela se move para dentro da tela */
+    .navbar.active {
+        transform: translateX(0); /* Movimenta a barra lateral para dentro da tela */
+    }
 
+    .navbar ul {
+        display: flex; /* Mantém os itens em flex */
+        flex-direction: column; /* Organiza os itens em coluna */
+        align-items: center; /* Centraliza os itens horizontalmente */
+        justify-content: flex-start;
+        height: 100%; /* Altura total da barra lateral */
+        padding-top: 20px; /* Espaço no topo da barra lateral */
+    }
 
-@media (min-width: 497px) and (max-width:960px){
-    .navbar ul{
-        list-style-type: none;    
-        background-color: #333;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin: auto;
-        margin-top: 70px;
+    .navbar li {
+        margin: 10px 0; /* Espaçamento entre os itens do menu */
     }
 }
 
+.menuToggle {
+    display: none; /* Escondido por padrão, será mostrado via media query para telas menores */
+    cursor: pointer;
+    padding: 10px 15px;
+    /* Adicione estilos adicionais conforme desejado, como cor de fundo, bordas, etc. */
+}
 
-@media (max-width:496px){
-    .navbar ul{
-        list-style-type: none;    
-        background-color: #333;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin: auto;
-        margin-top: 70px;
+.menuToggle div {
+    width: 25px; /* Largura das linhas do ícone */
+    height: 3px; /* Altura das linhas */
+    background-color: #333; /* Cor das linhas */
+    margin: 5px 0; /* Espaçamento entre as linhas */
+    transition: all 0.3s ease-in-out; /* Transição suave para animações */
+}
+
+@media (max-width: 960px) {
+    .menuToggle {
+        display: block; /* Mostra o botão em telas menores que 960px */
     }
 }

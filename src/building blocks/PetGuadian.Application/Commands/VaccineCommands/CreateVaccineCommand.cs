@@ -1,10 +1,11 @@
 
 using Flunt.Notifications;
+using MediatR;
 using PetGuadian.Application.Commands.Contracts;
 
 namespace PetGuadian.Application.Commands.VaccineCommands
 {
-    public class CreateVaccineCommand : Notifiable<Notification>, ICommand
+    public class CreateVaccineCommand : Notifiable<Notification>, IRequest<ICommandResult>
     {
 
         public CreateVaccineCommand(){}

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PetGuadian.Application.Commands.Contracts;
 using PetGuadian.Application.Commands.ExamCommand;
@@ -10,13 +11,13 @@ using PetGuadian.Application.Handlers;
 
 namespace PetGuadian.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class ExamPetController
     {
-        private readonly PetExamHandler _handler;
+        private readonly IMediator _handler;
 
-        public ExamPetController(PetExamHandler handler)
+        public ExamPetController(IMediator handler)
         {
             _handler = handler;
         }
@@ -24,7 +25,7 @@ namespace PetGuadian.API.Controllers
         [HttpPost("add_exam")]
         public async Task<ICommandResult> CreateExam([FromBody]CreateExamCommand command)
         {
-            var result = (GenericCommandResult) await _handler.Handle(command);
+            var result = (GenericCommandResult) await _handler.Send(command);
 
             return result;
         }

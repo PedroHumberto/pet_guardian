@@ -1,32 +1,30 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PetGuadian.Application.Commands.AddressCommand;
 using PetGuadian.Application.Commands.Results;
 using PetGuadian.Application.Dto;
 using PetGuadian.Application.Dto.AddressDto;
 using PetGuadian.Application.Handlers;
-using PetGuadian.Application.Services.Interfaces;
 
 
 namespace PetGuadian.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class AddressController : ControllerBase
     {
-        private readonly AddressHandler _handler;
-        private readonly IAddressService _addressService;
+        private readonly IMediator _handler;
 
-        public AddressController(AddressHandler handler, IAddressService addressService)
+        public AddressController(IMediator handler)
         {
             _handler = handler;
-            _addressService = addressService;
         }
 
         [HttpPost("create_address")]
         public async Task<GenericCommandResult> CreateAddress([FromBody]CreateAddressCommand command)
         {
-            var result = (GenericCommandResult) await _handler.Handle(command);
+            var result = (GenericCommandResult) await _handler.Send(command);
             
             return result;
         }

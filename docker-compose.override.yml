@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+  api:
+    volumes:
+      - ./src/services/PetGuardian/PetGuadian.API:/app
+    command: dotnet watch run --no-launch-profile --urls=http://0.0.0.0:80
