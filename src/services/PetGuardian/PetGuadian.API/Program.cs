@@ -10,7 +10,7 @@ builder.Services.AddHealthChecks();
 
 //DependencyInjetions
 builder.Services.RegisterServices();
-
+a
 
 
 var app = builder.Build();
